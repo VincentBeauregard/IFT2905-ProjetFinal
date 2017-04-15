@@ -17,7 +17,7 @@ public class MainTxtReduct
 		String line = null;
 		String[] lineTab;
 		String output;
-		String fileNameW = "out.txt";
+		String fileNameW = "outfull.txt";
 		String lineTmp="";
 		boolean lineComplete=true;
 		int lineCount=0;
@@ -46,28 +46,33 @@ public class MainTxtReduct
 						if(lineCount>0){
 							lineTmp=AnalyseLine.analyseLine(lineTab);
 							output = lineTmp;
+							if(!output.equals("")){
 							bufferedWriter.write(output);
-							bufferedWriter.newLine();
+							bufferedWriter.newLine();}
 						}
 						lineCount++;
 					}
 				}
 				bufferedWriter.close();
 			}
-			catch(IOException ex)
+			catch(IOException e)
 			{
+				//e.printStackTrace();
 				System.out.println("Error writing to file '" + fileNameW + "'");
 			}
 			bufferedReader.close();
 		}
-		catch(FileNotFoundException ex)
+		catch(FileNotFoundException e)
 		{
+			//e.printStackTrace();
 			System.out.println("Unable to open file '" + fileNameR + "'");
 		}
-		catch(IOException ex)
+		catch(IOException e)
 		{
+			//e.printStackTrace();
 			System.out.println("Error reading file '" + fileNameR + "'");
 		}
-		destination.delete();
+		//destination.delete();
 	}
 }
+
