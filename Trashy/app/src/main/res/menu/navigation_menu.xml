@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <item android:id="@+id/nav_map"
+        android:icon="@mipmap/ic_room_black_24dp"
+        android:title="Ma carte"/>
+
+    <item android:id="@+id/nav_dat"
+        android:icon="@mipmap/ic_event_black_24dp"
+        android:title="Dates d'entretien"/>
+
+    <item android:id="@+id/nav_set"
+        android:icon="@mipmap/ic_settings_black_24dp"
+        android:title="Parametres"/>
+
+    <item android:id="@+id/nav_cre"
+        android:icon="@mipmap/ic_info_black_24dp"
+        android:title="Créateurs"/>
+
+</menu>
