@@ -4,33 +4,53 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="projet.trashy.MainActivity"
+    tools:context="projetfinal.ift2905_trashy.MainActivity"
     android:id="@+id/drawerLayout"
     >
 
-    <LinearLayout
+    <android.support.design.widget.NavigationView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
-
-
-        <include
-            layout="@layout/navigation_action"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
-
-    </LinearLayout>
-
-
-    <android.support.design.widget.NavigationView
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        app:menu="@menu/navigation_menu"
+        app:menu="@menu/menu"
         android:layout_gravity="start"
+        android:layout_weight="1">
+    </android.support.design.widget.NavigationView>
 
-        app:headerLayout="@layout/navigation_header"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
+        <Button
+            android:text="trash"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/trash"
+            android:textSize="14sp"
+            style="@android:style/Widget.Material.Light.Button.Small"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_weight="1" />
+
+        <Button
+            android:text="Compost"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/compost"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_weight="1" />
+
+        <Button
+            android:text="Recycle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/recycle"
+            android:layout_alignBaseline="@+id/button3"
+            android:layout_alignBottom="@+id/button3"
+            android:layout_toStartOf="@+id/button3"
+            android:layout_marginEnd="17dp"
+            android:layout_weight="1" />
+    </LinearLayout>
 
 
 </android.support.v4.widget.DrawerLayout>
