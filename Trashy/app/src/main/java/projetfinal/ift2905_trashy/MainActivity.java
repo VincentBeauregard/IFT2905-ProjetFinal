@@ -33,6 +33,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        MainTxtReduct.redux();
         Button trash = (Button) findViewById(R.id.trash);
         Button recycle = (Button) findViewById(R.id.recycle);
         Button compost = (Button) findViewById(R.id.compost);
