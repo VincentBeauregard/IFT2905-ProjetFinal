@@ -26,7 +26,8 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        //MainTxtReduct.redux();
+
+        MainTxtReduct.redux(this);
         //Button trash = (Button) findViewById(R.id.trash);
         //Button recycle = (Button) findViewById(R.id.recycle);
         //Button compost = (Button) findViewById(R.id.compost);

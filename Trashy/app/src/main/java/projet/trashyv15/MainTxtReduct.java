@@ -1,4 +1,5 @@
 package projet.trashyv15;
+import android.app.Activity;
 import android.os.Environment;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -10,7 +11,7 @@ import java.io.IOException;
 
 public class MainTxtReduct
 {
-    public static void redux()
+    public static void redux(final Activity context)
     {
 
         String fileNameR = Environment.getExternalStorageDirectory() + "/" + "allo.txt" ;
@@ -22,11 +23,10 @@ public class MainTxtReduct
                 String fileNameR = "allo.txt";
                 String URL = "http://donnees.ville.montreal.qc.ca/dataset/2df0fa28-7a7b-46c6-912f-93b215bd201e/resource/87b2cd0c-e38b-4081-a58c-494a9590b882/download/pdo-collectes.csv";
                 File destination = new File(fileNameR);
-                AnalyseLine.downloadFileFromURL(URL, destination);
+                AnalyseLine.downloadFileFromURL(context,URL, destination);
             }
         });
         th_download.start();
-        System.out.println("TRABRARNAK");
         String line = null;
         String[] lineTab;
         String output;

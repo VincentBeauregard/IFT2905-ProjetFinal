@@ -1,4 +1,6 @@
 package projet.trashyv15;
+
+import android.app.Activity;
 import android.content.Context;
 import android.os.Environment;
 import android.util.Log;
@@ -156,7 +158,26 @@ public class AnalyseLine
 		else if(word.equals("NOVEMBRE"))return "NO";
 		else return "DE";
 	}
-	public static void downloadFileFromURL(String _url, File _name){
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	public static void downloadFileFromURL(Activity context ,String _url, File _name){
 
 		try {
 			URL u = new URL(_url);
@@ -183,6 +204,34 @@ public class AnalyseLine
 		System.out.println("lol");
 	}
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	public static Integer tryParse(String text) {
 		try {
 			return Integer.parseInt(text);
@@ -191,3 +240,11 @@ public class AnalyseLine
 		}
 	}
 }
+
+
+
+
+
+
+
+
