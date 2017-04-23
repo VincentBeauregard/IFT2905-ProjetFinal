@@ -4,6 +4,7 @@ import android.provider.BaseColumns;
 
 public final class TrashyDBContract {
 
+    // If you change the database schema, you must increment the database version.
     public static final  int    DATABASE_VERSION   = 1;
     public static final  String DATABASE_NAME      = "trashy_local.db";
 
@@ -15,6 +16,24 @@ public final class TrashyDBContract {
     private static final String TYPE_TEXTDESC      = " VARCHAR(512)";
     private static final String TYPE_POINT         = " POINT";
     private static final String TYPE_POLYGON       = " POLYGON";
+
+    // An array list of all the SQL create table statements
+    public static final String[] SQL_CREATE_TABLE_ARRAY = {
+            TrashyDBTableNeighbourhoods.CREATE_TABLE,
+            TrashyDBTableSchedules.CREATE_TABLE,
+            TrashyDBTableNeighbourhoodHasSchedule.CREATE_TABLE,
+            TrashyDBTableCalendarEvents.CREATE_TABLE,
+            TrashyDBTableEcocenters.CREATE_TABLE
+    };
+
+    // An array list of all the SQL delete table statements
+    public static final String[] SQL_DELETE_TABLE_ARRAY = {
+            TrashyDBTableNeighbourhoods.DELETE_TABLE,
+            TrashyDBTableSchedules.DELETE_TABLE,
+            TrashyDBTableNeighbourhoodHasSchedule.DELETE_TABLE,
+            TrashyDBTableCalendarEvents.DELETE_TABLE,
+            TrashyDBTableEcocenters.DELETE_TABLE
+    };
 
     // The constructor is set private to prevent someone from accidentally instantiating the Contract.
     private TrashyDBContract() {}
