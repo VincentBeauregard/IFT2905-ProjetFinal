@@ -1,6 +1,6 @@
 # Trashy
 
-![Notre icone](http://www.techonline.com/img/tmp/logo-placeholder.png"Logo")
+![Notre icone](http://www.techonline.com/img/tmp/logo-placeholder.png "Logo")
 
 __Trashy__ est une application pour téléphone intelligent Android qui permet à ses utilisateurs montréalais de toujours connaître les jours:
 
