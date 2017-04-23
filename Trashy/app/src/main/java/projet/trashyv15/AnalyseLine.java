@@ -1,183 +1,155 @@
 package projet.trashyv15;
 
 import android.app.Activity;
-import android.content.Context;
 import android.os.Environment;
 import android.util.Log;
 
 import java.io.DataInputStream;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.nio.channels.Channels;
-import java.nio.channels.ReadableByteChannel;
 
-public class AnalyseLine
-{
+public class AnalyseLine {
+
 	static String estivale = " 21JU 22SE 23SE 20JU";
-	public static String analyseLine(String[] line)
-	{
-		if(line[0].charAt(1)!='V'){
-			String outputString=line[0].substring(1,line[0].length()-1)+analyseTxt(line[3],""+line[0].charAt(1))+line[7]+line[8].substring(1,line[8].length()-1);
+
+	public static String analyseLine(String[] line) {
+		if (line[0].charAt(1) != 'V') {
+			String outputString = line[0].substring(1, line[0].length() - 1) + analyseTxt(line[3], "" + line[0].charAt(1)) + line[7] + line[8].substring(1, line[8].length() - 1);
 			System.out.println(outputString);
 			return outputString;
-		}
-		else return "";
+		} else return "";
 	}
-	public static String analyseTxt(String line,String type){
-		boolean vert = false;
-		if (type.equals('R'))vert=true;
+
+	public static String analyseTxt(String line, String type) {
+
+		boolean vert = false; /// A quoi ca sert? --Marc
 		String returnLine = "(";
 		String hours = "";
 		String date = "";
 		String lieu = "";
 		String[] words;
+
+		if (type.equals('R'))
+			vert = true;
+
 		words = line.split(" ");
-		for(int i=0;i<words.length;i++){
-			if(words[i].length()!=0){
-				if(words[i].charAt(words[i].length()-1)==';')
-					words[i]=words[i].substring(0,words[i].length()-1);
-				if(words[i].charAt(words[i].length()-1)=='.')
-					words[i]=words[i].substring(0,words[i].length()-1);
-				if(words[i].charAt(words[i].length()-1)==')')
-					words[i]=words[i].substring(0,words[i].length()-1);
-				if(words[i].charAt(0)=='(')
-					words[i]=words[i].substring(1,words[i].length());
-				if(words[i].charAt(words[i].length()-1)=='S')
-					words[i]=words[i].substring(0,words[i].length()-1);
-				else if(words[i].charAt(words[i].length()-1)=='s')
-					words[i]=words[i].substring(0,words[i].length()-1);
+		for (int i = 0; i < words.length; i++) {
+			if (words[i].length() != 0) {
+				if (words[i].charAt(words[i].length() - 1) == ';')
+					words[i] = words[i].substring(0, words[i].length() - 1);
+				if (words[i].charAt(words[i].length() - 1) == '.')
+					words[i] = words[i].substring(0, words[i].length() - 1);
+				if (words[i].charAt(words[i].length() - 1) == ')')
+					words[i] = words[i].substring(0, words[i].length() - 1);
+				if (words[i].charAt(0) == '(')
+					words[i] = words[i].substring(1, words[i].length());
+				if (words[i].charAt(words[i].length() - 1) == 'S')
+					words[i] = words[i].substring(0, words[i].length() - 1);
+				else if (words[i].charAt(words[i].length() - 1) == 's')
+					words[i] = words[i].substring(0, words[i].length() - 1);
 			}
-			switch(words[i]){
-				case "LUNDI" : returnLine+="L";break;
-				case "MARDI" : returnLine+="M";break;
-				case "MERCREDI" : returnLine+="m";break;
-				case "MERDREDI" : returnLine+="m";break;/// oui il y a des faute d<orthographe --'
-				case "JEUDI" : returnLine+="J";break;
-				case "VENDREDI" : returnLine+="V";break;
-				case "SAMEDI" : returnLine+="S";break;
-				case "DIMANCHE" :  returnLine+="D";break;
-				case "lundi" : returnLine+="L";break;
-				case "mardi" : returnLine+="M";break;
-				case "mercredi" : returnLine+="m";break;
-				case "merdredi" : returnLine+="m";break;
-				case "jeudi" : returnLine+="J";break;
-				case "vendredi" : returnLine+="V";break;
-				case "samedi" : returnLine+="S";break;
-				case "dimanche" :  returnLine+="D";break;
+
+			String upperCaseWord = words[i].toUpperCase();
+			switch (upperCaseWord) {
+				case "MERCREDI":
+				case "MERDREDI": /// oui il y a des faute d<orthographe --'
+					returnLine += "m";
+					break;
+				default:
+					returnLine += upperCaseWord.charAt(0);
 			}
-			if(words[i].equals("estivale")) date+=estivale;
-			if(words[i].equals("trottoir")) lieu+=" trottoir";
-			if(words[i].equals("rue")){ lieu+=" rue";
-				if(words[i+2].equals("ruelle)"))lieu+="/ruelle";
+
+			if (words[i].equals("estivale")) date += estivale;
+			if (words[i].equals("trottoir")) lieu += " trottoir";
+			if (words[i].equals("rue")) {
+				lieu += " rue";
+				if (words[i + 2].equals("ruelle)")) lieu += "/ruelle";
 			}
-			if(words[i].equals("ruelle")&&!words[i-2].equals("rue"))lieu+=" ruelle";
-			if(words[i].equals("1er")) words[i]="1";
-			if(tryParse(words[i])!=null)
-				if(isMonth(words[i+1]))
-					date+=" "+words[i] + parseMonth(words[i+1]);
-				else if(words[i+1].equals("et") && isMonth(words[i+3]))
-					date+=" "+words[i] + parseMonth(words[i+3]);
-				else
-				if(Integer.parseInt(words[i])<40)
-					if((words[i-1].equals("h")&&words[i].equals("30")))
-						hours+=".5";
-					else if(words[i-1].equals("et"))
-						hours += "-"+words[i];
-					else if(words[i+1].equals("h")
-							||words[i+1].equals("h.")
-							||words[i+1].equals("h;"))hours += " "+words[i];
+			if (words[i].equals("ruelle") && !words[i - 2].equals("rue")) lieu += " ruelle";
+			if (words[i].equals("1er")) words[i] = "1";
+			if (tryParse(words[i]) != null)
+				if (isMonth(words[i + 1]))
+					date += " " + words[i] + parseMonth(words[i + 1]);
+				else if (words[i + 1].equals("et") && isMonth(words[i + 3]))
+					date += " " + words[i] + parseMonth(words[i + 3]);
+				else if (Integer.parseInt(words[i]) < 40)
+					if ((words[i - 1].equals("h") && words[i].equals("30")))
+						hours += ".5";
+					else if (words[i - 1].equals("et"))
+						hours += "-" + words[i];
+					else if (words[i + 1].equals("h")
+							|| words[i + 1].equals("h.")
+							|| words[i + 1].equals("h;")) hours += " " + words[i];
 		}
-		if(date.length()<5)date="";
-		lieu+=") ";
-		returnLine="\""+returnLine+date + hours+lieu+line.substring(1,line.length());
-		return returnLine;
+
+		if (date.length() < 5)
+			date = "";
+
+		lieu += ") ";
+		return "\"" + returnLine + date + hours + lieu + line.substring(1, line.length());
 	}
 
-	public static boolean isMonth(String word){
+	private static boolean isMonth(String word) {
 
-		if(word.length()!=0){
-			if(word.charAt(word.length()-1)=='\"')
-				word=word.substring(0,word.length()-1);
-			if(word.charAt(word.length()-1)==';')
-				word=word.substring(0,word.length()-1);
-			if(word.charAt(word.length()-1)=='.')
-				word=word.substring(0,word.length()-1);
-			if(word.charAt(word.length()-1)=='S')
-				word=word.substring(0,word.length()-1);
-			else if(word.charAt(word.length()-1)=='s')
-				word=word.substring(0,word.length()-1);
+		if (word.length() != 0) {
+			if (word.charAt(word.length() - 1) == '\"')
+				word = word.substring(0, word.length() - 1);
+			if (word.charAt(word.length() - 1) == ';')
+				word = word.substring(0, word.length() - 1);
+			if (word.charAt(word.length() - 1) == '.')
+				word = word.substring(0, word.length() - 1);
+			if (word.charAt(word.length() - 1) == 'S')
+				word = word.substring(0, word.length() - 1);
+			else if (word.charAt(word.length() - 1) == 's')
+				word = word.substring(0, word.length() - 1);
 		}
+
 		word = word.toUpperCase();
-		if(
-				word.equals("JANVIER") ||
-						word.equals("FEVRIER") ||
-						word.equals("MARS") ||
-						word.equals("AVRIL") ||
-						word.equals("MAI") ||
-						word.equals("JUIN") ||
-						word.equals("JUILLET") ||
-						word.equals("AOUT") ||
-						word.equals("SEPTEMBRE") ||
-						word.equals("OCTOBRE") ||
-						word.equals("NOVEMBRE") ||
-						word.equals("DECEMBRE"))
-			return true;
-		else return false;
+		return word.equals("JANVIER") ||
+				word.equals("FEVRIER") ||
+				word.equals("MARS") ||
+				word.equals("AVRIL") ||
+				word.equals("MAI") ||
+				word.equals("JUIN") ||
+				word.equals("JUILLET") ||
+				word.equals("AOUT") ||
+				word.equals("SEPTEMBRE") ||
+				word.equals("OCTOBRE") ||
+				word.equals("NOVEMBRE") ||
+				word.equals("DECEMBRE");
 	}
 
-	public static String parseMonth(String word){
+	private static String parseMonth(String word) {
 
-		if(word.length()!=0){
-			if(word.charAt(word.length()-1)=='\"')
-				word=word.substring(0,word.length()-1);
-			if(word.charAt(word.length()-1)==';')
-				word=word.substring(0,word.length()-1);
-			if(word.charAt(word.length()-1)=='.')
-				word=word.substring(0,word.length()-1);
-			if(word.charAt(word.length()-1)=='S')
-				word=word.substring(0,word.length()-1);
-			else if(word.charAt(word.length()-1)=='s')
-				word=word.substring(0,word.length()-1);
+		if (word.length() != 0) {
+			if (word.charAt(word.length() - 1) == '\"')
+				word = word.substring(0, word.length() - 1);
+			if (word.charAt(word.length() - 1) == ';')
+				word = word.substring(0, word.length() - 1);
+			if (word.charAt(word.length() - 1) == '.')
+				word = word.substring(0, word.length() - 1);
+			if (word.charAt(word.length() - 1) == 'S')
+				word = word.substring(0, word.length() - 1);
+			else if (word.charAt(word.length() - 1) == 's')
+				word = word.substring(0, word.length() - 1);
 		}
+
 		word = word.toUpperCase();
-		if(word.equals("JANVIER"))return "JA";
-		else if(word.equals("FEVRIER"))return "FE";
-		else if(word.equals("MARS"))return "MA";
-		else if(word.equals("AVRIL"))return "AV";
-		else if(word.equals("MAI"))return "MA";
-		else if(word.equals("JUIN"))return "JU";
-		else if(word.equals("JUILLET"))return "JL";
-		else if(word.equals("AOUT"))return "AO";
-		else if(word.equals("SEPTEMBRE"))return "SE";
-		else if(word.equals("OCTOBRE"))return "OC";
-		else if(word.equals("NOVEMBRE"))return "NO";
-		else return "DE";
+		if (word.length() < 2)
+			return "??";
+
+		switch (word) {
+			case "JUILLET": return "JL";
+			default:        return word.substring(0, 2);
+		}
 	}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	public static void downloadFileFromURL(Activity context ,String _url, File _name){
+	@SuppressWarnings("unused")
+	public static void downloadFileFromURL(Activity context, String _url, File _name) {
 
 		try {
 			URL u = new URL(_url);
@@ -189,7 +161,7 @@ public class AnalyseLine
 			int length;
 
 			FileOutputStream fos = new FileOutputStream(new File(Environment.getExternalStorageDirectory() + "/" + _name));
-			while ((length = dis.read(buffer))>0) {
+			while ((length = dis.read(buffer)) > 0) {
 				System.out.println();
 				fos.write(buffer, 0, length);
 			}
@@ -204,34 +176,6 @@ public class AnalyseLine
 		System.out.println("lol");
 	}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 	public static Integer tryParse(String text) {
 		try {
 			return Integer.parseInt(text);
@@ -240,11 +184,3 @@ public class AnalyseLine
 		}
 	}
 }
-
-
-
-
-
-
-
-
