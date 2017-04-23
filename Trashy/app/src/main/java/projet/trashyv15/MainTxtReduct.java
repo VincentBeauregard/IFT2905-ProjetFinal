@@ -11,9 +11,9 @@ import java.io.IOException;
 
 public class MainTxtReduct
 {
-    public static void redux(final Activity context)
+    public static String redux(final Activity context)
     {
-
+        String polygone="";
         String fileNameR = Environment.getExternalStorageDirectory() + "/" + "allo.txt" ;
         String URL = "http://donnees.ville.montreal.qc.ca/dataset/2df0fa28-7a7b-46c6-912f-93b215bd201e/resource/87b2cd0c-e38b-4081-a58c-494a9590b882/download/pdo-collectes.csv";
         File destination = new File(fileNameR);
@@ -63,6 +63,7 @@ public class MainTxtReduct
                     else{
                         if(lineCount>0){
                             lineTmp=AnalyseLine.analyseLine(lineTab);
+                            polygone=lineTmp;
                             output = lineTmp;
                             if(!output.equals("")){
                                 bufferedWriter.write(output);
@@ -91,5 +92,6 @@ public class MainTxtReduct
             System.out.println("Error reading file '" + fileNameR + "'");
         }
         destination.delete();
+        return polygone;
     }
 }

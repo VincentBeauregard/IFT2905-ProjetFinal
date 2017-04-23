@@ -21,7 +21,7 @@ public class AnalyseLine {
 		if (line[0].charAt(1) != 'V') {
 			String outputString = line[0].substring(1, line[0].length() - 1) + analyseTxt(line[3], "" + line[0].charAt(1));
 			System.out.println(outputString);
-			return outputString;
+			return line[8].substring(1,line[8].length()-1);
 		} else return "";
 	}
 
@@ -113,7 +113,13 @@ public class AnalyseLine {
 					date+=""+words[i] + parseMonth(words[i+1])+"-";
 				else
 				if(Integer.parseInt(words[i])<40)
-					if(vert&&words[i+1]!=null){
+					if(words[i-1].equals("et"))
+						hours += "-"+words[i];
+					else if(words[i+1].equals("h")
+							||words[i+1].equals("h.")
+							||words[i-1].equals("avant")
+							||words[i+1].equals("h;"))hours += " "+words[i];
+					else if(vert&&words[i+1]!=null){
 						if(tryParse(words[i+1])!=null)
 							if(isMonth(words[i-1]))
 								date+=""+words[i]+"-";
@@ -123,12 +129,6 @@ public class AnalyseLine {
 						else if(tryParse(words[i-1])!=null)date+=words[i]+"-";}
 					else if((words[i-1].equals("h")&&words[i].equals("30")))
 						hours+=".5";
-					else if(words[i-1].equals("et"))
-						hours += "-"+words[i];
-					else if(words[i+1].equals("h")
-							||words[i+1].equals("h.")
-							||words[i-1].equals("avant")
-							||words[i+1].equals("h;"))hours += " "+words[i];
 
 			if(date.equals("1JA-"))date="";
 			returnLine=returnLine+date + hours+lieu;
