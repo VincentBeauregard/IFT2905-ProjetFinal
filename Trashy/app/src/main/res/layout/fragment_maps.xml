@@ -1,15 +1,197 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ScrollView01"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Ma Carte"
-        android:id="@+id/Map"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true" />
 
-</RelativeLayout>
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/switchStatus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="22dp"
+            android:text="Medium Text"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <Switch
+            android:id="@+id/ahunCV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/switchStatus"
+            android:layout_marginTop="20dp"
+            android:text="Ahunstic-Cartierville" />
+
+        <Switch
+            android:id="@+id/anjou"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/ahunCV"
+            android:layout_marginTop="20dp"
+            android:text="Anjou" />
+
+        <Switch
+            android:id="@+id/cdnndg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/anjou"
+            android:layout_marginTop="20dp"
+            android:text="Côte-des-Neiges-Notre-Dame-de-Grâce" />
+
+        <Switch
+            android:id="@+id/lachine"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/cdnndg"
+            android:layout_marginTop="20dp"
+            android:text="Lachine" />
+
+        <Switch
+            android:id="@+id/lasalle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/lachine"
+            android:layout_marginTop="20dp"
+            android:text="LaSalle" />
+
+        <Switch
+            android:id="@+id/mtRoyal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/lasalle"
+            android:layout_marginTop="20dp"
+            android:text="Plateau Mont-Royal" />
+
+        <Switch
+            android:id="@+id/sudOuest"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/mtRoyal"
+            android:layout_marginTop="20dp"
+            android:text="Sud-Ouest" />
+
+        <Switch
+            android:id="@+id/iBSG"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/sudOuest"
+            android:layout_marginTop="20dp"
+            android:text="Île-Bizard–Sainte-Geneviève" />
+
+        <Switch
+            android:id="@+id/mHM"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/iBSG"
+            android:layout_marginTop="20dp"
+            android:text="Mercier–Hochelaga-Maisonneuve" />
+
+        <Switch
+            android:id="@+id/mtlN"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/mHM"
+            android:layout_marginTop="20dp"
+            android:text="Montréal-Nord" />
+
+        <Switch
+            android:id="@+id/outrmt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/mtlN"
+            android:layout_marginTop="20dp"
+            android:text="Outremont" />
+
+        <Switch
+            android:id="@+id/pfrb"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/outrmt"
+            android:layout_marginTop="20dp"
+            android:text="Pierrefonds-Roxboro" />
+
+        <Switch
+            android:id="@+id/rdppat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/pfrb"
+            android:layout_marginTop="20dp"
+            android:text="Rivière-des-Prairies–Pointe-aux-Trembles" />
+
+        <Switch
+            android:id="@+id/rosemtlpp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/rdppat"
+            android:layout_marginTop="20dp"
+            android:text="Rosemont–La Petite-Patrie" />
+
+        <Switch
+            android:id="@+id/stlau"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/rosemtlpp"
+            android:layout_marginTop="20dp"
+            android:text="Saint-Laurent" />
+
+        <Switch
+            android:id="@+id/stl"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/stlau"
+            android:layout_marginTop="20dp"
+            android:text="Saint-Léonard" />
+
+        <Switch
+            android:id="@+id/verdun"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/stl"
+            android:layout_marginTop="20dp"
+            android:text="Verdun" />
+
+        <Switch
+            android:id="@+id/vm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/verdun"
+            android:layout_marginTop="20dp"
+            android:text="Ville-Marie" />
+
+        <Switch
+            android:id="@+id/villeraypx"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/vm"
+            android:layout_marginTop="20dp"
+            android:text="Villeray–Saint-Michel–Parc-Extension" />
+
+
+
+
+    </RelativeLayout>
+</ScrollView>
