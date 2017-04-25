@@ -3,25 +3,45 @@ package projet.trashyv15;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.Switch;
 import android.widget.TextView;
 
-import static android.support.design.R.styleable.CompoundButton;
 
+public class MapsFragment extends Fragment{
 
-public class MapsFragment extends Fragment {
-
+    //variables pour les boutons et le texte
     private Switch ahunCV,anjou,cdnndg,lachine,lasalle,mtRoyal,sudOuest,iBSG,mHM,mtlN,outrmt,pfrb,rdppat,rosemtlpp,stlau,stl,verdun,vm,villeraypx;
     private TextView selection;
+    private Button accedCarte;
+
+    View view;
+
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.fragment_maps, container, false);
+        view = inflater.inflate(R.layout.fragment_maps, container, false);
+        accedCarte = (Button) view.findViewById(R.id.accedCarte);
+
+        accedCarte.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Fragment fragment= new MapsAutoFragment();
+                FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                transaction.replace(R.id.content_frame, fragment); // fragmen container id in first parameter is the  container(Main layout id) of Activity
+                transaction.addToBackStack(null);  // this will manage backstack
+                transaction.commit();
+            }
+        });
+        
+
         selection = (TextView) view.findViewById(R.id.switchStatus);//permet de modifier le text view
         //permet de modifier l'etat des boutons
         ahunCV = (Switch) view.findViewById(R.id.ahunCV);
@@ -66,6 +86,18 @@ public class MapsFragment extends Fragment {
         checkSwitch(R.id.villeraypx);
 
 
+
+        ahunCV.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {//on click
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked){//change le text lors d'un toggle
+                    selection.setText("AhunCV is currently ON");//test
+                }else{
+                    selection.setText("AhunCV is currently OFF");
+                }
+                //is checked = true si le bouton est active
+            }
+        });
+
         return view;
 
         //returning our layout file
@@ -80,19 +112,45 @@ public class MapsFragment extends Fragment {
 
     ////////////////////////////////////////////////////
      */
+
+    //checkswitch verifie quel bouton est active
     public void checkSwitch(int id){//le id est un int, on peut le recuperer en utilisant le R.id.nom du quarter dans fragment_maps.xml
         //TrashyDBContract db = TrashyDBHelper.
         String sql = "SELECT * FROM neighbourhoods WHERE name = '" + id + "' AND iscurrent ='TRUE'";
 
-        //if(id == R.id.ahunCV)
-            //ahunCV.setChecked(true);
+        if(id == R.id.ahunCV) {//test
+            ahunCV.setChecked(true);
+            selection.setText("Votre Arrondissement: Ahunstic-CartierVille");
+        }
+
+        else if (id == R.id.anjou) {
+            anjou.setChecked(true);
+        }
+        else {
+            cdnndg.setChecked(true);
+        }
     }
 
 
     @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+    public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         //you can set the title for your toolbar here for different fragments different titles
-        getActivity().setTitle("Maps");
+        getActivity().setTitle("Arrondissements");
+
+
+
     }
+
+
+
+
+
+
+
+
+
+
+
+
 }
