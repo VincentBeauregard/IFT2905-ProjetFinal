@@ -3,22 +3,38 @@ package projet.trashyv15;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.CompoundButton;
+import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapView;
+import com.google.android.gms.maps.MapsInitializer;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.model.CameraPosition;
+import com.google.android.gms.maps.model.LatLng;
 
 
-public class MapsFragment extends Fragment{
+public class MapsFragment extends Fragment implements OnMapReadyCallback{
 
     //variables pour les boutons et le texte
     private Switch ahunCV,anjou,cdnndg,lachine,lasalle,mtRoyal,sudOuest,iBSG,mHM,mtlN,outrmt,pfrb,rdppat,rosemtlpp,stlau,stl,verdun,vm,villeraypx;
     private TextView selection;
     private Button accedCarte;
+
+    //variables pour la carte
+    GoogleMap mGoogleMap;
+    MapView mMapView;
+
+
 
     View view;
 
@@ -30,73 +46,90 @@ public class MapsFragment extends Fragment{
         view = inflater.inflate(R.layout.fragment_maps, container, false);
         accedCarte = (Button) view.findViewById(R.id.accedCarte);
 
+
+
         accedCarte.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Fragment fragment= new MapsAutoFragment();
-                FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                transaction.replace(R.id.content_frame, fragment); // fragmen container id in first parameter is the  container(Main layout id) of Activity
-                transaction.addToBackStack(null);  // this will manage backstack
-                transaction.commit();
+                //bouton de localisation
+
+
             }
         });
-        
-
-        selection = (TextView) view.findViewById(R.id.switchStatus);//permet de modifier le text view
-        //permet de modifier l'etat des boutons
-        ahunCV = (Switch) view.findViewById(R.id.ahunCV);
-        anjou = (Switch) view.findViewById(R.id.anjou);
-        cdnndg = (Switch) view.findViewById(R.id.cdnndg);
-        lachine = (Switch) view.findViewById(R.id.lachine);
-        lasalle = (Switch) view.findViewById(R.id.lasalle);
-        mtRoyal = (Switch) view.findViewById(R.id.mtRoyal);
-        sudOuest = (Switch) view.findViewById(R.id.sudOuest);
-        iBSG = (Switch) view.findViewById(R.id.iBSG);
-        mHM = (Switch) view.findViewById(R.id.mHM);
-        mtlN = (Switch) view.findViewById(R.id.mtlN);
-        outrmt = (Switch) view.findViewById(R.id.outrmt);
-        pfrb = (Switch) view.findViewById(R.id.pfrb);
-        rdppat = (Switch) view.findViewById(R.id.rdppat);
-        rosemtlpp = (Switch) view.findViewById(R.id.rosemtlpp);
-        stlau = (Switch) view.findViewById(R.id.stlau);
-        stl = (Switch) view.findViewById(R.id.stl);
-        verdun = (Switch) view.findViewById(R.id.verdun);
-        vm = (Switch) view.findViewById(R.id.vm);
-        villeraypx = (Switch) view.findViewById(R.id.villeraypx);
-
-
-        checkSwitch(R.id.ahunCV);//regarde lequel des toggle est activé
-        checkSwitch(R.id.anjou);
-        checkSwitch(R.id.cdnndg);
-        checkSwitch(R.id.lachine);
-        checkSwitch(R.id.lasalle);
-        checkSwitch(R.id.mtRoyal);
-        checkSwitch(R.id.sudOuest);
-        checkSwitch(R.id.iBSG);
-        checkSwitch(R.id.mHM);
-        checkSwitch(R.id.mtlN);
-        checkSwitch(R.id.outrmt);
-        checkSwitch(R.id.pfrb);
-        checkSwitch(R.id.rdppat);
-        checkSwitch(R.id.rosemtlpp);
-        checkSwitch(R.id.stlau);
-        checkSwitch(R.id.stl);
-        checkSwitch(R.id.verdun);
-        checkSwitch(R.id.vm);
-        checkSwitch(R.id.villeraypx);
 
 
 
-        ahunCV.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {//on click
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if(isChecked){//change le text lors d'un toggle
-                    selection.setText("AhunCV is currently ON");//test
-                }else{
-                    selection.setText("AhunCV is currently OFF");
+        /*pos du array:
+
+
+        0- Ahuntsic-Cartierville
+        1- Anjou
+        2- Côte-des-Neiges–Notre-Dame-de-Grâce
+        3- Lachine
+        4- LaSalle
+        5- Le Plateau-Mont-Royal
+        6- Le Sud-Ouest
+        7- L’Île-Bizard–Sainte-Geneviève
+        8- Mercier–Hochelaga-Maisonneuve
+        9- Montréal-Nord
+        10- Outremont
+        11- Pierrefonds-Roxboro
+        12- Rivière-des-Prairies–Pointe-aux-Trembles
+        13- Rosemont–La Petite-Patrie
+        14- Saint-Laurent
+        15- Saint-Léonard
+        16- Verdun
+        17- Ville-Marie
+        18- Villeray–Saint-Michel–Parc-Extension
+         */
+
+
+            Spinner spinner = (Spinner) view.findViewById(R.id.spinner);
+            spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                public void onItemSelected(AdapterView<?> parent, View view,
+                                           int position, long id) {
+
+
+
+                    String sql = "UPDATE 'neighbourhoods' SET iscurrent = 'FALSE'  WHERE iscurrent = 'TRUE';";
+                    //executer sql
+                    String item = parent.getItemAtPosition(position).toString();
+
+
+
+                    sql = "UPDATE 'neighbourhoods' SET iscurrent = 'TRUE'  WHERE name = '"+ item +"';";
+                    //executer sql
+
+
+                    // An item was selected. You can retrieve the selected item using
+                    // parent.getItemAtPosition(pos)
+
+
+
+                    if(!item.equals("Sélectionnez un arrondissement"))
+                        Toast.makeText(getActivity(),item + " à été sélectionné comme arrondissement", Toast.LENGTH_SHORT).show();
+                    else Toast.makeText(getActivity(),"Vous n'avez pas encore sélectionné d'arrondissement", Toast.LENGTH_SHORT).show();
                 }
-                //is checked = true si le bouton est active
-            }
-        });
+
+                @Override
+                public void onNothingSelected(AdapterView<?> parent) {
+
+                }
+            });
+
+        //verifier lequel est selectionne
+        String sql = "SELECT name FROM 'neighbourhoods' WHERE iscurrent = 'TRUE'";
+        //executer sql
+
+
+
+        // Create an ArrayAdapter using the string array and a default spinner layout
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getContext(),
+                R.array.arrondissements, android.R.layout.simple_spinner_item);
+        // Specify the layout to use when the list of choices appears
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        // Apply the adapter to the spinner
+        spinner.setAdapter(adapter);
 
         return view;
 
@@ -104,6 +137,17 @@ public class MapsFragment extends Fragment{
         //change R.layout.yourlayoutfilename for each of your fragments
         //return inflater.inflate(R.layout.fragment_maps, container, false);
     }
+        
+
+
+
+
+
+
+
+
+
+
 
 
     /*FAIRE LA CONNEXION A LA BASE DE DONNEES DANS CHECKSWITCH
@@ -113,23 +157,7 @@ public class MapsFragment extends Fragment{
     ////////////////////////////////////////////////////
      */
 
-    //checkswitch verifie quel bouton est active
-    public void checkSwitch(int id){//le id est un int, on peut le recuperer en utilisant le R.id.nom du quarter dans fragment_maps.xml
-        //TrashyDBContract db = TrashyDBHelper.
-        String sql = "SELECT * FROM neighbourhoods WHERE name = '" + id + "' AND iscurrent ='TRUE'";
 
-        if(id == R.id.ahunCV) {//test
-            ahunCV.setChecked(true);
-            selection.setText("Votre Arrondissement: Ahunstic-CartierVille");
-        }
-
-        else if (id == R.id.anjou) {
-            anjou.setChecked(true);
-        }
-        else {
-            cdnndg.setChecked(true);
-        }
-    }
 
 
     @Override
@@ -138,10 +166,39 @@ public class MapsFragment extends Fragment{
         //you can set the title for your toolbar here for different fragments different titles
         getActivity().setTitle("Arrondissements");
 
+        //pour la carte
+        mMapView = (MapView) view.findViewById(R.id.frame_layout).findViewById(R.id.map);
+        if(mMapView != null){
+            mMapView.onCreate(null);
+            mMapView.onResume();
+            mMapView.getMapAsync((OnMapReadyCallback) this);
+        }
+
+        //Partie ou on affiche la carte:
+
+
+
 
 
     }
 
+
+
+
+    //pour la carte
+    @Override
+    public void onMapReady(GoogleMap googleMap) {
+        MapsInitializer.initialize(getContext());
+        mGoogleMap = googleMap;
+        googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
+
+        //add marker?
+
+        //position de depart
+        CameraPosition current = CameraPosition.builder().target(new LatLng(45.5016889,-73.56725599999999)).zoom(16).bearing(0).tilt(45).build();
+
+        googleMap.moveCamera(CameraUpdateFactory.newCameraPosition(current));
+    }
 
 
 

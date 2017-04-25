@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="arrondissements">
+        <item>Sélectionnez un arrondissement</item>
+        <item>Ahunstic-Cartierville</item>
+        <item>Anjou</item>
+        <item>Côte-des-Neiges-Notre-Dame-de-Grâce</item>
+        <item>Lachine</item>
+        <item>LaSalle</item>
+        <item>Plateau Mont-Royal</item>
+        <item>Sud-Ouest</item>
+        <item>Île-Bizard–Sainte-Geneviève</item>
+        <item>Mercier–Hochelaga-Maisonneuve</item>
+        <item>Montréal-Nord</item>
+        <item>Outremont</item>
+        <item>Pierrefonds-Roxboro</item>
+        <item>Rivière-des-Prairies–Pointe-aux-Trembles</item>
+        <item>Rosemont–La Petite-Patrie</item>
+        <item>Saint-Laurent</item>
+        <item>Saint-Léonard</item>
+        <item>Verdun</item>
+        <item>Ville-Marie</item>
+        <item>Villeray–Saint-Michel–Parc-Extension</item>
+
+    </string-array>
+</resources>
