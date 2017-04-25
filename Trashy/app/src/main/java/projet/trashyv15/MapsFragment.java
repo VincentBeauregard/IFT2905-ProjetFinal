@@ -1,7 +1,13 @@
 package projet.trashyv15;
 
+import android.Manifest;
+import android.content.pm.PackageManager;
+import android.graphics.Point;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,9 +16,8 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
-import android.widget.Switch;
-import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.ZoomControls;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -21,18 +26,24 @@ import com.google.android.gms.maps.MapsInitializer;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Polygon;
 
 
 public class MapsFragment extends Fragment implements OnMapReadyCallback{
 
     //variables pour les boutons et le texte
-    private Switch ahunCV,anjou,cdnndg,lachine,lasalle,mtRoyal,sudOuest,iBSG,mHM,mtlN,outrmt,pfrb,rdppat,rosemtlpp,stlau,stl,verdun,vm,villeraypx;
-    private TextView selection;
+
     private Button accedCarte;
 
     //variables pour la carte
-    GoogleMap mGoogleMap;
-    MapView mMapView;
+    private GoogleMap mGoogleMap;
+    private MapView mMapView;
+    private ZoomControls zoom;
+    private final static int MY_PERMISSION_FINE_LOCATION = 101;
+
+    //Polygone + Point
+    private Point loc;
+    private Polygon ahunCV,anjou,cdnndg,lachine,lasalle,mtRoyal,sudOuest,iBSG,mHM,mtlN,outrmt,pfrb,rdppat,rosemtlpp,stlau,stl,verdun,vm,villeraypx;
 
 
 
@@ -57,6 +68,28 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback{
             }
         });
 
+
+
+        /*//permet de modifier l'etat des boutons
+        ahunCV = (Switch) view.findViewById(R.id.ahunCV);
+        anjou = (Switch) view.findViewById(R.id.anjou);
+        cdnndg = (Switch) view.findViewById(R.id.cdnndg);
+        lachine = (Switch) view.findViewById(R.id.lachine);
+        lasalle = (Switch) view.findViewById(R.id.lasalle);
+        mtRoyal = (Switch) view.findViewById(R.id.mtRoyal);
+        sudOuest = (Switch) view.findViewById(R.id.sudOuest);
+        iBSG = (Switch) view.findViewById(R.id.iBSG);
+        mHM = (Switch) view.findViewById(R.id.mHM);
+        mtlN = (Switch) view.findViewById(R.id.mtlN);
+        outrmt = (Switch) view.findViewById(R.id.outrmt);
+        pfrb = (Switch) view.findViewById(R.id.pfrb);
+        rdppat = (Switch) view.findViewById(R.id.rdppat);
+        rosemtlpp = (Switch) view.findViewById(R.id.rosemtlpp);
+        stlau = (Switch) view.findViewById(R.id.stlau);
+        stl = (Switch) view.findViewById(R.id.stl);
+        verdun = (Switch) view.findViewById(R.id.verdun);
+        vm = (Switch) view.findViewById(R.id.vm);
+        villeraypx = (Switch) view.findViewById(R.id.villeraypx);*/
 
 
         /*pos du array:
@@ -131,6 +164,24 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback{
         // Apply the adapter to the spinner
         spinner.setAdapter(adapter);
 
+
+        //zoom
+        zoom = (ZoomControls) view.findViewById(R.id.zcZoom);
+        zoom.setOnZoomOutClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mGoogleMap.animateCamera(CameraUpdateFactory.zoomOut());
+
+            }
+        });
+        zoom.setOnZoomInClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mGoogleMap.animateCamera(CameraUpdateFactory.zoomIn());
+
+            }
+        });
+
         return view;
 
         //returning our layout file
@@ -195,11 +246,51 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback{
         //add marker?
 
         //position de depart
-        CameraPosition current = CameraPosition.builder().target(new LatLng(45.5016889,-73.56725599999999)).zoom(16).bearing(0).tilt(45).build();
+        CameraPosition current = CameraPosition.builder().target(new LatLng(45.5016889,-73.56725599999999)).zoom(11).bearing(0).tilt(45).build();
 
         googleMap.moveCamera(CameraUpdateFactory.newCameraPosition(current));
+
+
+        //localisation
+        if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+            mGoogleMap.setMyLocationEnabled(true);
+        } else {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, MY_PERMISSION_FINE_LOCATION);
+            }
+        }
+
+
+
+
     }
 
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        switch (requestCode) {
+            case MY_PERMISSION_FINE_LOCATION:
+                if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+                        mGoogleMap.setMyLocationEnabled(true);
+                    }
+
+                } else {
+                    Toast.makeText(getContext(), "Permettre la localisation pour pouvoir déterminer votre arrondissement automatiquement", Toast.LENGTH_LONG).show();
+                    accedCarte.setVisibility(View.GONE);
+                    mMapView.setVisibility(View.GONE);
+                }
+                break;
+        }
+    }
 
 
 
