@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity
 
         if (!firsttime){
             //creer la bd
-            db = new TrashyDBHelper(this);
+            //db = new TrashyDBHelper(this);
             //db.open();
             //
 
