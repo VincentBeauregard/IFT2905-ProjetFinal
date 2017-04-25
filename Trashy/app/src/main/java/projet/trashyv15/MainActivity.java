@@ -28,9 +28,9 @@ public class MainActivity extends AppCompatActivity
 
         String Polygone;
         Polygone = MainTxtReduct.redux(this);
-        //Button trash = (Button) findViewById(R.id.trash);
-        //Button recycle = (Button) findViewById(R.id.recycle);
-        //Button compost = (Button) findViewById(R.id.compost);
+        Button trash = (Button) findViewById(R.id.trash);
+        Button recycle = (Button) findViewById(R.id.recycle);
+        Button compost = (Button) findViewById(R.id.compost);
 
 
         /*FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -41,6 +41,26 @@ public class MainActivity extends AppCompatActivity
                         .setAction("Action", null).show();
             }
         });*/
+        
+        //zak// verifie que c'est la premiere fois que se lance l'application
+        SharedPreferences initialPref = getSharedPreferences("projet.trashyv15", 0);
+        boolean firsttime = initialPref.getBoolean("projet.trashyv15", false);
+
+        if (!firsttime){
+            //creer la bd
+            db = new TrashyDBHelper(this);
+            //db.open();
+            //
+
+
+            //mettre le boolean a true
+            SharedPreferences.Editor editorPref = initialPref.edit();
+            editorPref.putBoolean("INITIAL", true);
+            editorPref.commit();
+        }else {
+            //fetchData();
+        }
+        //fin verif firstLaunch
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
