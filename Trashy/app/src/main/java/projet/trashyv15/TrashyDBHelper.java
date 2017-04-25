@@ -25,7 +25,7 @@ public class TrashyDBHelper extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase database, int oldVersion, int newVersion) {
 
-        System.out.println("Upgrading databse from " + oldVersion + " to " + newVersion);
+        System.out.println("Changing database version from " + oldVersion + " to " + newVersion);
 
         // When the database gets updated, we simply delete the old one as it is only a cache for
         // online data (for the most part). The only thing that is not already online is the current
@@ -40,8 +40,6 @@ public class TrashyDBHelper extends SQLiteOpenHelper {
 
     @Override
     public void onDowngrade(SQLiteDatabase database, int oldVersion, int newVersion) {
-
-        System.out.println("Downgrading database from " + oldVersion + " to " + newVersion);
         onUpgrade(database, oldVersion, newVersion);
     }
 }
