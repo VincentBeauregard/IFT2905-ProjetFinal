@@ -19,12 +19,21 @@
             android:text="Medium Text"
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
+        <Button
+            android:id="@+id/accedCarte"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/switchStatus"
+            android:layout_marginTop="20dp"
+            android:text="Déterminer automatiquement mon arrondissement" />
+
         <Switch
             android:id="@+id/ahunCV"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
-            android:layout_below="@+id/switchStatus"
+            android:layout_below="@+id/accedCarte"
             android:layout_marginTop="20dp"
             android:text="Ahunstic-Cartierville" />
 
@@ -189,6 +198,7 @@
             android:layout_below="@+id/vm"
             android:layout_marginTop="20dp"
             android:text="Villeray–Saint-Michel–Parc-Extension" />
+
 
 
 
