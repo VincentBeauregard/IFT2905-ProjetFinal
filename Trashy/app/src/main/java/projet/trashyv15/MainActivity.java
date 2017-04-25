@@ -1,6 +1,9 @@
 package projet.trashyv15;
 
+import android.database.sqlite.SQLiteDatabase;
+import android.database.Cursor;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.support.v4.app.Fragment;
@@ -14,6 +17,8 @@ import android.support.design.widget.NavigationView;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    public TrashyDBHelper mDBHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,8 +41,51 @@ public class MainActivity extends AppCompatActivity
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        //Montre le menu1 lorsque l'activite est chargee
+        // Montre le menu1 lorsque l'activite est chargee
         displaySelectedScreen(R.id.nav_home);
+
+        // Create the database handler, which is closed when this activity is closed.
+        mDBHelper = new TrashyDBHelper(getApplicationContext());
+
+        // Load the database. If the database doesn't exists, it will be created at this point so this
+        // operation may be 'expensive'. We do this so we can determine if the user has opened the
+        // application before. If they didn't, then the database is going to be empty or every neighbourhood
+        // in the database is going to be deselected as the active neighbourhood.
+        SQLiteDatabase db = mDBHelper.getReadableDatabase();
+        String[] projection = {
+                TrashyDBContract.TrashyDBTableNeighbourhoods._ID,
+                TrashyDBContract.TrashyDBTableNeighbourhoods.COLUMN_NAME_IS_CURRENT
+        };
+
+        Cursor cursor = db.query(
+                TrashyDBContract.TrashyDBTableNeighbourhoods.TABLE_NAME,
+                projection,
+                null, null,
+                null, null,
+                null,
+                null
+        );
+
+        boolean hasCurrentNeighbourhood = false;
+        while (cursor.moveToNext()) {
+
+            boolean isCurrent = cursor.getInt(cursor.getColumnIndexOrThrow(
+                    TrashyDBContract.TrashyDBTableNeighbourhoods.COLUMN_NAME_IS_CURRENT
+            )) != 0;
+
+            // If the used marked one of the neighbourhoods in the database as their current
+            // neighbourhood, then we break out of the loop since we just wanted to detect if
+            // the user had used the application before (and has therefore already set a neighbourhood).
+            if (isCurrent) {
+                hasCurrentNeighbourhood = true;
+                break;
+            }
+        }
+        cursor.close();
+
+        if (!hasCurrentNeighbourhood) {
+            System.out.println("User has no associated neighbourhood in database!!!!!!!");
+        }
     }
 
     @Override
@@ -75,7 +123,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
         //calling the method displayselectedscreen and passing the id of selected menu
         displaySelectedScreen(item.getItemId());
@@ -116,5 +164,12 @@ public class MainActivity extends AppCompatActivity
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
+    }
+
+    @Override
+    protected void onDestroy() {
+
+        mDBHelper.close();
+        super.onDestroy();
     }
 }
