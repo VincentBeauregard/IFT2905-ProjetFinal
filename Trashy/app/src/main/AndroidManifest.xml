@@ -46,10 +46,6 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyD1SkEhpqAlS158EspaBKQHUNG-kiAdOJM" /> <!-- cle pour maps -->
 
-        <activity
-            android:name=".CalendarActivity"
-            android:label="@string/title_activity_calendar"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

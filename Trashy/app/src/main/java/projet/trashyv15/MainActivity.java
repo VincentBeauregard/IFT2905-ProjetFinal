@@ -1,7 +1,6 @@
 package projet.trashyv15;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -120,7 +119,6 @@ public class MainActivity extends AppCompatActivity
 
         //creating fragment object
         Fragment fragment = null;
-        Intent userIntent = null;
 
         //initializing the fragment object which is selected
         switch (itemId) {
@@ -130,11 +128,9 @@ public class MainActivity extends AppCompatActivity
             case R.id.nav_map:
                 fragment = new MapsFragment();
                 break;
-
             case R.id.nav_calendar:
-                userIntent = new Intent(MainActivity.this, CalendarActivity.class);
+                fragment = new CalendarFragment();
                 break;
-
             case R.id.nav_ecocenter:
                 //fragment = new EcoFragment();
                 break;
@@ -148,10 +144,6 @@ public class MainActivity extends AppCompatActivity
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
             ft.replace(R.id.content_frame, fragment);
             ft.commit();
-        }
-
-        if (userIntent != null) {
-            MainActivity.this.startActivity(userIntent);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
