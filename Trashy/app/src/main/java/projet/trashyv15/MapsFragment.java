@@ -1,11 +1,10 @@
 package projet.trashyv15;
 
+import android.Manifest;
+import android.content.ContentValues;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.content.ContentValues;
-import android.Manifest;
-import android.content.pm.PackageManager;
-import android.graphics.Point;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -109,7 +108,14 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback {
         18- Villeray–Saint-Michel–Parc-Extension
          */
 
+
+
         Spinner spinner = (Spinner)view.findViewById(R.id.spinner);
+
+        //trouver le iscurrent et faire:
+        //spinner.setSelection(position du selected dans le array(int));
+
+
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
