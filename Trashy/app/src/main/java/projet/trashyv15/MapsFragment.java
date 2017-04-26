@@ -30,6 +30,35 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 
+import projet.trashyv15.donneesPoly.ahunCV1;
+import projet.trashyv15.donneesPoly.anjou1;
+import projet.trashyv15.donneesPoly.cdnndg1;
+import projet.trashyv15.donneesPoly.iBSG1;
+import projet.trashyv15.donneesPoly.lachine1;
+import projet.trashyv15.donneesPoly.lasalle1;
+import projet.trashyv15.donneesPoly.mHM1;
+import projet.trashyv15.donneesPoly.mn1;
+import projet.trashyv15.donneesPoly.mtroyal1;
+import projet.trashyv15.donneesPoly.outrmt1;
+import projet.trashyv15.donneesPoly.pR1;
+import projet.trashyv15.donneesPoly.pr2;
+import projet.trashyv15.donneesPoly.pr3;
+import projet.trashyv15.donneesPoly.pr4;
+import projet.trashyv15.donneesPoly.pr5;
+import projet.trashyv15.donneesPoly.pr6;
+import projet.trashyv15.donneesPoly.pr7;
+import projet.trashyv15.donneesPoly.pr8;
+import projet.trashyv15.donneesPoly.rdppat1;
+import projet.trashyv15.donneesPoly.rlpp1;
+import projet.trashyv15.donneesPoly.stl1;
+import projet.trashyv15.donneesPoly.stlau1;
+import projet.trashyv15.donneesPoly.sudouest1;
+import projet.trashyv15.donneesPoly.verdun1;
+import projet.trashyv15.donneesPoly.verdun2;
+import projet.trashyv15.donneesPoly.villeraypx1;
+import projet.trashyv15.donneesPoly.vm1;
+import projet.trashyv15.donneesPoly.vm2;
+
 public class MapsFragment extends Fragment implements OnMapReadyCallback {
 
     private Button accedCarte;
@@ -217,6 +246,154 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback {
 
         CameraPosition current = CameraPosition.builder().target(new LatLng(45.5016889,-73.56725599999999)).zoom(11).bearing(0).tilt(45).build();
         googleMap.moveCamera(CameraUpdateFactory.newCameraPosition(current));
+        
+        //colorier le polygone
+
+        //ahunstic cv
+        Polygon polygonahunCV = mGoogleMap.addPolygon(new PolygonOptions()
+                .add(ahunCV1.m)
+                .strokeColor(0x80DC143C)
+                .fillColor(0x500000FF));
+
+
+// anjou
+        Polygon polygonanjou = mGoogleMap.addPolygon(new PolygonOptions()
+                .add(anjou1.m)
+                .strokeColor(0x80DC143C)
+                .fillColor(0x500000FF));
+
+//cdnndg
+        Polygon polygoncdnndg = mGoogleMap.addPolygon(new PolygonOptions()
+                .add(cdnndg1.m)
+                .strokeColor(0x80DC143C)
+                .fillColor(0x500000FF));
+//ibsg
+        Polygon polygoniBSG = mGoogleMap.addPolygon(new PolygonOptions()
+                .add(iBSG1.m)
+                .strokeColor(0x80DC143C)
+                .fillColor(0x500000FF));
+
+        Polygon polygonlachine = mGoogleMap.addPolygon(new PolygonOptions()
+                .add(lachine1.m)
+                .strokeColor(0x80DC143C)
+                .fillColor(0x500000FF));
+
+        Polygon polygonlasalle = mGoogleMap.addPolygon(new PolygonOptions()
+                .add(lasalle1.m)
+                .strokeColor(0x80DC143C)
+                .fillColor(0x500000FF));
+
+        Polygon polygonmHM = mGoogleMap.addPolygon(new PolygonOptions()
+                .add(mHM1.m)
+                .strokeColor(0x80DC143C)
+                .fillColor(0x500000FF));
+
+        Polygon polygonmn = mGoogleMap.addPolygon(new PolygonOptions()
+                .add(mn1.m)
+                .strokeColor(0x80DC143C)
+                .fillColor(0x500000FF));
+
+        Polygon polygonmtroyal = mGoogleMap.addPolygon(new PolygonOptions()
+                .add(mtroyal1.m)
+                .strokeColor(0x80DC143C)
+                .fillColor(0x500000FF));
+
+        Polygon polygonoutrmt = mGoogleMap.addPolygon(new PolygonOptions()
+                .add(outrmt1.m)
+                .strokeColor(0x80DC143C)
+                .fillColor(0x500000FF));
+
+        Polygon polygonpR = mGoogleMap.addPolygon(new PolygonOptions()
+                .add(pR1.m)
+                .strokeColor(0x80DC143C)
+                .fillColor(0x500000FF));
+
+        Polygon polygonpR2 = mGoogleMap.addPolygon(new PolygonOptions()
+                .add(pr2.m)
+                .strokeColor(0x80DC143C)
+                .fillColor(0x500000FF));
+
+        Polygon polygonpR3 = mGoogleMap.addPolygon(new PolygonOptions()
+                .add(pr3.m)
+                .strokeColor(0x80DC143C)
+                .fillColor(0x500000FF));
+
+        Polygon polygonpR4 = mGoogleMap.addPolygon(new PolygonOptions()
+                .add(pr4.m)
+                .strokeColor(0x80DC143C)
+                .fillColor(0x500000FF));
+
+        Polygon polygonpR5 = mGoogleMap.addPolygon(new PolygonOptions()
+                .add(pr5.m)
+                .strokeColor(0x80DC143C)
+                .fillColor(0x500000FF));
+
+        Polygon polygonpR6 = mGoogleMap.addPolygon(new PolygonOptions()
+                .add(pr6.m)
+                .strokeColor(0x80DC143C)
+                .fillColor(0x500000FF));
+
+        Polygon polygonpR7 = mGoogleMap.addPolygon(new PolygonOptions()
+                .add(pr7.m)
+                .strokeColor(0x80DC143C)
+                .fillColor(0x500000FF));
+
+        Polygon polygonpR8 = mGoogleMap.addPolygon(new PolygonOptions()
+                .add(pr8.m)
+                .strokeColor(0x80DC143C)
+                .fillColor(0x500000FF));
+
+
+
+        Polygon polygonrdppat = mGoogleMap.addPolygon(new PolygonOptions()
+                .add(rdppat1.m)
+                .strokeColor(0x80DC143C)
+                .fillColor(0x500000FF));
+
+        Polygon polygonrlpp = mGoogleMap.addPolygon(new PolygonOptions()
+                .add(rlpp1.m)
+                .strokeColor(0x80DC143C)
+                .fillColor(0x500000FF));
+
+        Polygon polygonstl = mGoogleMap.addPolygon(new PolygonOptions()
+                .add(stl1.m)
+                .strokeColor(0x80DC143C)
+                .fillColor(0x500000FF));
+
+        Polygon polygonstlau = mGoogleMap.addPolygon(new PolygonOptions()
+                .add(stlau1.m)
+                .strokeColor(0x80DC143C)
+                .fillColor(0x500000FF));
+
+        Polygon polygonsudouest = mGoogleMap.addPolygon(new PolygonOptions()
+                .add(sudouest1.m)
+                .strokeColor(0x80DC143C)
+                .fillColor(0x500000FF));
+
+        Polygon polygonverdun1 = mGoogleMap.addPolygon(new PolygonOptions()
+                .add(verdun1.m)
+                .strokeColor(0x80DC143C)
+                .fillColor(0x500000FF));
+
+        Polygon polygonverdun2 = mGoogleMap.addPolygon(new PolygonOptions()
+                .add(verdun2.m)
+                .strokeColor(0x80DC143C)
+                .fillColor(0x500000FF));
+
+        Polygon polygonvilleraypx = mGoogleMap.addPolygon(new PolygonOptions()
+                .add(villeraypx1.m)
+                .strokeColor(0x80DC143C)
+                .fillColor(0x500000FF));
+
+        Polygon polygonvm1 = mGoogleMap.addPolygon(new PolygonOptions()
+                .add(vm1.m)
+                .strokeColor(0x80DC143C)
+                .fillColor(0x500000FF));
+
+        Polygon polygonvm2 = mGoogleMap.addPolygon(new PolygonOptions()
+                .add(vm2.m)
+                .strokeColor(0x80DC143C)
+                .fillColor(0x500000FF));
 
 
         //localisation
