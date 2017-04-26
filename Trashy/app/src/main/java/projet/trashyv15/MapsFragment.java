@@ -461,10 +461,10 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback {
 
     }
 
-    private boolean containsLocation(LatLng loc, LatLng[] vertices) {
+    private boolean containsLocation(LatLng loc, LatLng[] noeuds) {
         int intersectCount = 0;
-        for (int j = 0; j < vertices.length - 1; j++) {
-            if (rayCastIntersect(loc, vertices[j], vertices[j+1])) {
+        for (int j = 0; j < noeuds.length - 1; j++) {
+            if (rayCastIntersect(loc, noeuds[j], noeuds[j+1])) {
                 intersectCount++;
             }
         }
@@ -472,14 +472,14 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback {
         return ((intersectCount % 2) == 1); // odd = inside, even = outside;
     }
 
-    private boolean rayCastIntersect(LatLng tap, LatLng vertA, LatLng vertB) {
+    private boolean rayCastIntersect(LatLng loc, LatLng nA, LatLng nB) {
 
-        double aY = vertA.latitude;
-        double bY = vertB.latitude;
-        double aX = vertA.longitude;
-        double bX = vertB.longitude;
-        double pY = tap.latitude;
-        double pX = tap.longitude;
+        double aY = nA.latitude;
+        double bY = nB.latitude;
+        double aX = nA.longitude;
+        double bX = nB.longitude;
+        double pY = loc.latitude;
+        double pX = loc.longitude;
 
         if ((aY > pY && bY > pY) || (aY < pY && bY < pY)
                 || (aX < pX && bX < pX)) {
