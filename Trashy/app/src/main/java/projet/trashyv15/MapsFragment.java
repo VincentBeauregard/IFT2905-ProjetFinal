@@ -5,6 +5,9 @@ import android.content.ContentValues;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.location.Criteria;
+import android.location.Location;
+import android.location.LocationManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -71,6 +74,9 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback {
     private ZoomControls zoom;
     private final static int MY_PERMISSION_FINE_LOCATION = 101;
 
+    //variable pour localisation:
+    LatLng loc;
+
     @Override
     public View onCreateView(LayoutInflater inflater,
                              @Nullable ViewGroup container,
@@ -82,7 +88,7 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback {
         accedCarte.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //bouton de localisation
+                
             }
         });
 
@@ -112,7 +118,7 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback {
 
         Spinner spinner = (Spinner)view.findViewById(R.id.spinner);
 
-        //trouver le iscurrent et faire:
+        //pour marc:trouver le iscurrent et faire:
         //spinner.setSelection(position du selected dans le array(int));
 
 
@@ -414,6 +420,27 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback {
             // to handle the case where the user grants the permission. See the documentation
             // for ActivityCompat#requestPermissions for more details.
             mGoogleMap.setMyLocationEnabled(true);
+
+
+            LocationManager locationManager = (LocationManager)
+                    getActivity().getSystemService(getContext().LOCATION_SERVICE);
+            Criteria criteria = new Criteria();
+
+            Location location = locationManager.getLastKnownLocation(locationManager
+                    .getBestProvider(criteria, false));
+            double latitude = location.getLatitude();
+            double longitude = location.getLongitude();
+
+            loc = new LatLng(latitude,longitude);
+            //marche jusque la
+
+
+
+
+
+
+
+
         } else {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                 requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, MY_PERMISSION_FINE_LOCATION);
