@@ -1,0 +1,32 @@
+package projet.trashyv15.donneesPoly;
+import com.google.android.gms.maps.model.LatLng;
+public class pr6 {
+public static LatLng[] m = new LatLng[]{new LatLng(45.498588,-73.857476),
+new LatLng(45.498588,-73.857565),
+new LatLng(45.498624,-73.857642),
+new LatLng(45.49866,-73.857694),
+new LatLng(45.498686,-73.857758),
+new LatLng(45.498731,-73.857797),
+new LatLng(45.498767,-73.857848),
+new LatLng(45.498839,-73.857746),
+new LatLng(45.498876,-73.85767),
+new LatLng(45.498948,-73.857542),
+new LatLng(45.49902,-73.857453),
+new LatLng(45.499065,-73.857389),
+new LatLng(45.49912,-73.8573),
+new LatLng(45.499129,-73.857159),
+new LatLng(45.499129,-73.85707),
+new LatLng(45.499094,-73.856993),
+new LatLng(45.499049,-73.856954),
+new LatLng(45.498995,-73.856928),
+new LatLng(45.49895,-73.856915),
+new LatLng(45.498878,-73.856927),
+new LatLng(45.498833,-73.856953),
+new LatLng(45.498779,-73.857004),
+new LatLng(45.498743,-73.857055),
+new LatLng(45.498688,-73.857157),
+new LatLng(45.498652,-73.857233),
+new LatLng(45.498616,-73.857335),
+new LatLng(45.498597,-73.857412),
+new LatLng(45.498588,-73.857476)};
+}

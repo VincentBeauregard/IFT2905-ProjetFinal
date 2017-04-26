@@ -1,11 +1,13 @@
 package projet.trashyv15;
 
+import android.Manifest;
+import android.content.ContentValues;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.content.ContentValues;
-import android.Manifest;
-import android.content.pm.PackageManager;
-import android.graphics.Point;
+import android.location.Criteria;
+import android.location.Location;
+import android.location.LocationManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -29,6 +31,37 @@ import com.google.android.gms.maps.MapsInitializer;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Polygon;
+import com.google.android.gms.maps.model.PolygonOptions;
+
+import projet.trashyv15.donneesPoly.ahunCV1;
+import projet.trashyv15.donneesPoly.anjou1;
+import projet.trashyv15.donneesPoly.cdnndg1;
+import projet.trashyv15.donneesPoly.iBSG1;
+import projet.trashyv15.donneesPoly.lachine1;
+import projet.trashyv15.donneesPoly.lasalle1;
+import projet.trashyv15.donneesPoly.mHM1;
+import projet.trashyv15.donneesPoly.mn1;
+import projet.trashyv15.donneesPoly.mtroyal1;
+import projet.trashyv15.donneesPoly.outrmt1;
+import projet.trashyv15.donneesPoly.pR1;
+import projet.trashyv15.donneesPoly.pr2;
+import projet.trashyv15.donneesPoly.pr3;
+import projet.trashyv15.donneesPoly.pr4;
+import projet.trashyv15.donneesPoly.pr5;
+import projet.trashyv15.donneesPoly.pr6;
+import projet.trashyv15.donneesPoly.pr7;
+import projet.trashyv15.donneesPoly.pr8;
+import projet.trashyv15.donneesPoly.rdppat1;
+import projet.trashyv15.donneesPoly.rlpp1;
+import projet.trashyv15.donneesPoly.stl1;
+import projet.trashyv15.donneesPoly.stlau1;
+import projet.trashyv15.donneesPoly.sudouest1;
+import projet.trashyv15.donneesPoly.verdun1;
+import projet.trashyv15.donneesPoly.verdun2;
+import projet.trashyv15.donneesPoly.villeraypx1;
+import projet.trashyv15.donneesPoly.vm1;
+import projet.trashyv15.donneesPoly.vm2;
 
 public class MapsFragment extends Fragment implements OnMapReadyCallback {
 
@@ -41,6 +74,9 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback {
     private ZoomControls zoom;
     private final static int MY_PERMISSION_FINE_LOCATION = 101;
 
+    //variable pour localisation:
+    LatLng loc;
+
     @Override
     public View onCreateView(LayoutInflater inflater,
                              @Nullable ViewGroup container,
@@ -52,7 +88,109 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback {
         accedCarte.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //bouton de localisation
+
+                if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+                    // TODO: Consider calling
+                    //    ActivityCompat#requestPermissions
+                    // here to request the missing permissions, and then overriding
+                    //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                    //                                          int[] grantResults)
+                    // to handle the case where the user grants the permission. See the documentation
+                    // for ActivityCompat#requestPermissions for more details.
+
+
+
+                    LocationManager locationManager = (LocationManager)
+                            getActivity().getSystemService(getContext().LOCATION_SERVICE);
+                    Criteria criteria = new Criteria();
+
+                    Location location = locationManager.getLastKnownLocation(locationManager
+                            .getBestProvider(criteria, false));
+                    double latitude = location.getLatitude();
+                    double longitude = location.getLongitude();
+
+                    loc = new LatLng(latitude,longitude);
+                    //marche jusque la
+
+
+
+
+
+
+
+
+                } else {
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                        requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, MY_PERMISSION_FINE_LOCATION);
+                    }
+                }
+
+                CameraPosition current = CameraPosition.builder().target(loc).zoom(12).bearing(0).tilt(45).build();
+                mGoogleMap.animateCamera(CameraUpdateFactory.newCameraPosition(current));
+
+
+                if(containsLocation(loc,ahunCV1.m)){
+                    Toast.makeText(getContext(), "Ahunstic-CartierVille", Toast.LENGTH_LONG).show();
+                }
+                else if(containsLocation(loc,vm1.m)||containsLocation(loc,vm2.m)){
+                    Toast.makeText(getContext(), "Ville-Marie", Toast.LENGTH_LONG).show();
+                }
+                else if(containsLocation(loc,anjou1.m)){
+                    Toast.makeText(getContext(), "Anjou", Toast.LENGTH_LONG).show();
+                }
+                else if(containsLocation(loc,cdnndg1.m)){
+                    Toast.makeText(getContext(), "Cote des Neiges Notre Dame de Grace", Toast.LENGTH_LONG).show();
+                }
+                else if(containsLocation(loc,iBSG1.m)){
+                    Toast.makeText(getContext(), "Île-Bizard–Sainte-Geneviève", Toast.LENGTH_LONG).show();
+                }
+                else if(containsLocation(loc,lachine1.m)){
+                    Toast.makeText(getContext(), "Lachine", Toast.LENGTH_LONG).show();
+                }
+                else if(containsLocation(loc,lasalle1.m)){
+                    Toast.makeText(getContext(), "LaSalle", Toast.LENGTH_LONG).show();
+                }
+                else if(containsLocation(loc,mtroyal1.m)){
+                    Toast.makeText(getContext(), "Plateau-Mont-Royal", Toast.LENGTH_LONG).show();
+                }
+                else if(containsLocation(loc,sudouest1.m)){
+                    Toast.makeText(getContext(), "Sud-Ouest", Toast.LENGTH_LONG).show();
+                }
+                else if(containsLocation(loc,mHM1.m)){
+                    Toast.makeText(getContext(), "Mercier–Hochelaga-Maisonneuve", Toast.LENGTH_LONG).show();
+                }
+                else if(containsLocation(loc,mn1.m)){
+                    Toast.makeText(getContext(), "Montréal-Nord", Toast.LENGTH_LONG).show();
+                }
+                else if(containsLocation(loc,outrmt1.m)){
+                    Toast.makeText(getContext(), "Outremont", Toast.LENGTH_LONG).show();
+                }
+                else if(containsLocation(loc,pR1.m)||containsLocation(loc,pr2.m)||containsLocation(loc,pr3.m)||containsLocation(loc,pr4.m)||containsLocation(loc,pr5.m)||containsLocation(loc,pr6.m)||containsLocation(loc,pr7.m)||containsLocation(loc,pr8.m)){
+                    Toast.makeText(getContext(), "Pierrefonds-Roxboro", Toast.LENGTH_LONG).show();
+                }
+                else if(containsLocation(loc,rdppat1.m)){
+                    Toast.makeText(getContext(), "Rivière-des-Prairies–Pointe-aux-Trembles", Toast.LENGTH_LONG).show();
+                }
+                else if(containsLocation(loc,rlpp1.m)){
+                    Toast.makeText(getContext(), "Rosemont–La Petite-Patrie", Toast.LENGTH_LONG).show();
+                }
+                else if(containsLocation(loc,stlau1.m)){
+                    Toast.makeText(getContext(), "Saint-Laurent", Toast.LENGTH_LONG).show();
+                }
+                else if(containsLocation(loc,stl1.m)){
+                    Toast.makeText(getContext(), "Saint-Léonard", Toast.LENGTH_LONG).show();
+                }
+                else if(containsLocation(loc,verdun1.m)||containsLocation(loc,verdun2.m)){
+                    Toast.makeText(getContext(), "Verdun", Toast.LENGTH_LONG).show();
+                }
+                else if(containsLocation(loc,villeraypx1.m)){
+                    Toast.makeText(getContext(), "Villeray–Saint-Michel–Parc-Extension", Toast.LENGTH_LONG).show();
+                }
+                else
+                    Toast.makeText(getContext(), "Zone hors de Montreal/Arrondissement non-encore supporté", Toast.LENGTH_LONG).show();
+
+
+
             }
         });
 
@@ -78,7 +216,14 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback {
         18- Villeray–Saint-Michel–Parc-Extension
          */
 
+
+
         Spinner spinner = (Spinner)view.findViewById(R.id.spinner);
+
+        //pour marc:trouver le iscurrent et faire:
+        //spinner.setSelection(position du selected dans le array(int));
+
+
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -217,6 +362,154 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback {
 
         CameraPosition current = CameraPosition.builder().target(new LatLng(45.5016889,-73.56725599999999)).zoom(11).bearing(0).tilt(45).build();
         googleMap.moveCamera(CameraUpdateFactory.newCameraPosition(current));
+        
+        //colorier le polygone
+
+        //ahunstic cv
+        Polygon polygonahunCV = mGoogleMap.addPolygon(new PolygonOptions()
+                .add(ahunCV1.m)
+                .strokeColor(0x80DC143C)
+                .fillColor(0x500000FF));
+
+
+// anjou
+        Polygon polygonanjou = mGoogleMap.addPolygon(new PolygonOptions()
+                .add(anjou1.m)
+                .strokeColor(0x80DC143C)
+                .fillColor(0x500000FF));
+
+//cdnndg
+        Polygon polygoncdnndg = mGoogleMap.addPolygon(new PolygonOptions()
+                .add(cdnndg1.m)
+                .strokeColor(0x80DC143C)
+                .fillColor(0x500000FF));
+//ibsg
+        Polygon polygoniBSG = mGoogleMap.addPolygon(new PolygonOptions()
+                .add(iBSG1.m)
+                .strokeColor(0x80DC143C)
+                .fillColor(0x500000FF));
+
+        Polygon polygonlachine = mGoogleMap.addPolygon(new PolygonOptions()
+                .add(lachine1.m)
+                .strokeColor(0x80DC143C)
+                .fillColor(0x500000FF));
+
+        Polygon polygonlasalle = mGoogleMap.addPolygon(new PolygonOptions()
+                .add(lasalle1.m)
+                .strokeColor(0x80DC143C)
+                .fillColor(0x500000FF));
+
+        Polygon polygonmHM = mGoogleMap.addPolygon(new PolygonOptions()
+                .add(mHM1.m)
+                .strokeColor(0x80DC143C)
+                .fillColor(0x500000FF));
+
+        Polygon polygonmn = mGoogleMap.addPolygon(new PolygonOptions()
+                .add(mn1.m)
+                .strokeColor(0x80DC143C)
+                .fillColor(0x500000FF));
+
+        Polygon polygonmtroyal = mGoogleMap.addPolygon(new PolygonOptions()
+                .add(mtroyal1.m)
+                .strokeColor(0x80DC143C)
+                .fillColor(0x500000FF));
+
+        Polygon polygonoutrmt = mGoogleMap.addPolygon(new PolygonOptions()
+                .add(outrmt1.m)
+                .strokeColor(0x80DC143C)
+                .fillColor(0x500000FF));
+
+        Polygon polygonpR = mGoogleMap.addPolygon(new PolygonOptions()
+                .add(pR1.m)
+                .strokeColor(0x80DC143C)
+                .fillColor(0x500000FF));
+
+        Polygon polygonpR2 = mGoogleMap.addPolygon(new PolygonOptions()
+                .add(pr2.m)
+                .strokeColor(0x80DC143C)
+                .fillColor(0x500000FF));
+
+        Polygon polygonpR3 = mGoogleMap.addPolygon(new PolygonOptions()
+                .add(pr3.m)
+                .strokeColor(0x80DC143C)
+                .fillColor(0x500000FF));
+
+        Polygon polygonpR4 = mGoogleMap.addPolygon(new PolygonOptions()
+                .add(pr4.m)
+                .strokeColor(0x80DC143C)
+                .fillColor(0x500000FF));
+
+        Polygon polygonpR5 = mGoogleMap.addPolygon(new PolygonOptions()
+                .add(pr5.m)
+                .strokeColor(0x80DC143C)
+                .fillColor(0x500000FF));
+
+        Polygon polygonpR6 = mGoogleMap.addPolygon(new PolygonOptions()
+                .add(pr6.m)
+                .strokeColor(0x80DC143C)
+                .fillColor(0x500000FF));
+
+        Polygon polygonpR7 = mGoogleMap.addPolygon(new PolygonOptions()
+                .add(pr7.m)
+                .strokeColor(0x80DC143C)
+                .fillColor(0x500000FF));
+
+        Polygon polygonpR8 = mGoogleMap.addPolygon(new PolygonOptions()
+                .add(pr8.m)
+                .strokeColor(0x80DC143C)
+                .fillColor(0x500000FF));
+
+
+
+        Polygon polygonrdppat = mGoogleMap.addPolygon(new PolygonOptions()
+                .add(rdppat1.m)
+                .strokeColor(0x80DC143C)
+                .fillColor(0x500000FF));
+
+        Polygon polygonrlpp = mGoogleMap.addPolygon(new PolygonOptions()
+                .add(rlpp1.m)
+                .strokeColor(0x80DC143C)
+                .fillColor(0x500000FF));
+
+        Polygon polygonstl = mGoogleMap.addPolygon(new PolygonOptions()
+                .add(stl1.m)
+                .strokeColor(0x80DC143C)
+                .fillColor(0x500000FF));
+
+        Polygon polygonstlau = mGoogleMap.addPolygon(new PolygonOptions()
+                .add(stlau1.m)
+                .strokeColor(0x80DC143C)
+                .fillColor(0x500000FF));
+
+        Polygon polygonsudouest = mGoogleMap.addPolygon(new PolygonOptions()
+                .add(sudouest1.m)
+                .strokeColor(0x80DC143C)
+                .fillColor(0x500000FF));
+
+        Polygon polygonverdun1 = mGoogleMap.addPolygon(new PolygonOptions()
+                .add(verdun1.m)
+                .strokeColor(0x80DC143C)
+                .fillColor(0x500000FF));
+
+        Polygon polygonverdun2 = mGoogleMap.addPolygon(new PolygonOptions()
+                .add(verdun2.m)
+                .strokeColor(0x80DC143C)
+                .fillColor(0x500000FF));
+
+        Polygon polygonvilleraypx = mGoogleMap.addPolygon(new PolygonOptions()
+                .add(villeraypx1.m)
+                .strokeColor(0x80DC143C)
+                .fillColor(0x500000FF));
+
+        Polygon polygonvm1 = mGoogleMap.addPolygon(new PolygonOptions()
+                .add(vm1.m)
+                .strokeColor(0x80DC143C)
+                .fillColor(0x500000FF));
+
+        Polygon polygonvm2 = mGoogleMap.addPolygon(new PolygonOptions()
+                .add(vm2.m)
+                .strokeColor(0x80DC143C)
+                .fillColor(0x500000FF));
 
 
         //localisation
@@ -229,6 +522,27 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback {
             // to handle the case where the user grants the permission. See the documentation
             // for ActivityCompat#requestPermissions for more details.
             mGoogleMap.setMyLocationEnabled(true);
+
+
+            LocationManager locationManager = (LocationManager)
+                    getActivity().getSystemService(getContext().LOCATION_SERVICE);
+            Criteria criteria = new Criteria();
+
+            Location location = locationManager.getLastKnownLocation(locationManager
+                    .getBestProvider(criteria, false));
+            double latitude = location.getLatitude();
+            double longitude = location.getLongitude();
+
+            loc = new LatLng(latitude,longitude);
+            //marche jusque la
+
+
+
+
+
+
+
+
         } else {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                 requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, MY_PERMISSION_FINE_LOCATION);
@@ -239,6 +553,40 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback {
 
 
     }
+
+    private boolean containsLocation(LatLng loc, LatLng[] noeuds) {
+        int intersectCount = 0;
+        for (int j = 0; j < noeuds.length - 1; j++) {
+            if (rayCastIntersect(loc, noeuds[j], noeuds[j+1])) {
+                intersectCount++;
+            }
+        }
+
+        return ((intersectCount % 2) == 1); // odd = inside, even = outside;
+    }
+
+    private boolean rayCastIntersect(LatLng loc, LatLng nA, LatLng nB) {
+
+        double aY = nA.latitude;
+        double bY = nB.latitude;
+        double aX = nA.longitude;
+        double bX = nB.longitude;
+        double pY = loc.latitude;
+        double pX = loc.longitude;
+
+        if ((aY > pY && bY > pY) || (aY < pY && bY < pY)
+                || (aX < pX && bX < pX)) {
+            return false; // a and b can't both be above or below pt.y, and a or
+            // b must be east of pt.x
+        }
+
+        double m = (aY - bY) / (aX - bX); // Rise over run
+        double bee = (-aX) * m + aY; // y = mx + b
+        double x = (pY - bee) / m; // algebra is neat!
+
+        return x > pX;
+    }
+
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {

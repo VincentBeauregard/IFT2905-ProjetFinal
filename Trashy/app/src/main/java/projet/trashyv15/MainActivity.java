@@ -28,7 +28,6 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView)findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar,
@@ -85,6 +84,7 @@ public class MainActivity extends AppCompatActivity
             }
         }
         cursor.close();
+        MainTxtReduct.redux();
 
         if (!hasCurrentNeighbourhood) {
             System.out.println("User has no associated neighbourhood in database");
