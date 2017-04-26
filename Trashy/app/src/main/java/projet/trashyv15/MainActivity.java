@@ -64,6 +64,12 @@ public class MainActivity extends AppCompatActivity
         );
 
         boolean hasCurrentNeighbourhood = false;
+        boolean emptyDatabase = false;
+
+        if (cursor.getCount() == 0) {
+            emptyDatabase = true;
+        }
+
         while (cursor.moveToNext()) {
 
             boolean isCurrent = cursor.getInt(cursor.getColumnIndexOrThrow(
@@ -81,7 +87,11 @@ public class MainActivity extends AppCompatActivity
         cursor.close();
 
         if (!hasCurrentNeighbourhood) {
-            System.out.println("User has no associated neighbourhood in database!!!!!!!");
+            System.out.println("User has no associated neighbourhood in database");
+        }
+
+        if (emptyDatabase) {
+            System.out.println("Filling database...");
         }
     }
 
