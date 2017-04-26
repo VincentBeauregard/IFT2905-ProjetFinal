@@ -3,9 +3,14 @@ package projet.trashyv15;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.content.ContentValues;
+import android.Manifest;
+import android.content.pm.PackageManager;
+import android.graphics.Point;
+import android.os.Build;
 import android.os.Bundle;
-import android.os.SystemClock;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,9 +19,8 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
-import android.widget.Switch;
-import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.ZoomControls;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -26,15 +30,16 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 
-
 public class MapsFragment extends Fragment implements OnMapReadyCallback {
 
     private Button accedCarte;
     private View view;
 
-    // Variables pour la carte
+    //variables pour la carte
     private GoogleMap mGoogleMap;
     private MapView mMapView;
+    private ZoomControls zoom;
+    private final static int MY_PERMISSION_FINE_LOCATION = 101;
 
     @Override
     public View onCreateView(LayoutInflater inflater,
@@ -147,6 +152,7 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback {
         String currentNeighbourhood = cursor.getString(cursor.getColumnIndexOrThrow(
                 TrashyDBContract.TrashyDBTableNeighbourhoods.COLUMN_NAME_NAME
         ));
+        cursor.close();
 
         // Create an ArrayAdapter using the string array and a default spinner layout
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getContext(),
@@ -154,10 +160,27 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
 
-        if (!currentNeighbourhood.equals(null)) {
+        if (!"".equals(currentNeighbourhood)) {
             int spinnerPosition = adapter.getPosition(currentNeighbourhood);
             spinner.setSelection(spinnerPosition);
         }
+
+        //zoom
+        zoom = (ZoomControls) view.findViewById(R.id.zcZoom);
+        zoom.setOnZoomOutClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mGoogleMap.animateCamera(CameraUpdateFactory.zoomOut());
+
+            }
+        });
+        zoom.setOnZoomInClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mGoogleMap.animateCamera(CameraUpdateFactory.zoomIn());
+
+            }
+        });
 
         return view;
     }
@@ -186,8 +209,47 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback {
 
         //add marker?
 
-        //position de depart
-        CameraPosition current = CameraPosition.builder().target(new LatLng(45.5016889, -73.56725599999999)).zoom(16).bearing(0).tilt(45).build();
+        CameraPosition current = CameraPosition.builder().target(new LatLng(45.5016889,-73.56725599999999)).zoom(11).bearing(0).tilt(45).build();
         googleMap.moveCamera(CameraUpdateFactory.newCameraPosition(current));
+
+
+        //localisation
+        if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+            mGoogleMap.setMyLocationEnabled(true);
+        } else {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, MY_PERMISSION_FINE_LOCATION);
+            }
+        }
+
+
+
+
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        switch (requestCode) {
+            case MY_PERMISSION_FINE_LOCATION:
+                if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+                        mGoogleMap.setMyLocationEnabled(true);
+                    }
+
+                } else {
+                    Toast.makeText(getContext(), "Permettre la localisation pour pouvoir déterminer votre arrondissement automatiquement", Toast.LENGTH_LONG).show();
+                    accedCarte.setVisibility(View.GONE);
+                    mMapView.setVisibility(View.GONE);
+                }
+                break;
+        }
     }
 }
