@@ -89,6 +89,46 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback {
             @Override
             public void onClick(View v) {
 
+                if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+                    // TODO: Consider calling
+                    //    ActivityCompat#requestPermissions
+                    // here to request the missing permissions, and then overriding
+                    //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                    //                                          int[] grantResults)
+                    // to handle the case where the user grants the permission. See the documentation
+                    // for ActivityCompat#requestPermissions for more details.
+
+
+
+                    LocationManager locationManager = (LocationManager)
+                            getActivity().getSystemService(getContext().LOCATION_SERVICE);
+                    Criteria criteria = new Criteria();
+
+                    Location location = locationManager.getLastKnownLocation(locationManager
+                            .getBestProvider(criteria, false));
+                    double latitude = location.getLatitude();
+                    double longitude = location.getLongitude();
+
+                    loc = new LatLng(latitude,longitude);
+                    //marche jusque la
+
+
+
+
+
+
+
+
+                } else {
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                        requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, MY_PERMISSION_FINE_LOCATION);
+                    }
+                }
+
+                CameraPosition current = CameraPosition.builder().target(loc).zoom(12).bearing(0).tilt(45).build();
+                mGoogleMap.animateCamera(CameraUpdateFactory.newCameraPosition(current));
+
+
                 if(containsLocation(loc,ahunCV1.m)){
                     Toast.makeText(getContext(), "Ahunstic-CartierVille", Toast.LENGTH_LONG).show();
                 }
