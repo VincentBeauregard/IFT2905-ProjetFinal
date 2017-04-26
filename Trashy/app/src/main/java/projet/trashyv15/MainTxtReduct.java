@@ -15,13 +15,13 @@ public class MainTxtReduct
     {
         String polygone="";
         String fileNameR = Environment.getExternalStorageDirectory() + "/" + "allo.txt" ;
-        String URL = "http://donnees.ville.montreal.qc.ca/dataset/2df0fa28-7a7b-46c6-912f-93b215bd201e/resource/87b2cd0c-e38b-4081-a58c-494a9590b882/download/pdo-collectes.csv";
+        String URL = "http://www-etud.iro.umontreal.ca/~beaurevg/Original.txt";
         File destination = new File(fileNameR);
 
         Thread th_download = new Thread(new Runnable() {
             public void run() {
                 String fileNameR = "allo.txt";
-                String URL = "http://donnees.ville.montreal.qc.ca/dataset/2df0fa28-7a7b-46c6-912f-93b215bd201e/resource/87b2cd0c-e38b-4081-a58c-494a9590b882/download/pdo-collectes.csv";
+                String URL = "http://www-etud.iro.umontreal.ca/~beaurevg/Original.txt";
                 File destination = new File(fileNameR);
                 AnalyseLine.downloadFileFromURL(context,URL, destination);
             }
@@ -59,7 +59,7 @@ public class MainTxtReduct
                         lineComplete = false;
                     }
                     else if(lineTab.length > 9)
-                        System.out.println("TRABRARNAK");
+                        System.out.println(lineTab[0]+lineTab[1]+lineTab[2]+lineTab[3]+lineTab[4]);
                     else{
                         if(lineCount>0){
                             lineTmp=AnalyseLine.analyseLine(lineTab);

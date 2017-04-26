@@ -20,7 +20,7 @@ public class AnalyseLine {
 	public static String analyseLine(String[] line) {
 		if (line[0].charAt(1) != 'V') {
 			String outputString = line[0].substring(1, line[0].length() - 1) + analyseTxt(line[3], "" + line[0].charAt(1));
-			System.out.println(outputString);
+			sqlComm.fillSchedule(outputString);
 			return line[8].substring(1,line[8].length()-1);
 		} else return "";
 	}
@@ -30,7 +30,7 @@ public class AnalyseLine {
 		boolean vert=false;
 		if(type.equals("R")) vert=true;
 		boolean estivaleBool = false;
-		String returnLine = "\"(";
+		String returnLine = " ";
 		String hours = "";
 		String date = "";
 		String lieu = "";
@@ -83,11 +83,11 @@ public class AnalyseLine {
 			}
 			if(words[i].equals("31octobre"))date+="-31OC";//cas particulier
 			if(words[i].equals("estivale")){ date+=estivale;estivaleBool=true;}
-			if(words[i].equals("trottoir")) lieu+=" trottoir";
-			if(words[i].equals("rue")){ lieu+=" rue";
-				if(words[i+2].equals("ruelle)"))lieu+="/ruelle";
+			if(words[i].equals("trottoir")) lieu+=" trottoir ";
+			if(words[i].equals("rue")){ lieu+=" rue ";
+				if(words[i+2].equals("ruelle)"))lieu+="/ruelle ";
 			}
-			if(words[i].equals("ruelle")&&!words[i-2].equals("rue"))lieu+=" ruelle";
+			if(words[i].equals("ruelle")&&!words[i-2].equals("rue"))lieu+=" ruelle ";
 			if(words[i].equals("fin"))
 			{
 				if(isMonth(words[i+2]))
@@ -105,6 +105,10 @@ public class AnalyseLine {
 			if(tryParse(words[i])!=null)
 				if(words[i-1].equals("et") && isMonth(words[i+1]))
 					date+=""+words[i] + parseMonth(words[i+1])+"-";
+
+				else if(words[i+1].equals("cm"));
+				else if(words[i+1].equals("m"));
+				else if(words[i].equals("0;5"));
 				else if(words[i-1].equals("au") && isMonth(words[i+1]))
 					date+="_"+words[i] + parseMonth(words[i+1])+"-";
 				else if(words[i+1].equals("et") && isMonth(words[i+3]))
@@ -114,6 +118,8 @@ public class AnalyseLine {
 				else
 				if(Integer.parseInt(words[i])<40)
 					if(words[i-1].equals("et"))
+						hours += "-"+words[i];
+					else if(words[i-1].equals("à"))
 						hours += "-"+words[i];
 					else if(words[i+1].equals("h")
 							||words[i+1].equals("h.")
@@ -128,14 +134,14 @@ public class AnalyseLine {
 							date+=words[i]+"-";
 						else if(tryParse(words[i-1])!=null)date+=words[i]+"-";}
 					else if((words[i-1].equals("h")&&words[i].equals("30")))
-						hours+=".5";
+						hours+=",5";
 
 			if(date.equals("1JA-"))date="";
 			returnLine=returnLine+date + hours+lieu;
 		}
 		if(date.length()<5)date="";
 		lieu+=") ";
-		returnLine=returnLine+") ";
+		returnLine=returnLine+"";
 		return returnLine;
 	}
 
@@ -157,16 +163,19 @@ public class AnalyseLine {
 		word = word.toUpperCase();
 		return word.equals("JANVIER") ||
 				word.equals("FEVRIER") ||
+				word.equals("FÉVRIER") ||
 				word.equals("MARS") ||
 				word.equals("AVRIL") ||
 				word.equals("MAI") ||
 				word.equals("JUIN") ||
 				word.equals("JUILLET") ||
 				word.equals("AOUT") ||
+				word.equals("AOÛT") ||
 				word.equals("SEPTEMBRE") ||
 				word.equals("OCTOBRE") ||
 				word.equals("NOVEMBRE") ||
-				word.equals("DECEMBRE");
+				word.equals("DECEMBRE") ||
+				word.equals("DÉCEMBRE");
 	}
 
 	private static String parseMonth(String word) {
@@ -188,10 +197,22 @@ public class AnalyseLine {
 		if (word.length() < 2)
 			return "??";
 
-		switch (word) {
-			case "JUILLET": return "JL";
-			default:        return word.substring(0, 2);
-		}
+		word = word.toUpperCase();
+		if(word.equals("JANVIER"))return "JA";
+		else if(word.equals("FEVRIER"))return "FE";
+		else if(word.equals("FÉVRIER"))return "FE";
+		else if(word.equals("MARS"))return "MR";
+		else if(word.equals("AVRIL"))return "AV";
+		else if(word.equals("MAI"))return "MA";
+		else if(word.equals("JUIN"))return "JU";
+		else if(word.equals("JUILLET"))return "JL";
+		else if(word.equals("AOUT"))return "AO";
+		else if(word.equals("AOÛT"))return "AO";
+		else if(word.equals("SEPTEMBRE"))return "SE";
+		else if(word.equals("OCTOBRE"))return "OC";
+		else if(word.equals("NOVEMBRE"))return "NO";
+		else return "DE";
+
 	}
 
 	@SuppressWarnings("unused")
