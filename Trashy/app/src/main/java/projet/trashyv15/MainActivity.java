@@ -18,8 +18,6 @@ import android.support.design.widget.NavigationView;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    public TrashyDBHelper mDBHelper;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -44,14 +42,13 @@ public class MainActivity extends AppCompatActivity
         // Montre le menu1 lorsque l'activite est chargee
         displaySelectedScreen(R.id.nav_home);
 
-        // Create the database handler, which is closed when this activity is closed.
-        mDBHelper = new TrashyDBHelper(getApplicationContext());
+        TrashyDBHelper dbHelper = App.getDBHelper();
 
         // Load the database. If the database doesn't exists, it will be created at this point so this
         // operation may be 'expensive'. We do this so we can determine if the user has opened the
         // application before. If they didn't, then the database is going to be empty or every neighbourhood
         // in the database is going to be deselected as the active neighbourhood.
-        SQLiteDatabase db = mDBHelper.getReadableDatabase();
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
         String[] projection = {
                 TrashyDBContract.TrashyDBTableNeighbourhoods._ID,
                 TrashyDBContract.TrashyDBTableNeighbourhoods.COLUMN_NAME_IS_CURRENT
@@ -157,19 +154,13 @@ public class MainActivity extends AppCompatActivity
 
         // Replacing the fragment
         if (fragment != null) {
+
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
             ft.replace(R.id.content_frame, fragment);
             ft.commit();
         }
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = (DrawerLayout)findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
-    }
-
-    @Override
-    protected void onDestroy() {
-
-        mDBHelper.close();
-        super.onDestroy();
     }
 }

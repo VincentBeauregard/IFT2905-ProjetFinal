@@ -1,6 +1,10 @@
 package projet.trashyv15;
 
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.content.ContentValues;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -23,45 +27,31 @@ import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 
 
-public class MapsFragment extends Fragment implements OnMapReadyCallback{
+public class MapsFragment extends Fragment implements OnMapReadyCallback {
 
-    //variables pour les boutons et le texte
-    private Switch ahunCV,anjou,cdnndg,lachine,lasalle,mtRoyal,sudOuest,iBSG,mHM,mtlN,outrmt,pfrb,rdppat,rosemtlpp,stlau,stl,verdun,vm,villeraypx;
-    private TextView selection;
     private Button accedCarte;
+    private View view;
 
-    //variables pour la carte
-    GoogleMap mGoogleMap;
-    MapView mMapView;
+    // Variables pour la carte
+    private GoogleMap mGoogleMap;
+    private MapView mMapView;
 
-
-
-    View view;
-
-
-    @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater,
+                             @Nullable ViewGroup container,
+                             @Nullable Bundle savedInstanceState) {
 
         view = inflater.inflate(R.layout.fragment_maps, container, false);
         accedCarte = (Button) view.findViewById(R.id.accedCarte);
-
-
 
         accedCarte.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //bouton de localisation
-
-
             }
         });
 
-
-
         /*pos du array:
-
-
         0- Ahuntsic-Cartierville
         1- Anjou
         2- Côte-des-Neiges–Notre-Dame-de-Grâce
@@ -83,111 +73,113 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback{
         18- Villeray–Saint-Michel–Parc-Extension
          */
 
+        Spinner spinner = (Spinner)view.findViewById(R.id.spinner);
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
-            Spinner spinner = (Spinner) view.findViewById(R.id.spinner);
-            spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                public void onItemSelected(AdapterView<?> parent, View view,
-                                           int position, long id) {
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
+                TrashyDBHelper dbHelper = App.getDBHelper();
+                SQLiteDatabase db = dbHelper.getReadableDatabase();
+                String item = parent.getItemAtPosition(position).toString();
 
+                // Execute UPDATE 'neighbourhoods' SET iscurrent = 'FALSE'  WHERE iscurrent = 'TRUE';
+                ContentValues values = new ContentValues();
+                values.put(TrashyDBContract.TrashyDBTableNeighbourhoods.COLUMN_NAME_IS_CURRENT, 0);
+                String selection = TrashyDBContract.TrashyDBTableNeighbourhoods.COLUMN_NAME_IS_CURRENT + " LIKE ?";
+                String[] selectionArgs = { "1" };
 
-                    String sql = "UPDATE 'neighbourhoods' SET iscurrent = 'FALSE'  WHERE iscurrent = 'TRUE';";
-                    //executer sql
-                    String item = parent.getItemAtPosition(position).toString();
+                int count = db.update(
+                        TrashyDBContract.TrashyDBTableNeighbourhoods.TABLE_NAME,
+                        values, selection, selectionArgs
+                );
 
+                if (count != 1) System.out.println("(1) Updated an incorrect number of rows (" + count + ")");
+                else            System.out.println("(1) Updated old neighbourhood in database");
 
+                // Execute UPDATE 'neighbourhoods' SET iscurrent = 'TRUE'  WHERE name = [item];
+                values = new ContentValues();
+                values.put(TrashyDBContract.TrashyDBTableNeighbourhoods.COLUMN_NAME_IS_CURRENT, 1);
+                String selection2 = TrashyDBContract.TrashyDBTableNeighbourhoods.COLUMN_NAME_NAME + " LIKE ?";
+                String[] selectionArgs2 = { item };
 
-                    sql = "UPDATE 'neighbourhoods' SET iscurrent = 'TRUE'  WHERE name = '"+ item +"';";
-                    //executer sql
+                count = db.update(
+                        TrashyDBContract.TrashyDBTableNeighbourhoods.TABLE_NAME,
+                        values, selection2, selectionArgs2
+                );
 
+                if (count != 1) System.out.println("(2) Updated an incorrect number of rows (" + count + ")");
+                else            System.out.println("(2) Updated new neighbourhood in database");
 
-                    // An item was selected. You can retrieve the selected item using
-                    // parent.getItemAtPosition(pos)
-
-
-
-                    if(!item.equals("Sélectionnez un arrondissement"))
-                        Toast.makeText(getActivity(),item + " à été sélectionné comme arrondissement", Toast.LENGTH_SHORT).show();
-                    else Toast.makeText(getActivity(),"Vous n'avez pas encore sélectionné d'arrondissement", Toast.LENGTH_SHORT).show();
+                if (position != 0) {
+                    Toast.makeText(getActivity(), item + " à été sélectionné comme arrondissement", Toast.LENGTH_SHORT).show();
                 }
-
-                @Override
-                public void onNothingSelected(AdapterView<?> parent) {
-
+                else {
+                    Toast.makeText(getActivity(), "Vous n'avez pas encore sélectionné d'arrondissement", Toast.LENGTH_SHORT).show();
                 }
-            });
+            }
 
-        //verifier lequel est selectionne
-        String sql = "SELECT name FROM 'neighbourhoods' WHERE iscurrent = 'TRUE'";
-        //executer sql
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {}
+        });
 
+        TrashyDBHelper dbHelper = App.getDBHelper();
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+        String[] projection = {
+                TrashyDBContract.TrashyDBTableNeighbourhoods._ID,
+                TrashyDBContract.TrashyDBTableNeighbourhoods.COLUMN_NAME_NAME,
+                TrashyDBContract.TrashyDBTableNeighbourhoods.COLUMN_NAME_IS_CURRENT
+        };
 
+        // Filter results WHERE "iscurrent" = 'TRUE'
+        String selection = TrashyDBContract.TrashyDBTableNeighbourhoods.COLUMN_NAME_IS_CURRENT + " = ?";
+        String[] selectionArgs = { "1" };
+
+        Cursor cursor = db.query(
+                TrashyDBContract.TrashyDBTableNeighbourhoods.TABLE_NAME,
+                projection,
+                selection, selectionArgs,
+                null, null,
+                null,
+                null
+        );
+
+        cursor.moveToNext();
+        String currentNeighbourhood = cursor.getString(cursor.getColumnIndexOrThrow(
+                TrashyDBContract.TrashyDBTableNeighbourhoods.COLUMN_NAME_NAME
+        ));
 
         // Create an ArrayAdapter using the string array and a default spinner layout
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getContext(),
                 R.array.arrondissements, android.R.layout.simple_spinner_item);
-        // Specify the layout to use when the list of choices appears
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        // Apply the adapter to the spinner
         spinner.setAdapter(adapter);
 
+        if (!currentNeighbourhood.equals(null)) {
+            int spinnerPosition = adapter.getPosition(currentNeighbourhood);
+            spinner.setSelection(spinnerPosition);
+        }
+
         return view;
-
-        //returning our layout file
-        //change R.layout.yourlayoutfilename for each of your fragments
-        //return inflater.inflate(R.layout.fragment_maps, container, false);
     }
-        
-
-
-
-
-
-
-
-
-
-
-
-
-    /*FAIRE LA CONNEXION A LA BASE DE DONNEES DANS CHECKSWITCH
-    //////////////////////////
-    /////////////////////////////////////
-
-    ////////////////////////////////////////////////////
-     */
-
-
-
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
+
         super.onViewCreated(view, savedInstanceState);
-        //you can set the title for your toolbar here for different fragments different titles
         getActivity().setTitle("Arrondissements");
 
-        //pour la carte
         mMapView = (MapView) view.findViewById(R.id.frame_layout).findViewById(R.id.map);
-        if(mMapView != null){
+        if (mMapView != null) {
             mMapView.onCreate(null);
             mMapView.onResume();
-            mMapView.getMapAsync((OnMapReadyCallback) this);
+            mMapView.getMapAsync(this);
         }
-
-        //Partie ou on affiche la carte:
-
-
-
-
-
     }
 
-
-
-
-    //pour la carte
+    // Pour la carte
     @Override
     public void onMapReady(GoogleMap googleMap) {
+
         MapsInitializer.initialize(getContext());
         mGoogleMap = googleMap;
         googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
@@ -195,19 +187,7 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback{
         //add marker?
 
         //position de depart
-        CameraPosition current = CameraPosition.builder().target(new LatLng(45.5016889,-73.56725599999999)).zoom(16).bearing(0).tilt(45).build();
-
+        CameraPosition current = CameraPosition.builder().target(new LatLng(45.5016889, -73.56725599999999)).zoom(16).bearing(0).tilt(45).build();
         googleMap.moveCamera(CameraUpdateFactory.newCameraPosition(current));
     }
-
-
-
-
-
-
-
-
-
-
-
 }
