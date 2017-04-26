@@ -11,9 +11,10 @@ import java.io.IOException;
 
 public class MainTxtReduct
 {
-    public static String redux(final Activity context)
+    public static String redux()
     {
         String polygone="";
+        int id=0;
         String fileNameR = Environment.getExternalStorageDirectory() + "/" + "allo.txt" ;
         String URL = "http://www-etud.iro.umontreal.ca/~beaurevg/Original.txt";
         File destination = new File(fileNameR);
@@ -23,7 +24,7 @@ public class MainTxtReduct
                 String fileNameR = "allo.txt";
                 String URL = "http://www-etud.iro.umontreal.ca/~beaurevg/Original.txt";
                 File destination = new File(fileNameR);
-                AnalyseLine.downloadFileFromURL(context,URL, destination);
+                AnalyseLine.downloadFileFromURL(URL, destination);
             }
         });
         th_download.start();
@@ -62,7 +63,7 @@ public class MainTxtReduct
                         System.out.println(lineTab[0]+lineTab[1]+lineTab[2]+lineTab[3]+lineTab[4]);
                     else{
                         if(lineCount>0){
-                            lineTmp=AnalyseLine.analyseLine(lineTab);
+                            lineTmp=AnalyseLine.analyseLine(lineTab,id++);
                             polygone=lineTmp;
                             output = lineTmp;
                             if(!output.equals("")){

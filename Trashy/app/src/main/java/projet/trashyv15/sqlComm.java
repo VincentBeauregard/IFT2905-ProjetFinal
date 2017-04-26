@@ -1,21 +1,23 @@
 package projet.trashyv15;
 
+import android.content.ContentValues;
+import android.database.sqlite.SQLiteDatabase;
+
 /**
  * Created by vincent on 17-04-23.
  */
 
 public class sqlComm {
-    public static void fillSchedule(String input) {
+    public static void fillSchedule(String input,int id) {
         //System.out.println(input);
         String[] line =input.split(" ");
-        sqlParse(line,"","","","","","",1);
+        sqlParse(line,"","","","","","",1,id);
 
     }
 
     public static void sqlParse(String[] line,String dateIn,String dateOut,
                                 String hourIn,String hourOut,String type,
-                                String weekday, int offset) {
-        int id;
+                                String weekday, int offset,int id){
         boolean once;
         String[] hours;
         String[] dates={""};
@@ -29,7 +31,7 @@ public class sqlComm {
 
                 if(weekdays.length()>0){// && !weekdayAlreadyIn(weekday,weekdays)) {
                     if (weekday.length() >= 2&&!fixe){
-                        sqlParse(line, "", "", hourIn, hourOut, type, weekdays, offset + 1);
+                        sqlParse(line, "", "", hourIn, hourOut, type, weekdays, offset + 1,id++);
                         fixe = true;
                     }
                     else if(fixe){
@@ -49,9 +51,9 @@ public class sqlComm {
                             hourOut = hours[1];
                     } else if (!fixe) {
                         if (hours.length == 2)
-                            sqlParse(line, dateIn, dateOut, hours[0], hours[1], type, weekday, offset + 1);
+                            sqlParse(line, dateIn, dateOut, hours[0], hours[1], type, weekday, offset + 1,id++);
                         else
-                            sqlParse(line, dateIn, dateOut, hours[0], "", type, weekday, offset + 1);
+                            sqlParse(line, dateIn, dateOut, hours[0], "", type, weekday, offset + 1,id++);
                         fixe = true;
                     }
                 }
@@ -68,7 +70,7 @@ public class sqlComm {
                                     dateIn = remove_(dates[i]);
                                 else if(dateOut.equals("")&&dates[i].charAt(0)=='_')
                                     dateOut=remove_(dates[i]);
-                                else {sqlParse(line, remove_(dates[i]), "", hourIn, hourOut, type, weekday, offset + 1);
+                                else {sqlParse(line, remove_(dates[i]), "", hourIn, hourOut, type, weekday, offset + 1,id++);
                                 fixe =true;}
                             }
                             else if(dateIn.equals(""))
@@ -81,7 +83,7 @@ public class sqlComm {
                                     for(int j =1;j<dates.length;j++)
                                         tmp+=dates[j]+"-";
                                     line[offset]=tmp;
-                                    sqlParse(line, "", "", hourIn, hourOut, type, weekday, offset);
+                                    sqlParse(line, "", "", hourIn, hourOut, type, weekday, offset,id++);
                                     fixe=true;
                                 }
 
@@ -99,6 +101,40 @@ public class sqlComm {
         //requete SQL ici
         //
         //
+        String TABLE_NAME = "schedules";
+        String COLUMN_NAME_WEEKDAY = "weekday";
+        String COLUMN_NAME_CYCLE = "cycle";
+        String COLUMN_NAME_ONCE = "once";
+        String COLUMN_NAME_HOUR_IN = "hourin";
+        String COLUMN_NAME_HOUR_OUT = "hourout";
+        String COLUMN_NAME_DATE_IN = "datein";
+        String COLUMN_NAME_DATE_OUT = "dateout";
+        String COLUMN_NAME_EXPIRES = "expires";
+        String insert = "INSERT INTO "+TABLE_NAME+" ("+
+                COLUMN_NAME_WEEKDAY+","+
+                COLUMN_NAME_CYCLE+","+
+                COLUMN_NAME_ONCE+","+
+                COLUMN_NAME_WEEKDAY+","+
+                COLUMN_NAME_HOUR_IN+","+
+                COLUMN_NAME_HOUR_OUT+","+
+                COLUMN_NAME_EXPIRES+","+
+                COLUMN_NAME_WEEKDAY+","+" )"+
+        "VALUES "+
+                "(" + " value1 "+" , "
+                        value2 ,...);
+
+
+        // Gets the data repository in write mode
+        SQLiteDatabase db = TrashyDbHelper.getWritableDatabase();
+
+// Create a new map of values, where column names are the keys
+        ContentValues values = new ContentValues();
+        values.put(FeedEntry.COLUMN_NAME_TITLE, title);
+        values.put(FeedEntry.COLUMN_NAME_SUBTITLE, subtitle);
+
+// Insert the new row, returning the primary key value of the new row
+        long newRowId = db.insert(FeedEntry.TABLE_NAME, null, values);
+
         //
         //
         //
