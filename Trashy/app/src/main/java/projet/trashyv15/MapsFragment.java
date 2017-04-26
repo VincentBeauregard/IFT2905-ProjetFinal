@@ -148,10 +148,16 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback {
                 null
         );
 
-        cursor.moveToNext();
-        String currentNeighbourhood = cursor.getString(cursor.getColumnIndexOrThrow(
-                TrashyDBContract.TrashyDBTableNeighbourhoods.COLUMN_NAME_NAME
-        ));
+        String currentNeighbourhood = "";
+        if (cursor.getCount() == 0) {
+            System.out.println("No neighbourhood selected!!!!");
+        }
+        else {
+            cursor.moveToNext();
+            currentNeighbourhood = cursor.getString(cursor.getColumnIndexOrThrow(
+                    TrashyDBContract.TrashyDBTableNeighbourhoods.COLUMN_NAME_NAME
+            ));
+        }
         cursor.close();
 
         // Create an ArrayAdapter using the string array and a default spinner layout
