@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">TrashyV1.5</string>
+    <string name="action_settings" translatable="false">Settings</string>
+    <string name="title_activity_calendar" translatable="false">Calendar</string>
+    <string name="compost">Compost</string>
+    <string name="detNh">Determine automatically your neighbourhood</string>
+    <string name="en">English</string>
+    <string name="fr">French</string>
+    <string name="nh">Your Neighbourhood</string>
+    <string name="recyc">Recycling</string>
+    <string name="selectNh">Select your neighbourhood</string>
+    <string name="title_about">About</string>
+    <string name="title_carte">Map</string>
+    <string name="title_ecoc">Eco-Centers</string>
+    <string name="title_home">Home</string>
+    <string name="trash">Garbage</string>
+    <string name="toastLoc">Allow localization to determine your neighbourhood automatically</string>
+    <string name="toastLocSel">was selected as your neighbourhood</string>
+    <string name="toastNoLoc">No neighbourhood was selected yet</string>
+</resources>

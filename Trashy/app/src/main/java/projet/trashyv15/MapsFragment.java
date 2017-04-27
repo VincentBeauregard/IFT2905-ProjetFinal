@@ -19,6 +19,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ZoomControls;
 
@@ -46,8 +47,13 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback {
                              @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
 
+//        TextView texte = (TextView) view.findViewById(R.id.switchStatus);
+//        texte.setText(R.string.nh);
+
         view = inflater.inflate(R.layout.fragment_maps, container, false);
+
         accedCarte = (Button) view.findViewById(R.id.accedCarte);
+        accedCarte.setText(R.string.detNh);
 
         accedCarte.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -57,7 +63,7 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback {
         });
 
         /*pos du array:
-        0- Ahuntsic-Cartierville
+        0- Ahuntsic-Cartiervillewe
         1- Anjou
         2- Côte-des-Neiges–Notre-Dame-de-Grâce
         3- Lachine
@@ -116,10 +122,10 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback {
                 else            System.out.println("(2) Updated new neighbourhood in database");
 
                 if (position != 0) {
-                    Toast.makeText(getActivity(), item + " à été sélectionné comme arrondissement", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), item + R.string.toastLocSel, Toast.LENGTH_SHORT).show();
                 }
                 else {
-                    Toast.makeText(getActivity(), "Vous n'avez pas encore sélectionné d'arrondissement", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), R.string.toastNoLoc, Toast.LENGTH_SHORT).show();
                 }
             }
 
@@ -195,7 +201,7 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback {
     public void onViewCreated(View view, Bundle savedInstanceState) {
 
         super.onViewCreated(view, savedInstanceState);
-        getActivity().setTitle("Arrondissements");
+        getActivity().setTitle(R.string.title_carte);
 
         mMapView = (MapView) view.findViewById(R.id.frame_layout).findViewById(R.id.map);
         if (mMapView != null) {
@@ -251,7 +257,7 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback {
                     }
 
                 } else {
-                    Toast.makeText(getContext(), "Permettre la localisation pour pouvoir déterminer votre arrondissement automatiquement", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getContext(), R.string.toastLoc, Toast.LENGTH_LONG).show();
                     accedCarte.setVisibility(View.GONE);
                     mMapView.setVisibility(View.GONE);
                 }

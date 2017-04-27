@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="arrondissements">
-        <item>Sélectionnez un arrondissement</item>
+        <item>---</item>
         <item>Ahunstic-Cartierville</item>
         <item>Anjou</item>
         <item>Côte-des-Neiges-Notre-Dame-de-Grâce</item>
@@ -23,4 +23,6 @@
         <item>Villeray–Saint-Michel–Parc-Extension</item>
 
     </string-array>
+
+
 </resources>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.preference.PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+  <android.support.v7.preference.ListPreference
+        android:key="reminder"
+        android:title = "Reminder"
+        android:summary="For every type of trash"
+        android:entries="@array/settings_reminder"
+        android:entryValues="@array/settings_reminder"
+
+        />
+
+    <android.support.v7.preference.ListPreference
+        android:key="language"
+        android:title = "Language"
+        android:entries="@array/settings_language"
+        android:entryValues="@array/settings_language"
+
+        />
+
+</android.support.v7.preference.PreferenceScreen>

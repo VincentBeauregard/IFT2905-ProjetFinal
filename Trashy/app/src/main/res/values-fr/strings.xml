@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">TrashyV1.5</string>
+    <string name="action_settings" translatable="false">Paramètres</string>
+    <string name="title_activity_calendar" translatable="false">Calendrier</string>
+    <string name="compost">Compost</string>
+    <string name="detNh">Déterminer automatiquement votre arrondissement</string>
+    <string name="en">Anglais</string>
+    <string name="fr">Français</string>
+    <string name="nh">Votre Arrondissement</string>
+    <string name="recyc">Recyclage</string>
+    <string name="selectNh">Choisissez votre arrondissement</string>
+    <string name="title_about">À propos</string>
+    <string name="title_carte">Carte</string>
+    <string name="title_ecoc">Éco-Centres</string>
+    <string name="title_home">Accueil</string>
+    <string name="trash">Poubelle</string>
+    <string name="toastLoc">Permettre la localisation afin de déterminer votre arrondissement automatiquement</string>
+    <string name="toastLocSel">a été sélectionné en tant que votre arrondissement</string>
+    <string name="toastNoLoc">Aucun arrondissement n\'a encore été sélectionné</string>
+</resources>

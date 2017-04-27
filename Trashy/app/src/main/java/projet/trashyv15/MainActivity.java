@@ -1,9 +1,16 @@
 package projet.trashyv15;
 
+import android.app.Activity;
+import android.app.ActivityManager;
+import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v4.app.FragmentManager;
+import android.support.v7.preference.PreferenceFragmentCompat;
+import android.support.v7.preference.PreferenceManager;
+import android.support.v7.preference.PreferenceScreen;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.support.v4.app.Fragment;
@@ -126,12 +133,15 @@ public class MainActivity extends AppCompatActivity
         displaySelectedScreen(item.getItemId());
         //make this method blank
         return true;
+
     }
+
 
     private void displaySelectedScreen(int itemId) {
 
         // Creating fragment object
         Fragment fragment = null;
+        Activity sett = null;
 
         // Initializing the fragment object which is selected
         switch (itemId) {
@@ -144,6 +154,12 @@ public class MainActivity extends AppCompatActivity
             case R.id.nav_calendar:
                 fragment = new CalendarFragment();
                 break;
+            case R.id.nav_settings:
+//                sett = new AndroidLocalize();
+//                ActivityManager am = getParentActivityIntent();
+//                startActivity(sett);
+                fragment = new TrashySettingsFragment();
+                break;
             case R.id.nav_ecocenter:
                 //fragment = new EcoFragment();
                 break;
@@ -152,15 +168,16 @@ public class MainActivity extends AppCompatActivity
                 break;
         }
 
-        // Replacing the fragment
+
         if (fragment != null) {
 
-            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-            ft.replace(R.id.content_frame, fragment);
-            ft.commit();
+            FragmentManager fm = getSupportFragmentManager();
+            fm.beginTransaction().replace(R.id.content_frame, fragment).commit();
+
         }
 
         DrawerLayout drawer = (DrawerLayout)findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
     }
+
 }

@@ -10,9 +10,9 @@
 
     <TextView
         android:id="@+id/switchStatus"
+
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Votre Arrondissement :"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true" />
@@ -23,7 +23,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="13dp"
         android:layout_below="@+id/switchStatus"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        />
 
     <Button
         android:id="@+id/accedCarte"
@@ -31,8 +32,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/spinner"
-        android:layout_marginTop="20dp"
-        android:text="Déterminer automatiquement votre arrondissement" />
+        android:layout_marginTop="20dp" />
 
 
 
