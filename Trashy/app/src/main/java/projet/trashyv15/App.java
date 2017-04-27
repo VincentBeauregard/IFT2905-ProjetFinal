@@ -156,6 +156,90 @@ public class App extends Application {
         db.insert(TrashyDBContract.TrashyDBTableNeighbourhoodHasSchedule.TABLE_NAME, null, values);
     }
 
+    public static long databaseGetCurrentNeighbourhoodID() {
+
+        SQLiteDatabase db = mDBHelper.getReadableDatabase();
+        String[] projection = {
+                TrashyDBContract.TrashyDBTableNeighbourhoods._ID,
+                TrashyDBContract.TrashyDBTableNeighbourhoods.COLUMN_NAME_IS_CURRENT
+        };
+        String selection = TrashyDBContract.TrashyDBTableNeighbourhoods.COLUMN_NAME_IS_CURRENT + " = ?";
+        String[] selectionArgs = { "1" };
+
+        Cursor cursor = db.query(
+                TrashyDBContract.TrashyDBTableNeighbourhoods.TABLE_NAME,
+                projection, selection, selectionArgs,
+                null, null, null
+        );
+
+        long neighbourhoodID = -1;
+        if (cursor.getCount() != 1) {
+            System.out.println("No current neighbourhood");
+        }
+        else {
+
+            cursor.moveToNext();
+            neighbourhoodID = cursor.getLong(cursor.getColumnIndexOrThrow(
+                    TrashyDBContract.TrashyDBTableNeighbourhoods._ID
+            ));
+        }
+        cursor.close();
+
+        return neighbourhoodID;
+    }
+
+    public static int[] databaseGetNextDay(char type) {
+
+        int[] retval = new int[2];
+
+        long currentNeighbourhoodID = databaseGetCurrentNeighbourhoodID();
+
+        SQLiteDatabase db = mDBHelper.getReadableDatabase();
+        String[] projection = {
+                TrashyDBContract.TrashyDBTableNeighbourhoodHasSchedule.COLUMN_NAME_NEIGHBOURHOOD_ID,
+                TrashyDBContract.TrashyDBTableNeighbourhoodHasSchedule.COLUMN_NAME_SCHEDULE_ID
+        };
+        String selection = TrashyDBContract.TrashyDBTableNeighbourhoodHasSchedule.COLUMN_NAME_NEIGHBOURHOOD_ID + " = ?";
+        String[] selectionArgs = { String.valueOf(currentNeighbourhoodID) };
+
+        Cursor cursor = db.query(
+                TrashyDBContract.TrashyDBTableNeighbourhoodHasSchedule.TABLE_NAME,
+                projection, selection, selectionArgs,
+                null, null, null
+        );
+
+        while (cursor.moveToNext()) {
+
+            long scheduleID = cursor.getLong(cursor.getColumnIndexOrThrow(
+                    TrashyDBContract.TrashyDBTableNeighbourhoodHasSchedule.COLUMN_NAME_SCHEDULE_ID
+            ));
+
+            SQLiteDatabase db2 = mDBHelper.getReadableDatabase();
+            String[] proj2 = {
+                    TrashyDBContract.TrashyDBTableSchedules._ID,
+                    TrashyDBContract.TrashyDBTableSchedules.COLUMN_NAME_WEEKDAY,
+                    TrashyDBContract.TrashyDBTableSchedules.COLUMN_NAME_HOUR_IN
+            };
+            String sel2 = TrashyDBContract.TrashyDBTableSchedules._ID + " = ?";
+            String[] selArgs2 = { String.valueOf(scheduleID) };
+
+            Cursor cur2 = db2.query(
+                    TrashyDBContract.TrashyDBTableSchedules.TABLE_NAME,
+                    proj2, sel2, selArgs2,
+                    null, null, null
+            );
+            cur2.moveToNext();
+
+            retval[0] = cur2.getInt(cur2.getColumnIndexOrThrow(TrashyDBContract.TrashyDBTableSchedules.COLUMN_NAME_WEEKDAY));
+            retval[1] = cur2.getInt(cur2.getColumnIndexOrThrow(TrashyDBContract.TrashyDBTableSchedules.COLUMN_NAME_HOUR_IN));
+
+            cur2.close();
+        }
+        cursor.close();
+
+        return retval;
+    }
+
     @Override
     public void onTerminate() {
         mDBHelper.close();
