@@ -530,10 +530,15 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback {
 
             Location location = locationManager.getLastKnownLocation(locationManager
                     .getBestProvider(criteria, false));
-            //double latitude = location.getLatitude();
-            //double longitude = location.getLongitude();
+            if(location!=null){
+                double latitude = location.getLatitude();
+                double longitude = location.getLongitude();
+                loc = new LatLng(latitude,longitude);
+            }
 
-            //loc = new LatLng(latitude,longitude);
+
+
+            
             //marche jusque la
 
 
