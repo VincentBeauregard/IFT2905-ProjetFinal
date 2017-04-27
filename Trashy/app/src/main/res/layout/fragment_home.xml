@@ -17,67 +17,317 @@
             android:orientation="horizontal"
             android:weightSum="3">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_weight="1"
-            android:layout_margin="0dp">
-
-
-        <Button
-            android:text="trash"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/trash"
-            android:textSize="14sp"
-            android:layout_gravity="center"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_weight="1">
-
-        <Button
-            android:text="Compost"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/compost"
-            android:layout_gravity="center" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:id="@+id/recycleRow"
-            android:layout_weight="1">
-
-            <Button
-                android:text="Recycle"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:id="@+id/recycle" />
+                android:orientation="vertical"
+                android:layout_weight="1"
+                android:layout_margin="0dp">
 
-            <Button
-                android:background="@drawable/sort_recy_journal"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:layout_gravity="right"
-                android:id="@+id/recycle2" />
-            <Button
-                android:background="@drawable/sort_recy_journal"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:layout_gravity="left"
-                android:id="@+id/recycle3" />
 
-        </LinearLayout>
+                <Button
+                    android:background="@drawable/trash"
+                    android:layout_width="90dp"
+                    android:layout_height="90dp"
+                    android:id="@+id/trash"
+                    android:textSize="14sp"
+                    android:layout_marginBottom="15dp"
+                    android:layout_gravity="center"/>
+
+                <Button
+                    android:text="1 Jour"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/timeTrash"
+                    android:textSize="14sp"
+                    android:layout_marginBottom="15dp"
+                    android:layout_gravity="center"/>
+
+                <Button
+                    android:background="@drawable/verre_cassee"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_gravity="left"
+                    android:layout_marginLeft="10dp"
+                    android:id="@+id/verre_cassee" />
+                <Button
+                    android:background="@drawable/tube_pate_dent"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_gravity="right"
+                    android:layout_marginRight="10dp"
+                    android:id="@+id/tube_pate_dent" />
+
+                <Button
+                    android:background="@drawable/bol_assiette"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_gravity="left"
+                    android:layout_marginLeft="10dp"
+                    android:id="@+id/bol_assiette" />
+                <Button
+                    android:background="@drawable/pile"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_gravity="right"
+                    android:layout_marginRight="10dp"
+                    android:id="@+id/pile" />
+                <Button
+                    android:background="@drawable/vis_clou"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_gravity="left"
+                    android:layout_marginLeft="10dp"
+                    android:id="@+id/vis_clou" />
+                <Button
+                    android:background="@drawable/pot_peinture"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_gravity="right"
+                    android:layout_marginRight="10dp"
+                    android:id="@+id/pot_peinture" />
+
+                <Button
+                    android:background="@drawable/couche"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_gravity="left"
+                    android:layout_marginLeft="10dp"
+                    android:id="@+id/couche" />
+                <Button
+                    android:background="@drawable/casserole"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_gravity="right"
+                    android:layout_marginRight="10dp"
+                    android:id="@+id/casserole" />
+                <Button
+                    android:background="@drawable/cartable"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_gravity="left"
+                    android:layout_marginLeft="10dp"
+                    android:id="@+id/cartable" />
+                <Button
+                    android:background="@drawable/pellicule_plastique"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_gravity="right"
+                    android:layout_marginRight="10dp"
+                    android:id="@+id/pellicule_plastique" />
+                <Button
+                    android:background="@drawable/mirroir_vitre"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_gravity="left"
+                    android:layout_marginLeft="10dp"
+                    android:id="@+id/mirroir_vitre" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_weight="1">
+
+                <Button
+                    android:background="@drawable/compost"
+                    android:layout_width="90dp"
+                    android:layout_height="90dp"
+                    android:id="@+id/compost"
+                    android:layout_marginBottom="15dp"
+                    android:layout_gravity="center" />
+
+                <Button
+                    android:text="3 Heures"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/timeCompost"
+                    android:textSize="14sp"
+                    android:layout_marginBottom="15dp"
+                    android:layout_gravity="center"/>
+
+                <Button
+                    android:background="@drawable/fromage_beurre"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_gravity="left"
+                    android:layout_marginLeft="10dp"
+                    android:id="@+id/compost2" />
+                <Button
+                    android:background="@drawable/fruits_legumes"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_gravity="right"
+                    android:layout_marginRight="10dp"
+                    android:id="@+id/compost3" />
+
+                <Button
+                    android:background="@drawable/fruits_mer_coquillages"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_gravity="left"
+                    android:layout_marginLeft="10dp"
+                    android:id="@+id/compost4" />
+
+                <Button
+                    android:background="@drawable/noix_arachide"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_gravity="right"
+                    android:layout_marginRight="10dp"
+                    android:id="@+id/compost5" />
+                <Button
+                    android:background="@drawable/oeuf_coquille"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_gravity="left"
+                    android:layout_marginLeft="10dp"
+                    android:id="@+id/compost6" />
+                <Button
+                    android:background="@drawable/poisson_aretes"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_gravity="right"
+                    android:layout_marginRight="10dp"
+                    android:id="@+id/compost7" />
+                <Button
+                    android:background="@drawable/tea_cafe"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_gravity="left"
+                    android:layout_marginLeft="10dp"
+                    android:id="@+id/compost8" />
+                <Button
+                    android:background="@drawable/viande"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_gravity="right"
+                    android:layout_marginRight="10dp"
+                    android:id="@+id/compost9" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:id="@+id/recycleRow"
+                android:layout_weight="1">
+
+                <Button
+                    android:background="@drawable/recyclage"
+                    android:layout_width="90dp"
+                    android:layout_height="90dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginBottom="15dp"
+                    android:id="@+id/recycle" />
+                <Button
+                    android:text="6 Jours"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/timeRecyc"
+                    android:textSize="14sp"
+                    android:layout_marginBottom="15dp"
+                    android:layout_gravity="center"/>
+
+                <Button
+                    android:background="@drawable/boite_oeufs"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_gravity="left"
+                    android:layout_marginLeft="10dp"
+                    android:id="@+id/recycle2" />
+                <Button
+                    android:background="@drawable/couvercles_bouchon"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_gravity="right"
+                    android:layout_marginRight="10dp"
+                    android:id="@+id/recycle3" />
+
+                <Button
+                    android:background="@drawable/journal_revue"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_gravity="left"
+                    android:layout_marginLeft="10dp"
+                    android:id="@+id/recycle4" />
+
+                <Button
+                    android:background="@drawable/bouteille_plastique"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_gravity="right"
+                    android:layout_marginRight="10dp"
+                    android:id="@+id/recycle5" />
+                <Button
+                    android:background="@drawable/bouteille_vitre"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_gravity="left"
+                    android:layout_marginLeft="10dp"
+                    android:id="@+id/recycle6" />
+                <Button
+                    android:background="@drawable/canne_aluminium"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_gravity="right"
+                    android:layout_marginRight="10dp"
+                    android:id="@+id/recycle7" />
+
+
+                <Button
+                    android:background="@drawable/carton_jus_lait"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_gravity="left"
+                    android:layout_marginLeft="10dp"
+                    android:id="@+id/recycle8" />
+                <Button
+                    android:background="@drawable/contenant_asceptique"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_gravity="right"
+                    android:layout_marginRight="10dp"
+                    android:id="@+id/recycle9" />
+                <Button
+                    android:background="@drawable/indices_recyclage"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_gravity="left"
+                    android:layout_marginLeft="10dp"
+                    android:id="@+id/recycle10" />
+                <Button
+                    android:background="@drawable/papier_enveloppe"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_gravity="right"
+                    android:layout_marginRight="10dp"
+                    android:id="@+id/recycle11" />
+                <Button
+                    android:background="@drawable/rouleau_carton"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_gravity="left"
+                    android:layout_marginLeft="10dp"
+                    android:id="@+id/recycle13" />
+                <Button
+                    android:background="@drawable/sac_papier"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_gravity="right"
+                    android:layout_marginRight="10dp"
+                    android:id="@+id/recycle14" />
+                <Button
+                    android:background="@drawable/sac_plastique"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_gravity="left"
+                    android:layout_marginLeft="10dp"
+                    android:id="@+id/recycle15" />
+
+            </LinearLayout>
 
         </LinearLayout>
 

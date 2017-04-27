@@ -35,7 +35,6 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView)findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar,
@@ -71,6 +70,12 @@ public class MainActivity extends AppCompatActivity
         );
 
         boolean hasCurrentNeighbourhood = false;
+        boolean emptyDatabase = false;
+
+        if (cursor.getCount() == 0) {
+            emptyDatabase = true;
+        }
+
         while (cursor.moveToNext()) {
 
             boolean isCurrent = cursor.getInt(cursor.getColumnIndexOrThrow(
@@ -88,7 +93,12 @@ public class MainActivity extends AppCompatActivity
         cursor.close();
 
         if (!hasCurrentNeighbourhood) {
-            System.out.println("User has no associated neighbourhood in database!!!!!!!");
+            System.out.println("User has no associated neighbourhood in database");
+        }
+
+        if (emptyDatabase) {
+            System.out.println("Filling database...");
+            MainTxtReduct.redux();
         }
     }
 
