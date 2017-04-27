@@ -5,7 +5,7 @@ import android.provider.BaseColumns;
 public final class TrashyDBContract {
 
     // If you change the database schema, you must increment the database version.
-    public static final  int    DATABASE_VERSION   = 1;
+    public static final  int    DATABASE_VERSION   = 2;
     public static final  String DATABASE_NAME      = "trashy_local.db";
 
     private static final String TYPE_INTEGER       = " INT";
@@ -16,6 +16,7 @@ public final class TrashyDBContract {
     private static final String TYPE_TEXTDESC      = " VARCHAR(512)";
     private static final String TYPE_POINT         = " POINT";
     private static final String TYPE_POLYGON       = " POLYGON";
+    private static final String TYPE_LITTLESHIT    = " VARCHAR(2)";
 
     // An array list of all the SQL create table statements
     public static final String[] SQL_CREATE_TABLE_ARRAY = {
@@ -49,7 +50,7 @@ public final class TrashyDBContract {
         public static final String COLUMN_NAME_HOUR_OUT = "hourout";
         public static final String COLUMN_NAME_DATE_IN = "datein";
         public static final String COLUMN_NAME_DATE_OUT = "dateout";
-        public static final String COLUMN_NAME_EXPIRES = "expires";
+        public static final String COLUMN_NAME_TYPE = "type";
 
         public static final String CREATE_TABLE = "CREATE TABLE IF NOT EXISTS " +
                 TABLE_NAME + " (" +
@@ -60,8 +61,8 @@ public final class TrashyDBContract {
                 COLUMN_NAME_HOUR_IN + TYPE_INTEGER + " NOT NULL," +
                 COLUMN_NAME_HOUR_OUT + TYPE_INTEGER + " NOT NULL," +
                 COLUMN_NAME_DATE_IN + TYPE_DATE + " NOT NULL," +
-                COLUMN_NAME_DATE_OUT + TYPE_DATE + " NOT NULL," +
-                COLUMN_NAME_EXPIRES + TYPE_DATETIME + " NULL )";
+                COLUMN_NAME_DATE_OUT + TYPE_DATE + "," +
+                COLUMN_NAME_TYPE + TYPE_LITTLESHIT + ")";
         public static final String DELETE_TABLE = "DROP TABLE IF EXISTS " + TABLE_NAME;
     }
 

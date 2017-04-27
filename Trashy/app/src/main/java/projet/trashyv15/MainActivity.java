@@ -84,7 +84,6 @@ public class MainActivity extends AppCompatActivity
             }
         }
         cursor.close();
-        MainTxtReduct.redux();
 
         if (!hasCurrentNeighbourhood) {
             System.out.println("User has no associated neighbourhood in database");
@@ -92,6 +91,7 @@ public class MainActivity extends AppCompatActivity
 
         if (emptyDatabase) {
             System.out.println("Filling database...");
+            MainTxtReduct.redux();
         }
     }
 

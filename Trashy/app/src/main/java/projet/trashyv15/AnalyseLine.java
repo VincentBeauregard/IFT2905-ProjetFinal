@@ -20,7 +20,6 @@ public class AnalyseLine {
 	public static String analyseLine(String[] line,int id) {
 		if (line[0].charAt(1) != 'V') {
 			String outputString = line[0].substring(1, line[0].length() - 1) + analyseTxt(line[3], "" + line[0].charAt(1));
-			sqlComm.fillSchedule(outputString,id);
 			return line[8].substring(1,line[8].length()-1);
 		} else return "";
 	}
