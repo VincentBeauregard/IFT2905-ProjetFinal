@@ -171,7 +171,7 @@ public class MainActivity extends AppCompatActivity
                 fragment = new TrashySettingsFragment();
                 break;
             case R.id.nav_ecocenter:
-                //fragment = new EcoFragment();
+                fragment = new EcoFragment();
                 break;
             case R.id.nav_about:
                 //fragment = new AboutFragment();

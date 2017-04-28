@@ -5,7 +5,6 @@ android {
         config {
             keyAlias 'keyTrashy'
             keyPassword 'Trashy'
-            storeFile file('C:/Users/Zakaria/cleAPI/signKey.jks')
             storePassword 'Trashy'
         }
     }

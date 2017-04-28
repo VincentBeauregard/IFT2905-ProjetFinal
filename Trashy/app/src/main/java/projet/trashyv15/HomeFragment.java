@@ -32,11 +32,11 @@ public class HomeFragment extends Fragment {
 
         getActivity().setTitle("Home");
         Button trashButton = (Button) getView().findViewById(R.id.timeTrash);
-        trashButton.setText("1 Annee");
+        trashButton.setText("2 days");
         Button recycleButton = (Button) getView().findViewById(R.id.timeRecyc);
-        recycleButton.setText("2 Annee");
+        recycleButton.setText("4 days");
         Button compostButton = (Button) getView().findViewById(R.id.timeCompost);
-        compostButton.setText("3 Annee");
+        compostButton.setText("Tomorrow");
     }
 
 }
