@@ -34,6 +34,37 @@ public class HomeFragment extends Fragment {
     }
 
 
-    
+    public int[] findNext(){
+        int[] mjh = new int[3];
+        /*
+        methode exemple:
+        IMPORTANT, Calendar.set doit etre a l'interieur d'une fonction sinon ca marche pas
+
+        Calendar auj = Calendar.getInstance();
+        int currentDay = auj.get(Calendar.DAY_OF_WEEK);
+
+        Calendar next = Calendar.getInstance();
+        next.add(Calendar.DAY_OF_YEAR, 1);
+
+        if (currentDay == Calendar.SATURDAY)
+        {
+            next.add(Calendar.DAY_OF_YEAR, 1);
+        }
+        else if (currentDay == Calendar.FRIDAY)
+        {
+            next.add(Calendar.DAY_OF_YEAR, 2);
+        }
+
+        next.set(Calendar.HOUR_OF_DAY, 8);
+        next.set(Calendar.MINUTE, 30);
+
+        long millisLeft = next.getTimeInMillis() - auj.getTimeInMillis();
+        long hoursLeft = millisLeft / (60 * 60 * 1000);
+        long minutesLeft =  (millisLeft % (60 * 60 * 1000)) / (60 * 1000);
+        */
+        return mjh;
+    };
+
+
 
 }
