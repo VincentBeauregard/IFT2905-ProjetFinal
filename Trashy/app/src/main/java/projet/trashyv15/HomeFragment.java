@@ -1,17 +1,12 @@
 package projet.trashyv15;
 
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.content.res.ResourcesCompat;
 import android.view.LayoutInflater;
-import android.view.*;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.*;
-import android.content.res.Resources;
-import android.support.v4.content.ContextCompat;
 
 
 public class HomeFragment extends Fragment {
@@ -37,5 +32,8 @@ public class HomeFragment extends Fragment {
         Button compostButton = (Button) getView().findViewById(R.id.timeCompost);
         compostButton.setText("3 Annee");
     }
+
+
+    
 
 }
