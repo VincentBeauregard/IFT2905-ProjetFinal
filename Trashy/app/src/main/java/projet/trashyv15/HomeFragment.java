@@ -7,6 +7,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Toast;
+
+import java.util.Calendar;
 
 
 public class HomeFragment extends Fragment {
@@ -17,6 +20,9 @@ public class HomeFragment extends Fragment {
         //returning our layout file
         //change R.layout.yourlayoutfilename for each of your fragments
         return inflater.inflate(R.layout.fragment_home, container, false);
+
+
+
     }
 
 
@@ -31,38 +37,104 @@ public class HomeFragment extends Fragment {
         recycleButton.setText("2 Annee");
         Button compostButton = (Button) getView().findViewById(R.id.timeCompost);
         compostButton.setText("3 Annee");
+
+
+
+        //test de la fonction de temps restant
+        int jourRamassage = Calendar.SATURDAY;
+
+        int heureRamassage = 0;
+
+        int[] tab = findNext(jourRamassage,heureRamassage);
+
+        if(tab[1]!=-1){
+            Toast.makeText(getContext(),tab[0] + " Jours " + tab[1] + " Heures",Toast.LENGTH_LONG).show();
+        }
+        else Toast.makeText(getContext(),"Maintenant!!",Toast.LENGTH_LONG).show();
+
+        //heure = 0 si plus de 23 heures, jours = 0 si moins de 24 heures
+
     }
 
 
-    public int[] findNext(){
-        int[] mjh = new int[3];
+    public int[] findNext(int jourRamassage, int heureRamassage){
+        //recoit lheure et le jour du ramassage, retourne un tableau avec le nombre d'heures/jours restant
+        //si jhm[1]!=0 on affiche jhm[1] sinon on affiche jhm[0]
+        //si jhm[1]==-1, la collecte est maintenant
+
+        int[] jhm = new int[2];
         /*
         methode exemple:
-        IMPORTANT, Calendar.set doit etre a l'interieur d'une fonction sinon ca marche pas
+        IMPORTANT, Calendar.set doit etre a l'interieur d'une fonction sinon ca marche pas*/
+        jhm[0] = 0;
+        jhm[1] = 0;
 
         Calendar auj = Calendar.getInstance();
         int currentDay = auj.get(Calendar.DAY_OF_WEEK);
 
-        Calendar next = Calendar.getInstance();
-        next.add(Calendar.DAY_OF_YEAR, 1);
 
-        if (currentDay == Calendar.SATURDAY)
-        {
-            next.add(Calendar.DAY_OF_YEAR, 1);
-        }
-        else if (currentDay == Calendar.FRIDAY)
-        {
-            next.add(Calendar.DAY_OF_YEAR, 2);
+
+
+        while(currentDay!=jourRamassage){
+            auj.add(Calendar.DAY_OF_WEEK, 1);
+            currentDay = auj.get(Calendar.DAY_OF_WEEK);
+            jhm[0]++;
         }
 
-        next.set(Calendar.HOUR_OF_DAY, 8);
-        next.set(Calendar.MINUTE, 30);
+        if(jhm[0]==1){
+            //heures
 
-        long millisLeft = next.getTimeInMillis() - auj.getTimeInMillis();
-        long hoursLeft = millisLeft / (60 * 60 * 1000);
-        long minutesLeft =  (millisLeft % (60 * 60 * 1000)) / (60 * 1000);
-        */
-        return mjh;
+
+
+
+
+            if(currentDay>heureRamassage){
+                jhm[1]=24;
+                while(currentDay!=heureRamassage){
+                    auj.add(Calendar.HOUR_OF_DAY,-1);
+                    currentDay = auj.get(Calendar.HOUR_OF_DAY);
+                    jhm[1]--;
+                }
+
+            }
+
+            else {
+                jhm[0]=1;
+            }
+
+
+
+
+        }
+
+        else if(jhm[0]==0){
+            auj = Calendar.getInstance();
+            currentDay = auj.get(Calendar.HOUR_OF_DAY);
+
+
+            if(currentDay<heureRamassage){
+
+                while(currentDay!=heureRamassage){
+                    auj.add(Calendar.HOUR_OF_DAY,1);
+                    currentDay = auj.get(Calendar.HOUR_OF_DAY);
+                    jhm[1]++;
+                }
+
+            }
+
+            else if(currentDay==heureRamassage)
+                jhm[1]=-1;
+
+
+            else{
+                jhm[0]=7;
+            }
+        }
+
+
+
+
+        return jhm;
     };
 
 
