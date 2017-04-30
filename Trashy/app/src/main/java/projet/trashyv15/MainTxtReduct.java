@@ -64,7 +64,6 @@ public class MainTxtReduct
                     else{
                         if(lineCount>0){
                             AnalyseLine.analyseLine(lineTab,id++);
-                            App.getNextcollect("D");
                             output = "";//lineTmp;
                             if(!output.equals("")){
                                 bufferedWriter.write(output);
