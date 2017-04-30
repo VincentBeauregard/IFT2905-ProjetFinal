@@ -521,7 +521,7 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback {
             //                                          int[] grantResults)
             // to handle the case where the user grants the permission. See the documentation
             // for ActivityCompat#requestPermissions for more details.
-            mGoogleMap.setMyLocationEnabled(true);
+            //mGoogleMap.setMyLocationEnabled(true);
 
 
             LocationManager locationManager = (LocationManager)
