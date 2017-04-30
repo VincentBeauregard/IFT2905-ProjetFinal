@@ -41,7 +41,7 @@ public class HomeFragment extends Fragment {
 
 
         //test de la fonction de temps restant
-        int jourRamassage = Calendar.SATURDAY;
+        int jourRamassage = Calendar.SUNDAY;
 
         int heureRamassage = 0;
 
@@ -90,6 +90,7 @@ public class HomeFragment extends Fragment {
 
             if(currentDay>heureRamassage){
                 jhm[1]=24;
+                jhm[0]=0;
                 while(currentDay!=heureRamassage){
                     auj.add(Calendar.HOUR_OF_DAY,-1);
                     currentDay = auj.get(Calendar.HOUR_OF_DAY);
