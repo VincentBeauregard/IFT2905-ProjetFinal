@@ -35,13 +35,12 @@
                     android:layout_gravity="center"/>
 
                 <Button
-                    android:text="1 Jour"
+                    android:id="@+id/timeTrash"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/timeTrash"
-                    android:textSize="14sp"
+                    android:layout_gravity="center"
                     android:layout_marginBottom="15dp"
-                    android:layout_gravity="center"/>
+                    android:textSize="14sp" />
 
                 <Button
                     android:background="@drawable/verre_cassee"
@@ -222,14 +221,14 @@
                     android:layout_gravity="center_horizontal"
                     android:layout_marginBottom="15dp"
                     android:id="@+id/recycle" />
+
                 <Button
-                    android:text="6 Jours"
+                    android:id="@+id/timeRecyc"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/timeRecyc"
-                    android:textSize="14sp"
+                    android:layout_gravity="center"
                     android:layout_marginBottom="15dp"
-                    android:layout_gravity="center"/>
+                    android:textSize="14sp" />
 
                 <Button
                     android:background="@drawable/boite_oeufs"

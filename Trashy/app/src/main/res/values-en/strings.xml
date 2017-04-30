@@ -4,7 +4,7 @@
     <string name="action_settings" translatable="false">Settings</string>
     <string name="title_activity_calendar" translatable="false">Calendar</string>
     <string name="compost">Compost</string>
-    <string name="detNh">Determine automatically your neighbourhood</string>
+    <string name="detNh">Set automatically your neighbourhood</string>
     <string name="en">English</string>
     <string name="fr">French</string>
     <string name="nh">Your Neighbourhood</string>
@@ -18,4 +18,11 @@
     <string name="toastLoc">Allow localization to determine your neighbourhood automatically</string>
     <string name="toastLocSel">was selected as your neighbourhood</string>
     <string name="toastNoLoc">No neighbourhood was selected yet</string>
+    <string name="demain">Tomorrow</string>
+    <string name="jour">day</string>
+    <string name="jours">days</string>
+    <string name="noLoc">Impossible to localize you. Is your location on?</string>
+    <string name="findEcoc">Find an eco-center nearby</string>
+    <string name="zoneNS">Zone outside of Montreal not yet accessible</string>
+
 </resources>

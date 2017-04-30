@@ -30,13 +30,13 @@ public class HomeFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         //you can set the title for your toolbar here for different fragments different titles
 
-        getActivity().setTitle("Home");
+        getActivity().setTitle(R.string.title_home);
         Button trashButton = (Button) getView().findViewById(R.id.timeTrash);
-        trashButton.setText("2 days");
+        trashButton.setText(R.string.jours); /* si je mets "4" + R.id.timeTrash sa retourne des chiffres random */
         Button recycleButton = (Button) getView().findViewById(R.id.timeRecyc);
-        recycleButton.setText("4 days");
+        recycleButton.setText(R.string.jour);
         Button compostButton = (Button) getView().findViewById(R.id.timeCompost);
-        compostButton.setText("Tomorrow");
+        compostButton.setText(R.string.demain);
     }
 
 }

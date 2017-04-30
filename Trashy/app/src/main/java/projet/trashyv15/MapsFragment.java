@@ -116,14 +116,6 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback {
                     double longitude = location.getLongitude();
 
                     loc = new LatLng(latitude,longitude);
-                    //marche jusque la
-
-
-
-
-
-
-
 
                 } else {
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -193,7 +185,7 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback {
                     Toast.makeText(getContext(), "Villeray–Saint-Michel–Parc-Extension", Toast.LENGTH_LONG).show();
                 }
                 else
-                    Toast.makeText(getContext(), "Zone hors de Montreal/Arrondissement non-encore supporté", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getContext(), R.string.zoneNS, Toast.LENGTH_LONG).show();
 
 
 
@@ -544,23 +536,11 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback {
 
 
 
-
-            //marche jusque la
-
-
-
-
-
-
-
-
         } else {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                 requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, MY_PERMISSION_FINE_LOCATION);
             }
         }
-
-
 
 
     }

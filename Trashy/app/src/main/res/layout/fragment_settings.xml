@@ -10,13 +10,7 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
+        android:onClick="showNotif"
         android:text="Notifications" />
 
-    <Spinner
-        android:id="@+id/lang"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/notif"
-        android:visibility="visible" />
 </RelativeLayout>

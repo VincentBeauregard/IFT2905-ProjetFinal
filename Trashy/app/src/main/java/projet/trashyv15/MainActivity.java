@@ -2,15 +2,25 @@ package projet.trashyv15;
 
 import android.app.Activity;
 import android.app.ActivityManager;
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.NotificationCompat;
+import android.support.v4.app.TaskStackBuilder;
 import android.support.v7.preference.PreferenceFragmentCompat;
 import android.support.v7.preference.PreferenceManager;
 import android.support.v7.preference.PreferenceScreen;
+import android.util.DisplayMetrics;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.support.v4.app.Fragment;
@@ -21,12 +31,26 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.support.design.widget.NavigationView;
+import android.view.View;
+import android.widget.Button;
+
+import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    Locale myLocale;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        if(Locale.getDefault().getLanguage() == "fr" ){
+            Locale.getDefault().setDefault(new Locale("fr"));
+        }else{
+            Locale.getDefault().setDefault(new Locale("en"));
+        }
+
+
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -100,6 +124,7 @@ public class MainActivity extends AppCompatActivity
             System.out.println("Filling database...");
             MainTxtReduct.redux();
         }
+
     }
 
     @Override
@@ -165,9 +190,6 @@ public class MainActivity extends AppCompatActivity
                 fragment = new CalendarFragment();
                 break;
             case R.id.nav_settings:
-//                sett = new AndroidLocalize();
-//                ActivityManager am = getParentActivityIntent();
-//                startActivity(sett);
                 fragment = new TrashySettingsFragment();
                 break;
             case R.id.nav_ecocenter:
@@ -189,5 +211,27 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout)findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
     }
+
+    public void showNotifications(View view){
+
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(this);
+        builder.setSmallIcon(R.drawable.recyclage);
+        builder.setContentTitle("NOTIFICATION");
+        builder.setContentText("La poubelle arrive bro");
+        Intent intent = new Intent(this, HomeFragment.class);
+
+        TaskStackBuilder stackBuilder = TaskStackBuilder.create(this);
+
+        stackBuilder.addParentStack(TrashySettingsFragment.class);
+        stackBuilder.addNextIntent(intent);
+        PendingIntent pendingIntent = stackBuilder.getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT);
+        builder.setContentIntent(pendingIntent);
+
+        NotificationManager NM = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        NM.notify(0,builder.build());
+
+
+    }
+
 
 }

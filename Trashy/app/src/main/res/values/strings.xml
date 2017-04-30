@@ -18,7 +18,7 @@
 
     <string name="selectNh" translatable="true">Select your neighbourhood</string>
     <string name="nh" translatable="true">Your Neighbourhood</string>
-    <string name="detNh" translatable="true">Determine automatically your neighbourhood</string>
+    <string name="detNh" translatable="true">Set automatically your neighbourhood</string>
 
     <string name="fr" translatable="true">French</string>
     <string name="en" translatable="true">English</string>
@@ -27,7 +27,15 @@
     <string name="toastLoc" translatable="true">Allow localization to determine your neighbourhood automatically</string>
     <string name="toastNoLoc" translatable="true">No neighbourhood was selected yet</string>
     <string name="toastLocSel" translatable="true">was selected as your neighbourhood</string>
+    <string name="noLoc" translatable="true">Impossible to localize you. Is your location on?</string>
+    <string name="findEcoc" translatable="true">Find an eco-center nearby</string>
+    <string name="zoneNS" translatable="true">Zone outside of Montreal is not accessible yet</string>
 
+
+
+    <string name="jours" translatable="true">days</string>
+    <string name="jour" translatable="true">day</string>
+    <string name="demain" translatable="true">Tomorrow</string>
 
     <string-array name="settings_language" translatable="true">
         <item name="e">English</item>
@@ -39,8 +47,5 @@
         <item>One hour before</item>
         <item>Never</item>
     </string-array>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

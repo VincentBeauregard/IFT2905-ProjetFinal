@@ -2,9 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="projet.trashyv15">
 
-
-    <uses-sdk xmlns:tools="http://schemas.android.com/tools"
-        tools:overrideLibrary="android.support.v14.preference"
+    <uses-sdk
         android:minSdkVersion="8"
         android:targetSdkVersion="16" />
 
@@ -43,11 +41,18 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
-
-
         </activity>
 
+        <activity
+            android:name=".Notifications"
+            android:label="notif"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
 
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
@@ -57,8 +62,6 @@
              sign the APK for publishing.
              You can define the keys for the debug and release targets in src/debug/ and src/release/.
              //AIzaSyD1SkEhpqAlS158EspaBKQHUNG-kiAdOJM
-
-
         -->
         <meta-data
             android:name="com.google.android.geo.API_KEY"

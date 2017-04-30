@@ -114,30 +114,17 @@ public class EcoFragment extends Fragment implements OnMapReadyCallback {
                             mstmich.showInfoWindow();
                         }
 
-                        //marche jusque la
+
                     }
                     else{
-                        Toast.makeText(getContext(),"Impossible d'obtenir vos données de localisation.. l'avez vous activée?",Toast.LENGTH_LONG).show();
+                        Toast.makeText(getContext(), R.string.noLoc ,Toast.LENGTH_LONG).show();
                     }
-
-
-
-
-
-
-
-
 
                 } else {
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                         requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, MY_PERMISSION_FINE_LOCATION);
                     }
                 }
-
-
-
-
-
 
         }
         });
@@ -167,7 +154,7 @@ public class EcoFragment extends Fragment implements OnMapReadyCallback {
     public void onViewCreated(View view, Bundle savedInstanceState) {
 
         super.onViewCreated(view, savedInstanceState);
-        getActivity().setTitle("Arrondissements");
+        getActivity().setTitle(R.string.title_ecoc);
 
         mMapView = (MapView) view.findViewById(R.id.frame_layout).findViewById(R.id.map);
         if (mMapView != null) {
@@ -246,18 +233,6 @@ public class EcoFragment extends Fragment implements OnMapReadyCallback {
                 loc = new LatLng(latitude,longitude);
             }
 
-
-
-
-            //marche jusque la
-
-
-
-
-
-
-
-
         } else {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                 requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, MY_PERMISSION_FINE_LOCATION);
@@ -302,7 +277,7 @@ public class EcoFragment extends Fragment implements OnMapReadyCallback {
                     }
 
                 } else {
-                    Toast.makeText(getContext(), "Permettre la localisation pour pouvoir déterminer votre arrondissement automatiquement", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getContext(), R.string.toastLoc, Toast.LENGTH_LONG).show();
                     accedCarte.setVisibility(View.GONE);
                     mMapView.setVisibility(View.GONE);
                 }

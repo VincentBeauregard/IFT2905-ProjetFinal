@@ -18,4 +18,10 @@
     <string name="toastLoc">Permettre la localisation afin de déterminer votre arrondissement automatiquement</string>
     <string name="toastLocSel">a été sélectionné en tant que votre arrondissement</string>
     <string name="toastNoLoc">Aucun arrondissement n\'a encore été sélectionné</string>
+    <string name="demain">Demain</string>
+    <string name="jour">jour</string>
+    <string name="jours">jours</string>
+    <string name="noLoc">Impossible de vous localiser. Est-ce que votre localisation est ouverte?</string>
+    <string name="findEcoc">Trouver un éco-centre à proximité</string>
+    <string name="zoneNS">Zone en-dehors de Montréal non-accessible pour le moment</string>
 </resources>
