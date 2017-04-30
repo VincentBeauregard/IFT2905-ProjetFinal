@@ -16,13 +16,13 @@ public class MainTxtReduct
         String polygone="";
         int id=0;
         String fileNameR = Environment.getExternalStorageDirectory() + "/" + "allo.txt" ;
-        String URL = "http://www-etud.iro.umontreal.ca/~beaurevg/Original.txt";
+        String URL = "http://www-etud.iro.umontreal.ca/~beaurevg/allo2.csv";
         File destination = new File(fileNameR);
 
         Thread th_download = new Thread(new Runnable() {
             public void run() {
                 String fileNameR = "allo.txt";
-                String URL = "http://www-etud.iro.umontreal.ca/~beaurevg/Original.txt";
+                String URL = "http://www-etud.iro.umontreal.ca/~beaurevg/allo2.csv";
                 File destination = new File(fileNameR);
                 AnalyseLine.downloadFileFromURL(URL, destination);
             }
@@ -63,9 +63,8 @@ public class MainTxtReduct
                         System.out.println(lineTab[0]+lineTab[1]+lineTab[2]+lineTab[3]+lineTab[4]);
                     else{
                         if(lineCount>0){
-                            lineTmp=AnalyseLine.analyseLine(lineTab,id++);
-                            polygone=lineTmp;
-                            output = lineTmp;
+                            AnalyseLine.analyseLine(lineTab,id++);
+                            output = "";//lineTmp;
                             if(!output.equals("")){
                                 bufferedWriter.write(output);
                                 bufferedWriter.newLine();}

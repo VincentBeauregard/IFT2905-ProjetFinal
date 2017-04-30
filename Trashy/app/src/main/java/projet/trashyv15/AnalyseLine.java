@@ -17,12 +17,22 @@ public class AnalyseLine {
 	static String estivale = " 21JU 22SE";
 	static String nonestivale = "23SE 20JU";
 
-	public static String analyseLine(String[] line,int id) {
-		if (line[0].charAt(1) != 'V') {
-			String outputString = line[0].substring(1, line[0].length() - 1) + analyseTxt(line[3], "" + line[0].charAt(1));
-			return line[8].substring(1,line[8].length()-1);
-		} else return "";
+	public static void analyseLine(String[] line,int id) {
+		System.out.println(line[0]);
+
+		App.databasePutSchedule(line[7],
+				"1",
+				"2",
+				line[4].substring(0,2),
+				line[5].substring(0,2),
+				line[2],
+				line[3],
+				line[1]);
+		App.databasePutNeighbourhood(line[8],false);
+		App.databaseLinkNeighbourNamehoodAndSchedule(line[8],Integer.parseInt(line[0]));
 	}
+
+
 
 	public static String analyseTxt(String line,String type){
 
