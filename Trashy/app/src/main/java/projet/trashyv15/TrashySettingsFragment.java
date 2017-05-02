@@ -4,15 +4,19 @@ import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.annotation.RequiresApi;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.TaskStackBuilder;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CompoundButton;
 import android.widget.Switch;
+import android.widget.Toast;
 
 
 public class TrashySettingsFragment extends Fragment{
@@ -20,6 +24,7 @@ public class TrashySettingsFragment extends Fragment{
     private View view;
     Switch notif;
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -28,10 +33,24 @@ public class TrashySettingsFragment extends Fragment{
 
 
         notif = (Switch) view.findViewById(R.id.notif);
-        if(notif.getShowText() == true){
-            showNotif(view);
 
-        }
+        notif.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(final View v) {
+                notif.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                    @Override
+                    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                        if(isChecked){
+                            showNotif(v);
+                            Toast.makeText(getContext(),"Notifications on",Toast.LENGTH_LONG).show();
+                        }else{
+                            Toast.makeText(getContext(),"Notifications off",Toast.LENGTH_LONG).show();
+                        }
+                    }
+                });
+            }
+        });
+
 
         return view;
 
@@ -45,7 +64,7 @@ public class TrashySettingsFragment extends Fragment{
 
         TaskStackBuilder stackBuilder = TaskStackBuilder.create(getActivity());
 
-        stackBuilder.addParentStack(Notification.class);
+        stackBuilder.addParentStack( MainActivity.class );
         stackBuilder.addNextIntent(getActivity().getIntent());
         PendingIntent pendingIntent = stackBuilder.getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT);
         builder.setContentIntent(pendingIntent);
@@ -54,33 +73,6 @@ public class TrashySettingsFragment extends Fragment{
         NM.notify(0,builder.build());
     }
 
-//    NotificationCompat.Builder mBuilder =
-//            new NotificationCompat.Builder(this)
-//                    .setSmallIcon(R.drawable.notification_icon)
-//                    .setContentTitle("My notification")
-//                    .setContentText("Hello World!");
-//    // Creates an explicit intent for an Activity in your app
-//    Intent resultIntent = new Intent(this, ResultActivity.class);
-//
-//    // The stack builder object will contain an artificial back stack for the
-//// started Activity.
-//// This ensures that navigating backward from the Activity leads out of
-//// your application to the Home screen.
-//    TaskStackBuilder stackBuilder = TaskStackBuilder.create(this);
-//// Adds the back stack for the Intent (but not the Intent itself)
-//stackBuilder.addParentStack(ResultActivity.class);
-//// Adds the Intent that starts the Activity to the top of the stack
-//stackBuilder.addNextIntent(resultIntent);
-//    PendingIntent resultPendingIntent =
-//            stackBuilder.getPendingIntent(
-//                    0,
-//                    PendingIntent.FLAG_UPDATE_CURRENT
-//            );
-//mBuilder.setContentIntent(resultPendingIntent);
-//    NotificationManager mNotificationManager =
-//            (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-//// mId allows you to update the notification later on.
-//mNotificationManager.notify(mId, mBuilder.build());
 
 
 

@@ -24,5 +24,7 @@
     <string name="noLoc">Impossible to localize you. Is your location on?</string>
     <string name="findEcoc">Find an eco-center nearby</string>
     <string name="zoneNS">Zone outside of Montreal not yet accessible</string>
+    <string name="mnt">Right now!</string>
+    <string name="heures">hours</string>
 
 </resources>

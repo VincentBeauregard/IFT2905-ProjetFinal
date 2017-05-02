@@ -39,7 +39,6 @@ import java.util.Locale;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    Locale myLocale;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -125,6 +124,7 @@ public class MainActivity extends AppCompatActivity
             MainTxtReduct.redux();
         }
 
+
     }
 
     @Override
@@ -136,29 +136,6 @@ public class MainActivity extends AppCompatActivity
         } else {
             super.onBackPressed();
         }
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-
-        // Handle action bar item clicks here. The action bar will automatically handle clicks on
-        // the Home/Up button, so long as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        // noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
     }
 
     @Override
@@ -212,26 +189,6 @@ public class MainActivity extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
     }
 
-    public void showNotifications(View view){
-
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(this);
-        builder.setSmallIcon(R.drawable.recyclage);
-        builder.setContentTitle("NOTIFICATION");
-        builder.setContentText("La poubelle arrive bro");
-        Intent intent = new Intent(this, HomeFragment.class);
-
-        TaskStackBuilder stackBuilder = TaskStackBuilder.create(this);
-
-        stackBuilder.addParentStack(TrashySettingsFragment.class);
-        stackBuilder.addNextIntent(intent);
-        PendingIntent pendingIntent = stackBuilder.getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT);
-        builder.setContentIntent(pendingIntent);
-
-        NotificationManager NM = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-        NM.notify(0,builder.build());
-
-
-    }
 
 
 }

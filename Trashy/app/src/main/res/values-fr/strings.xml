@@ -24,4 +24,6 @@
     <string name="noLoc">Impossible de vous localiser. Est-ce que votre localisation est ouverte?</string>
     <string name="findEcoc">Trouver un éco-centre à proximité</string>
     <string name="zoneNS">Zone en-dehors de Montréal non-accessible pour le moment</string>
+    <string name="mnt">Maintenant!</string>
+    <string name="heures" translatable="false">heures</string>
 </resources>

@@ -48,9 +48,9 @@ public class HomeFragment extends Fragment {
         int[] tab = findNext(jourRamassage,heureRamassage);
 
         if(tab[1]!=-1){
-            Toast.makeText(getContext(),tab[0] + " Jours " + tab[1] + " Heures",Toast.LENGTH_LONG).show();
+            Toast.makeText(getContext(), R.string.jours,Toast.LENGTH_LONG).show();
         }
-        else Toast.makeText(getContext(),"Maintenant!!",Toast.LENGTH_LONG).show();
+        else Toast.makeText(getContext(),R.string.mnt,Toast.LENGTH_LONG).show();
 
         //heure = 0 si plus de 23 heures, jours = 0 si moins de 24 heures
 

@@ -36,6 +36,9 @@
     <string name="jours" translatable="true">days</string>
     <string name="jour" translatable="true">day</string>
     <string name="demain" translatable="true">Tomorrow</string>
+    <string name="mnt" translatable="true">Right now!</string>
+    <string name="heures" translatable="false">hours</string>
+
 
     <string-array name="settings_language" translatable="true">
         <item name="e">English</item>

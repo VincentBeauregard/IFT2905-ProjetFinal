@@ -258,7 +258,7 @@ public class EcoFragment extends Fragment implements OnMapReadyCallback {
                 pCourt = points[i];
             }
         }
-        Toast.makeText(getContext(),"" +pCourt.latitude +" "+ pCourt.longitude,Toast.LENGTH_LONG).show();
+//        Toast.makeText(getContext(),"" +pCourt.latitude +" "+ pCourt.longitude,Toast.LENGTH_LONG).show();
 
         return pCourt;
     }
