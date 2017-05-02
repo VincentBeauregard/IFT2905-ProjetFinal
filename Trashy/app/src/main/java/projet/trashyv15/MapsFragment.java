@@ -366,150 +366,269 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback {
         //colorier le polygone
 
         //ahunstic cv
-        Polygon polygonahunCV = mGoogleMap.addPolygon(new PolygonOptions()
+        final Polygon polygonahunCV = mGoogleMap.addPolygon(new PolygonOptions()
                 .add(ahunCV1.m)
                 .strokeColor(0x80DC143C)
                 .fillColor(0x500000FF));
+        polygonahunCV.setClickable(true);
+
+
 
 
 // anjou
-        Polygon polygonanjou = mGoogleMap.addPolygon(new PolygonOptions()
+        final Polygon polygonanjou = mGoogleMap.addPolygon(new PolygonOptions()
                 .add(anjou1.m)
                 .strokeColor(0x80DC143C)
                 .fillColor(0x500000FF));
+        polygonanjou.setClickable(true);
+
 
 //cdnndg
-        Polygon polygoncdnndg = mGoogleMap.addPolygon(new PolygonOptions()
+        final Polygon polygoncdnndg = mGoogleMap.addPolygon(new PolygonOptions()
                 .add(cdnndg1.m)
                 .strokeColor(0x80DC143C)
                 .fillColor(0x500000FF));
+
+        polygoncdnndg.setClickable(true);
+
+
 //ibsg
-        Polygon polygoniBSG = mGoogleMap.addPolygon(new PolygonOptions()
+        final Polygon polygoniBSG = mGoogleMap.addPolygon(new PolygonOptions()
                 .add(iBSG1.m)
                 .strokeColor(0x80DC143C)
                 .fillColor(0x500000FF));
 
-        Polygon polygonlachine = mGoogleMap.addPolygon(new PolygonOptions()
+        polygoniBSG.setClickable(true);
+
+
+
+        final Polygon polygonlachine = mGoogleMap.addPolygon(new PolygonOptions()
                 .add(lachine1.m)
                 .strokeColor(0x80DC143C)
                 .fillColor(0x500000FF));
 
-        Polygon polygonlasalle = mGoogleMap.addPolygon(new PolygonOptions()
+        polygonlachine.setClickable(true);
+
+
+
+        final Polygon polygonlasalle = mGoogleMap.addPolygon(new PolygonOptions()
                 .add(lasalle1.m)
                 .strokeColor(0x80DC143C)
                 .fillColor(0x500000FF));
 
-        Polygon polygonmHM = mGoogleMap.addPolygon(new PolygonOptions()
+        polygonlasalle.setClickable(true);
+
+
+
+        final Polygon polygonmHM = mGoogleMap.addPolygon(new PolygonOptions()
                 .add(mHM1.m)
                 .strokeColor(0x80DC143C)
                 .fillColor(0x500000FF));
 
-        Polygon polygonmn = mGoogleMap.addPolygon(new PolygonOptions()
+        polygonmHM.setClickable(true);
+
+
+
+        final Polygon polygonmn = mGoogleMap.addPolygon(new PolygonOptions()
                 .add(mn1.m)
                 .strokeColor(0x80DC143C)
                 .fillColor(0x500000FF));
+        polygonmn.setClickable(true);
 
-        Polygon polygonmtroyal = mGoogleMap.addPolygon(new PolygonOptions()
+
+
+        final Polygon polygonmtroyal = mGoogleMap.addPolygon(new PolygonOptions()
                 .add(mtroyal1.m)
                 .strokeColor(0x80DC143C)
                 .fillColor(0x500000FF));
+        polygonmtroyal.setClickable(true);
 
-        Polygon polygonoutrmt = mGoogleMap.addPolygon(new PolygonOptions()
+
+
+        final Polygon polygonoutrmt = mGoogleMap.addPolygon(new PolygonOptions()
                 .add(outrmt1.m)
                 .strokeColor(0x80DC143C)
                 .fillColor(0x500000FF));
 
-        Polygon polygonpR = mGoogleMap.addPolygon(new PolygonOptions()
+        polygonoutrmt.setClickable(true);
+
+
+
+        final Polygon polygonpR = mGoogleMap.addPolygon(new PolygonOptions()
                 .add(pR1.m)
                 .strokeColor(0x80DC143C)
                 .fillColor(0x500000FF));
+        polygonpR.setClickable(true);
 
-        Polygon polygonpR2 = mGoogleMap.addPolygon(new PolygonOptions()
+
+
+        final Polygon polygonpR2 = mGoogleMap.addPolygon(new PolygonOptions()
                 .add(pr2.m)
                 .strokeColor(0x80DC143C)
                 .fillColor(0x500000FF));
+        polygonpR2.setClickable(true);
 
-        Polygon polygonpR3 = mGoogleMap.addPolygon(new PolygonOptions()
+
+
+        final Polygon polygonpR3 = mGoogleMap.addPolygon(new PolygonOptions()
                 .add(pr3.m)
                 .strokeColor(0x80DC143C)
                 .fillColor(0x500000FF));
+        polygonpR3.setClickable(true);
 
-        Polygon polygonpR4 = mGoogleMap.addPolygon(new PolygonOptions()
+
+
+        final Polygon polygonpR4 = mGoogleMap.addPolygon(new PolygonOptions()
                 .add(pr4.m)
                 .strokeColor(0x80DC143C)
                 .fillColor(0x500000FF));
+        polygonpR4.setClickable(true);
 
-        Polygon polygonpR5 = mGoogleMap.addPolygon(new PolygonOptions()
+
+
+        final Polygon polygonpR5 = mGoogleMap.addPolygon(new PolygonOptions()
                 .add(pr5.m)
                 .strokeColor(0x80DC143C)
                 .fillColor(0x500000FF));
+        polygonpR5.setClickable(true);
 
-        Polygon polygonpR6 = mGoogleMap.addPolygon(new PolygonOptions()
+
+
+        final Polygon polygonpR6 = mGoogleMap.addPolygon(new PolygonOptions()
                 .add(pr6.m)
                 .strokeColor(0x80DC143C)
                 .fillColor(0x500000FF));
+        polygonpR6.setClickable(true);
 
-        Polygon polygonpR7 = mGoogleMap.addPolygon(new PolygonOptions()
+
+
+        final Polygon polygonpR7 = mGoogleMap.addPolygon(new PolygonOptions()
                 .add(pr7.m)
                 .strokeColor(0x80DC143C)
                 .fillColor(0x500000FF));
+        polygonpR7.setClickable(true);
 
-        Polygon polygonpR8 = mGoogleMap.addPolygon(new PolygonOptions()
+
+
+        final Polygon polygonpR8 = mGoogleMap.addPolygon(new PolygonOptions()
                 .add(pr8.m)
                 .strokeColor(0x80DC143C)
                 .fillColor(0x500000FF));
+        polygonpR8.setClickable(true);
 
 
 
-        Polygon polygonrdppat = mGoogleMap.addPolygon(new PolygonOptions()
+
+
+        final Polygon polygonrdppat = mGoogleMap.addPolygon(new PolygonOptions()
                 .add(rdppat1.m)
                 .strokeColor(0x80DC143C)
                 .fillColor(0x500000FF));
+        polygonrdppat.setClickable(true);
 
-        Polygon polygonrlpp = mGoogleMap.addPolygon(new PolygonOptions()
+
+
+        final Polygon polygonrlpp = mGoogleMap.addPolygon(new PolygonOptions()
                 .add(rlpp1.m)
                 .strokeColor(0x80DC143C)
                 .fillColor(0x500000FF));
+        polygonrlpp.setClickable(true);
 
-        Polygon polygonstl = mGoogleMap.addPolygon(new PolygonOptions()
+
+
+        final Polygon polygonstl = mGoogleMap.addPolygon(new PolygonOptions()
                 .add(stl1.m)
                 .strokeColor(0x80DC143C)
                 .fillColor(0x500000FF));
+        polygonstl.setClickable(true);
 
-        Polygon polygonstlau = mGoogleMap.addPolygon(new PolygonOptions()
+
+
+        final Polygon polygonstlau = mGoogleMap.addPolygon(new PolygonOptions()
                 .add(stlau1.m)
                 .strokeColor(0x80DC143C)
                 .fillColor(0x500000FF));
+        polygonstlau.setClickable(true);
 
-        Polygon polygonsudouest = mGoogleMap.addPolygon(new PolygonOptions()
+
+
+        final Polygon polygonsudouest = mGoogleMap.addPolygon(new PolygonOptions()
                 .add(sudouest1.m)
                 .strokeColor(0x80DC143C)
                 .fillColor(0x500000FF));
+        polygonsudouest.setClickable(true);
 
-        Polygon polygonverdun1 = mGoogleMap.addPolygon(new PolygonOptions()
+
+
+        final Polygon polygonverdun1 = mGoogleMap.addPolygon(new PolygonOptions()
                 .add(verdun1.m)
                 .strokeColor(0x80DC143C)
                 .fillColor(0x500000FF));
+        polygonverdun1.setClickable(true);
 
-        Polygon polygonverdun2 = mGoogleMap.addPolygon(new PolygonOptions()
+
+
+        final Polygon polygonverdun2 = mGoogleMap.addPolygon(new PolygonOptions()
                 .add(verdun2.m)
                 .strokeColor(0x80DC143C)
                 .fillColor(0x500000FF));
+        polygonverdun2.setClickable(true);
 
-        Polygon polygonvilleraypx = mGoogleMap.addPolygon(new PolygonOptions()
+
+        final Polygon polygonvilleraypx = mGoogleMap.addPolygon(new PolygonOptions()
                 .add(villeraypx1.m)
                 .strokeColor(0x80DC143C)
                 .fillColor(0x500000FF));
+        polygonvilleraypx.setClickable(true);
 
-        Polygon polygonvm1 = mGoogleMap.addPolygon(new PolygonOptions()
+
+
+        final Polygon polygonvm1 = mGoogleMap.addPolygon(new PolygonOptions()
                 .add(vm1.m)
                 .strokeColor(0x80DC143C)
                 .fillColor(0x500000FF));
+        polygonvm1.setClickable(true);
 
-        Polygon polygonvm2 = mGoogleMap.addPolygon(new PolygonOptions()
+
+
+        final Polygon polygonvm2 = mGoogleMap.addPolygon(new PolygonOptions()
                 .add(vm2.m)
                 .strokeColor(0x80DC143C)
                 .fillColor(0x500000FF));
+        polygonvm2.setClickable(true);
+
+        mGoogleMap.setOnPolygonClickListener(new GoogleMap.OnPolygonClickListener() {
+            public void onPolygonClick(Polygon polygon) {
+
+
+                if(polygon.equals(polygonahunCV))Toast.makeText(getContext(),"Ahunstic-CartierVille",Toast.LENGTH_SHORT).show();
+                else if(polygon.equals(polygonanjou))Toast.makeText(getContext(),"Anjou",Toast.LENGTH_SHORT).show();
+                else if(polygon.equals(polygoncdnndg))Toast.makeText(getContext(),"Côte-des-Neiges–Notre-Dame-de-Grâce",Toast.LENGTH_SHORT).show();
+                else if(polygon.equals(polygoniBSG))Toast.makeText(getContext(),"Île-Bizard–Sainte-Geneviève",Toast.LENGTH_SHORT).show();
+                else if(polygon.equals(polygonlachine))Toast.makeText(getContext(),"Lachine",Toast.LENGTH_SHORT).show();
+                else if(polygon.equals(polygonlasalle))Toast.makeText(getContext(),"LaSalle",Toast.LENGTH_SHORT).show();
+                else if(polygon.equals(polygonmHM))Toast.makeText(getContext(),"Mercier–Hochelaga-Maisonneuve",Toast.LENGTH_SHORT).show();
+                else if(polygon.equals(polygonmn))Toast.makeText(getContext(),"Montréal-Nord",Toast.LENGTH_SHORT).show();
+                else if(polygon.equals(polygonmtroyal))Toast.makeText(getContext(),"Plateau-Mont-Royal",Toast.LENGTH_SHORT).show();
+                else if(polygon.equals(polygonoutrmt))Toast.makeText(getContext(),"Outremont",Toast.LENGTH_SHORT).show();
+                else if(polygon.equals(polygonpR)||polygon.equals(polygonpR2)||polygon.equals(polygonpR3)||polygon.equals(polygonpR4)||polygon.equals(polygonpR5)||polygon.equals(polygonpR6)||polygon.equals(polygonpR7)||polygon.equals(polygonpR8))
+                    Toast.makeText(getContext(),"Pierrefonds-Roxboro",Toast.LENGTH_SHORT).show();
+                else if(polygon.equals(polygonrdppat))Toast.makeText(getContext(),"Rivière-des-Prairies–Pointe-aux-Trembles",Toast.LENGTH_SHORT).show();
+                else if(polygon.equals(polygonrlpp))Toast.makeText(getContext(),"Rosemont–La Petite-Patrie",Toast.LENGTH_SHORT).show();
+                else if(polygon.equals(polygonstl))Toast.makeText(getContext(),"Saint-Léonard",Toast.LENGTH_SHORT).show();
+                else if(polygon.equals(polygonstlau))Toast.makeText(getContext(),"Saint-Laurent",Toast.LENGTH_SHORT).show();
+                else if(polygon.equals(polygonsudouest))Toast.makeText(getContext(),"Sud-Ouest",Toast.LENGTH_SHORT).show();
+                else if(polygon.equals(polygonverdun1)||polygon.equals(polygonverdun2))Toast.makeText(getContext(),"Verdun",Toast.LENGTH_SHORT).show();
+                else if(polygon.equals(polygonvilleraypx))Toast.makeText(getContext(),"Villeray–Saint-Michel–Parc-Extension",Toast.LENGTH_SHORT).show();
+                else if(polygon.equals(polygonvm1)||polygon.equals(polygonvm2))Toast.makeText(getContext(),"Ville-Marie",Toast.LENGTH_SHORT).show();
+
+
+
+
+
+
+            }
+        });
 
 
         //localisation
