@@ -62,6 +62,7 @@ public class HomeFragment extends Fragment {
             int heureRamassage = day[1];
 
             int[] tab = findNext(jourRamassage,heureRamassage);
+            System.out.println(tab[0]+" "+tab[1]);
             if(i==0) {
                 if (tab[1] != -1) {
                     if (tab[1] != 0)
@@ -91,12 +92,6 @@ public class HomeFragment extends Fragment {
             }
             //heure = 0 si plus de 23 heures, jours = 0 si moins de 24 heures
 
-        if(tab[1]!=-1){
-            Toast.makeText(getContext(), R.string.jours,Toast.LENGTH_LONG).show();
-        }
-        else Toast.makeText(getContext(),R.string.mnt,Toast.LENGTH_LONG).show();
-
-        //heure = 0 si plus de 23 heures, jours = 0 si moins de 24 heures
 
         }
     }

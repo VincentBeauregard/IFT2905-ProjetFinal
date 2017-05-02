@@ -132,6 +132,9 @@ public class MainActivity extends AppCompatActivity
                     // result of the request.
                 }
             }
+            else {
+                System.out.println("Filling database...");
+                MainTxtReduct.redux();}ex
 
         }
     }
