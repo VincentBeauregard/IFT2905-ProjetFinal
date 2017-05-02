@@ -39,21 +39,59 @@ public class HomeFragment extends Fragment {
         compostButton.setText("3 Annee");
 
 
+        char type = 'D';
+        for(int i = 0;i<3;i++){
+            switch(i){
+                case 1 : type = 'R';break;
+                case 2 : type = 'V';break;
+            }
+            //test de la fonction de temps restant
+            int day[] = App.databaseGetNextDay(type);
 
-        //test de la fonction de temps restant
-        int jourRamassage = Calendar.SUNDAY;
+            int jourRamassage=0;
+            switch(day[0]){
+                case 0 :  jourRamassage = Calendar.MONDAY;break;
+                case 1 :  jourRamassage = Calendar.TUESDAY;break;
+                case 2 :  jourRamassage = Calendar.WEDNESDAY;break;
+                case 3 :  jourRamassage = Calendar.THURSDAY;break;
+                case 4 :  jourRamassage = Calendar.FRIDAY;break;
+                case 5 :  jourRamassage = Calendar.SATURDAY;break;
+                case 6 :  jourRamassage = Calendar.SUNDAY;break;
+            }
 
-        int heureRamassage = 0;
+            int heureRamassage = day[1];
 
-        int[] tab = findNext(jourRamassage,heureRamassage);
+            int[] tab = findNext(jourRamassage,heureRamassage);
+            if(i==0) {
+                if (tab[1] != -1) {
+                    if (tab[1] != 0)
+                        trashButton.setText(tab[1] + " Heures");
+                    else
+                        trashButton.setText(tab[0] + " Jours ");
 
-        if(tab[1]!=-1){
-            Toast.makeText(getContext(),tab[0] + " Jours " + tab[1] + " Heures",Toast.LENGTH_LONG).show();
+                } else trashButton.setText("Maintenant!");
+            }
+            if(i==1) {
+                if (tab[1] != -1) {
+                    if (tab[1] != 0)
+                        recycleButton.setText(tab[1] + " Heures");
+                    else
+                        recycleButton.setText(tab[0] + " Jours ");
+
+                } else recycleButton.setText("Maintenant!");
+            }
+            if(i==2) {
+                if (tab[1] != -1) {
+                    if (tab[1] != 0)
+                        compostButton.setText(tab[1] + " Heures");
+                    else
+                        compostButton.setText(tab[0] + " Jours ");
+
+                } else compostButton.setText("Maintenant!");
+            }
+            //heure = 0 si plus de 23 heures, jours = 0 si moins de 24 heures
+
         }
-        else Toast.makeText(getContext(),"Maintenant!!",Toast.LENGTH_LONG).show();
-
-        //heure = 0 si plus de 23 heures, jours = 0 si moins de 24 heures
-
     }
 
 
