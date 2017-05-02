@@ -106,10 +106,16 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback {
 
                     Location location = locationManager.getLastKnownLocation(locationManager
                             .getBestProvider(criteria, false));
-                    double latitude = location.getLatitude();
-                    double longitude = location.getLongitude();
 
-                    loc = new LatLng(latitude,longitude);
+                    if(location!=null) {
+                        double latitude = location.getLatitude();
+                        double longitude = location.getLongitude();
+
+                        loc = new LatLng(latitude, longitude);
+                    }
+                    else{
+                        Toast.makeText(getContext(),"Impossible d'obtenir vos données de localisation.. l'avez vous activée?",Toast.LENGTH_LONG).show();
+                    }
                     //marche jusque la
 
 
