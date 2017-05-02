@@ -112,6 +112,68 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback {
                         double longitude = location.getLongitude();
 
                         loc = new LatLng(latitude, longitude);
+                        CameraPosition current = CameraPosition.builder().target(loc).zoom(12).bearing(0).tilt(45).build();
+                        mGoogleMap.animateCamera(CameraUpdateFactory.newCameraPosition(current));
+
+                        if(containsLocation(loc,ahunCV1.m)){
+                            Toast.makeText(getContext(), "Ahunstic-CartierVille", Toast.LENGTH_LONG).show();
+                        }
+                        else if(containsLocation(loc,vm1.m)||containsLocation(loc,vm2.m)){
+                            Toast.makeText(getContext(), "Ville-Marie", Toast.LENGTH_LONG).show();
+                        }
+                        else if(containsLocation(loc,anjou1.m)){
+                            Toast.makeText(getContext(), "Anjou", Toast.LENGTH_LONG).show();
+                        }
+                        else if(containsLocation(loc,cdnndg1.m)){
+                            Toast.makeText(getContext(), "Cote des Neiges Notre Dame de Grace", Toast.LENGTH_LONG).show();
+                        }
+                        else if(containsLocation(loc,iBSG1.m)){
+                            Toast.makeText(getContext(), "Île-Bizard–Sainte-Geneviève", Toast.LENGTH_LONG).show();
+                        }
+                        else if(containsLocation(loc,lachine1.m)){
+                            Toast.makeText(getContext(), "Lachine", Toast.LENGTH_LONG).show();
+                        }
+                        else if(containsLocation(loc,lasalle1.m)){
+                            Toast.makeText(getContext(), "LaSalle", Toast.LENGTH_LONG).show();
+                        }
+                        else if(containsLocation(loc,mtroyal1.m)){
+                            Toast.makeText(getContext(), "Plateau-Mont-Royal", Toast.LENGTH_LONG).show();
+                        }
+                        else if(containsLocation(loc,sudouest1.m)){
+                            Toast.makeText(getContext(), "Sud-Ouest", Toast.LENGTH_LONG).show();
+                        }
+                        else if(containsLocation(loc,mHM1.m)){
+                            Toast.makeText(getContext(), "Mercier–Hochelaga-Maisonneuve", Toast.LENGTH_LONG).show();
+                        }
+                        else if(containsLocation(loc,mn1.m)){
+                            Toast.makeText(getContext(), "Montréal-Nord", Toast.LENGTH_LONG).show();
+                        }
+                        else if(containsLocation(loc,outrmt1.m)){
+                            Toast.makeText(getContext(), "Outremont", Toast.LENGTH_LONG).show();
+                        }
+                        else if(containsLocation(loc,pR1.m)||containsLocation(loc,pr2.m)||containsLocation(loc,pr3.m)||containsLocation(loc,pr4.m)||containsLocation(loc,pr5.m)||containsLocation(loc,pr6.m)||containsLocation(loc,pr7.m)||containsLocation(loc,pr8.m)){
+                            Toast.makeText(getContext(), "Pierrefonds-Roxboro", Toast.LENGTH_LONG).show();
+                        }
+                        else if(containsLocation(loc,rdppat1.m)){
+                            Toast.makeText(getContext(), "Rivière-des-Prairies–Pointe-aux-Trembles", Toast.LENGTH_LONG).show();
+                        }
+                        else if(containsLocation(loc,rlpp1.m)){
+                            Toast.makeText(getContext(), "Rosemont–La Petite-Patrie", Toast.LENGTH_LONG).show();
+                        }
+                        else if(containsLocation(loc,stlau1.m)){
+                            Toast.makeText(getContext(), "Saint-Laurent", Toast.LENGTH_LONG).show();
+                        }
+                        else if(containsLocation(loc,stl1.m)){
+                            Toast.makeText(getContext(), "Saint-Léonard", Toast.LENGTH_LONG).show();
+                        }
+                        else if(containsLocation(loc,verdun1.m)||containsLocation(loc,verdun2.m)){
+                            Toast.makeText(getContext(), "Verdun", Toast.LENGTH_LONG).show();
+                        }
+                        else if(containsLocation(loc,villeraypx1.m)){
+                            Toast.makeText(getContext(), "Villeray–Saint-Michel–Parc-Extension", Toast.LENGTH_LONG).show();
+                        }
+                        else
+                            Toast.makeText(getContext(), "Zone hors de Montreal/Arrondissement non-encore supporté", Toast.LENGTH_LONG).show();
                     }
                     else{
                         Toast.makeText(getContext(),"Impossible d'obtenir vos données de localisation.. l'avez vous activée?",Toast.LENGTH_LONG).show();
@@ -131,69 +193,10 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback {
                     }
                 }
 
-                CameraPosition current = CameraPosition.builder().target(loc).zoom(12).bearing(0).tilt(45).build();
-                mGoogleMap.animateCamera(CameraUpdateFactory.newCameraPosition(current));
 
 
-                if(containsLocation(loc,ahunCV1.m)){
-                    Toast.makeText(getContext(), "Ahunstic-CartierVille", Toast.LENGTH_LONG).show();
-                }
-                else if(containsLocation(loc,vm1.m)||containsLocation(loc,vm2.m)){
-                    Toast.makeText(getContext(), "Ville-Marie", Toast.LENGTH_LONG).show();
-                }
-                else if(containsLocation(loc,anjou1.m)){
-                    Toast.makeText(getContext(), "Anjou", Toast.LENGTH_LONG).show();
-                }
-                else if(containsLocation(loc,cdnndg1.m)){
-                    Toast.makeText(getContext(), "Cote des Neiges Notre Dame de Grace", Toast.LENGTH_LONG).show();
-                }
-                else if(containsLocation(loc,iBSG1.m)){
-                    Toast.makeText(getContext(), "Île-Bizard–Sainte-Geneviève", Toast.LENGTH_LONG).show();
-                }
-                else if(containsLocation(loc,lachine1.m)){
-                    Toast.makeText(getContext(), "Lachine", Toast.LENGTH_LONG).show();
-                }
-                else if(containsLocation(loc,lasalle1.m)){
-                    Toast.makeText(getContext(), "LaSalle", Toast.LENGTH_LONG).show();
-                }
-                else if(containsLocation(loc,mtroyal1.m)){
-                    Toast.makeText(getContext(), "Plateau-Mont-Royal", Toast.LENGTH_LONG).show();
-                }
-                else if(containsLocation(loc,sudouest1.m)){
-                    Toast.makeText(getContext(), "Sud-Ouest", Toast.LENGTH_LONG).show();
-                }
-                else if(containsLocation(loc,mHM1.m)){
-                    Toast.makeText(getContext(), "Mercier–Hochelaga-Maisonneuve", Toast.LENGTH_LONG).show();
-                }
-                else if(containsLocation(loc,mn1.m)){
-                    Toast.makeText(getContext(), "Montréal-Nord", Toast.LENGTH_LONG).show();
-                }
-                else if(containsLocation(loc,outrmt1.m)){
-                    Toast.makeText(getContext(), "Outremont", Toast.LENGTH_LONG).show();
-                }
-                else if(containsLocation(loc,pR1.m)||containsLocation(loc,pr2.m)||containsLocation(loc,pr3.m)||containsLocation(loc,pr4.m)||containsLocation(loc,pr5.m)||containsLocation(loc,pr6.m)||containsLocation(loc,pr7.m)||containsLocation(loc,pr8.m)){
-                    Toast.makeText(getContext(), "Pierrefonds-Roxboro", Toast.LENGTH_LONG).show();
-                }
-                else if(containsLocation(loc,rdppat1.m)){
-                    Toast.makeText(getContext(), "Rivière-des-Prairies–Pointe-aux-Trembles", Toast.LENGTH_LONG).show();
-                }
-                else if(containsLocation(loc,rlpp1.m)){
-                    Toast.makeText(getContext(), "Rosemont–La Petite-Patrie", Toast.LENGTH_LONG).show();
-                }
-                else if(containsLocation(loc,stlau1.m)){
-                    Toast.makeText(getContext(), "Saint-Laurent", Toast.LENGTH_LONG).show();
-                }
-                else if(containsLocation(loc,stl1.m)){
-                    Toast.makeText(getContext(), "Saint-Léonard", Toast.LENGTH_LONG).show();
-                }
-                else if(containsLocation(loc,verdun1.m)||containsLocation(loc,verdun2.m)){
-                    Toast.makeText(getContext(), "Verdun", Toast.LENGTH_LONG).show();
-                }
-                else if(containsLocation(loc,villeraypx1.m)){
-                    Toast.makeText(getContext(), "Villeray–Saint-Michel–Parc-Extension", Toast.LENGTH_LONG).show();
-                }
-                else
-                    Toast.makeText(getContext(), "Zone hors de Montreal/Arrondissement non-encore supporté", Toast.LENGTH_LONG).show();
+
+
 
 
 
