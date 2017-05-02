@@ -476,13 +476,15 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback {
 
                 if (count != 1)
                     System.out.println("(2) Updated an incorrect number of rows (" + count + ")");
-                else System.out.println("(2) Updated new neighbourhood in database");
+                else System.out.println("(2) Updated new neighbourhood in database"+count);
 
                 if (position != 0) {
                     Toast.makeText(getActivity(), item + " à été sélectionné comme arrondissement", Toast.LENGTH_SHORT).show();
                 } else {
                     Toast.makeText(getActivity(), "Vous n'avez pas encore sélectionné d'arrondissement", Toast.LENGTH_SHORT).show();
                 }
+                for(int i = 0 ; i<999999;i++){}
+                System.out.println(App.databaseGetCurrentNeighbourhoodID());
             }
 
             @Override
@@ -854,14 +856,15 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback {
     }
 
     public static String secteur_translate(String item) {
-        if (item.equals("Ahuntsic-Cartierville")) return "anjouCV1";
+        System.out.println("-"+item+"-");
+        if (item.equals("Ahunstic-Cartierville")) return "ahunCV1";
         if (item.equals("Anjou")) return "anjou1";
-        if (item.equals("Côte-des-Neiges–Notre-Dame-de-Grâce")) return "cdnndg1";
+        if (item.equals("Côte-des-Neiges-Notre-Dame-de-Grâce")) return "cdnndg1";
         if (item.equals("Lachine")) return "lachine1";
         if (item.equals("LaSalle")) return "lasalle1";
-        if (item.equals("Le Plateau-Mont-Royal")) return "mtroyal1";
-        if (item.equals("Le Sud-Ouest")) return "sudouest1";
-        if (item.equals("L’Île-Bizard–Sainte-Geneviève")) return "iBSG1";
+        if (item.equals("Plateau Mont-Royal")) return "mtroyal1";
+        if (item.equals("Sud-Ouest")) return "sudouest1";
+        if (item.equals("Île-Bizard–Sainte-Geneviève")) return "iBSG1";
         if (item.equals("Mercier–Hochelaga-Maisonneuve")) return "mHM1";
         if (item.equals("Montréal-Nord")) return "mn1";
         if (item.equals("Outremont")) return "outrmt1";
