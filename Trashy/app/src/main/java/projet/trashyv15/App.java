@@ -229,10 +229,17 @@ public class App extends Application {
                     proj2, sel2, selArgs2,
                     null, null, null
             );
-            cur2.moveToNext();
 
-            retval[0] = cur2.getInt(cur2.getColumnIndexOrThrow(TrashyDBContract.TrashyDBTableSchedules.COLUMN_NAME_WEEKDAY));
-            retval[1] = cur2.getInt(cur2.getColumnIndexOrThrow(TrashyDBContract.TrashyDBTableSchedules.COLUMN_NAME_HOUR_IN));
+            if (cur2.getCount() > 0) {
+
+                cur2.moveToNext();
+
+                retval[0] = cur2.getInt(cur2.getColumnIndexOrThrow(TrashyDBContract.TrashyDBTableSchedules.COLUMN_NAME_WEEKDAY));
+                retval[1] = cur2.getInt(cur2.getColumnIndexOrThrow(TrashyDBContract.TrashyDBTableSchedules.COLUMN_NAME_HOUR_IN));
+            }
+            else {
+                System.out.println("[SQL] No matching rows with scheduleID '" + scheduleID + "' and type '" + type + "'");
+            }
 
             cur2.close();
         }
