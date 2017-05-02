@@ -218,10 +218,11 @@ public class App extends Application {
             String[] proj2 = {
                     TrashyDBContract.TrashyDBTableSchedules._ID,
                     TrashyDBContract.TrashyDBTableSchedules.COLUMN_NAME_WEEKDAY,
-                    TrashyDBContract.TrashyDBTableSchedules.COLUMN_NAME_HOUR_IN
+                    TrashyDBContract.TrashyDBTableSchedules.COLUMN_NAME_HOUR_IN,
+                    TrashyDBContract.TrashyDBTableSchedules.COLUMN_NAME_TYPE
             };
-            String sel2 = TrashyDBContract.TrashyDBTableSchedules._ID + " = ?";
-            String[] selArgs2 = { String.valueOf(scheduleID) };
+            String sel2 = TrashyDBContract.TrashyDBTableSchedules._ID + " = ? AND " + TrashyDBContract.TrashyDBTableSchedules.COLUMN_NAME_TYPE + " = ?";
+            String[] selArgs2 = { String.valueOf(scheduleID), String.valueOf(type) };
 
             Cursor cur2 = db2.query(
                     TrashyDBContract.TrashyDBTableSchedules.TABLE_NAME,
