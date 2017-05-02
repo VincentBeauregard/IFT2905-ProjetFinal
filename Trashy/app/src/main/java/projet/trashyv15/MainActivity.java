@@ -135,7 +135,6 @@ public class MainActivity extends AppCompatActivity
 
                     // permission was granted, yay! Do the
                     // contacts-related task you need to do.
-
                     System.out.println("Filling database...");
                     MainTxtReduct.redux();
 
