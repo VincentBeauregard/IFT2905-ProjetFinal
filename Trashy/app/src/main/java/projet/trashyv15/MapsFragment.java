@@ -68,12 +68,47 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback {
 
     private Button accedCarte;
     private View view;
+    private Thread t1;
+    private Thread t2;
+    private Thread t3;
+    private Thread t4;
+    private PolygonOptions polygonahunCV;
+    private PolygonOptions polygonanjou;
+    private PolygonOptions polygoncdnndg;
+    private PolygonOptions polygoniBSG;
+    private PolygonOptions polygonlachine;
+    private PolygonOptions polygonlasalle;
+    private PolygonOptions polygonmHM;
+    private PolygonOptions polygonmn;
+    private PolygonOptions polygonmtroyal;
+    private PolygonOptions polygonoutrmt;
+    private PolygonOptions polygonpR;
+    private PolygonOptions polygonpR2;
+    private PolygonOptions polygonpR3;
+    private PolygonOptions polygonpR4;
+    private PolygonOptions polygonpR5;
+    private PolygonOptions polygonpR6;
+    private PolygonOptions polygonpR7;
+    private PolygonOptions polygonpR8;
+    private PolygonOptions polygonrdppat;
+    private PolygonOptions polygonrlpp;
+    private PolygonOptions polygonstl;
+    private PolygonOptions polygonstlau;
+    private PolygonOptions polygonsudouest;
+    private PolygonOptions polygonverdun1;
+    private PolygonOptions polygonverdun2;
+    private PolygonOptions polygonvilleraypx;
+    private PolygonOptions polygonvm1;
+    private PolygonOptions polygonvm2;
+
 
     //variables pour la carte
     private GoogleMap mGoogleMap;
     private MapView mMapView;
     private ZoomControls zoom;
     private final static int MY_PERMISSION_FINE_LOCATION = 101;
+    private double latitude;
+    private double longitude;
 
     //variable pour localisation:
     LatLng loc;
@@ -91,6 +126,212 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback {
         accedCarte = (Button) view.findViewById(R.id.accedCarte);
         accedCarte.setText(R.string.detNh);
 
+
+//tous les thread sont pour l'optimisation
+
+        t1 = new Thread() {
+            public void run() {
+
+                //colorier le polygone
+
+                //ahunstic cv
+                polygonahunCV = new PolygonOptions()
+                        .add(ahunCV1.m)
+                        .strokeColor(0x80DC143C)
+                        .fillColor(0x500000FF);
+
+
+// anjou
+                polygonanjou = new PolygonOptions()
+                        .add(anjou1.m)
+                        .strokeColor(0x80DC143C)
+                        .fillColor(0x500000FF);
+
+
+//cdnndg
+                polygoncdnndg = new PolygonOptions()
+                        .add(cdnndg1.m)
+                        .strokeColor(0x80DC143C)
+                        .fillColor(0x500000FF);
+
+
+//ibsg
+                polygoniBSG = new PolygonOptions()
+                        .add(iBSG1.m)
+                        .strokeColor(0x80DC143C)
+                        .fillColor(0x500000FF);
+
+
+                polygonlachine = new PolygonOptions()
+                        .add(lachine1.m)
+                        .strokeColor(0x80DC143C)
+                        .fillColor(0x500000FF);
+
+
+                polygonlasalle = new PolygonOptions()
+                        .add(lasalle1.m)
+                        .strokeColor(0x80DC143C)
+                        .fillColor(0x500000FF);
+
+
+            }
+        };
+
+        t3 = new Thread() {
+            public void run() {
+
+
+                polygonmHM = new PolygonOptions()
+                        .add(mHM1.m)
+                        .strokeColor(0x80DC143C)
+                        .fillColor(0x500000FF);
+
+
+                polygonmn = new PolygonOptions()
+                        .add(mn1.m)
+                        .strokeColor(0x80DC143C)
+                        .fillColor(0x500000FF);
+
+
+                polygonmtroyal = new PolygonOptions()
+                        .add(mtroyal1.m)
+                        .strokeColor(0x80DC143C)
+                        .fillColor(0x500000FF);
+
+
+                polygonoutrmt = new PolygonOptions()
+                        .add(outrmt1.m)
+                        .strokeColor(0x80DC143C)
+                        .fillColor(0x500000FF);
+
+
+                polygonpR = new PolygonOptions()
+                        .add(pR1.m)
+                        .strokeColor(0x80DC143C)
+                        .fillColor(0x500000FF);
+
+
+                polygonpR2 = new PolygonOptions()
+                        .add(pr2.m)
+                        .strokeColor(0x80DC143C)
+                        .fillColor(0x500000FF);
+
+
+                polygonpR3 = new PolygonOptions()
+                        .add(pr3.m)
+                        .strokeColor(0x80DC143C)
+                        .fillColor(0x500000FF);
+
+            }
+        };
+
+
+        t2 = new Thread() {
+            public void run() {
+
+                polygonpR4 = new PolygonOptions()
+                        .add(pr4.m)
+                        .strokeColor(0x80DC143C)
+                        .fillColor(0x500000FF);
+
+
+                polygonpR5 = new PolygonOptions()
+                        .add(pr5.m)
+                        .strokeColor(0x80DC143C)
+                        .fillColor(0x500000FF);
+
+
+                polygonpR6 = new PolygonOptions()
+                        .add(pr6.m)
+                        .strokeColor(0x80DC143C)
+                        .fillColor(0x500000FF);
+
+
+                polygonpR7 = new PolygonOptions()
+                        .add(pr7.m)
+                        .strokeColor(0x80DC143C)
+                        .fillColor(0x500000FF);
+
+
+                polygonpR8 = new PolygonOptions()
+                        .add(pr8.m)
+                        .strokeColor(0x80DC143C)
+                        .fillColor(0x500000FF);
+
+
+                polygonrdppat = new PolygonOptions()
+                        .add(rdppat1.m)
+                        .strokeColor(0x80DC143C)
+                        .fillColor(0x500000FF);
+
+
+                polygonrlpp = new PolygonOptions()
+                        .add(rlpp1.m)
+                        .strokeColor(0x80DC143C)
+                        .fillColor(0x500000FF);
+
+
+                polygonstl = new PolygonOptions()
+                        .add(stl1.m)
+                        .strokeColor(0x80DC143C)
+                        .fillColor(0x500000FF);
+            }
+        };
+        t4 = new Thread() {
+            public void run() {
+
+
+                polygonstlau = new PolygonOptions()
+                        .add(stlau1.m)
+                        .strokeColor(0x80DC143C)
+                        .fillColor(0x500000FF);
+
+
+                polygonsudouest = new PolygonOptions()
+                        .add(sudouest1.m)
+                        .strokeColor(0x80DC143C)
+                        .fillColor(0x500000FF);
+
+
+                polygonverdun1 = new PolygonOptions()
+                        .add(verdun1.m)
+                        .strokeColor(0x80DC143C)
+                        .fillColor(0x500000FF);
+
+
+                polygonverdun2 = new PolygonOptions()
+                        .add(verdun2.m)
+                        .strokeColor(0x80DC143C)
+                        .fillColor(0x500000FF);
+
+
+                polygonvilleraypx = new PolygonOptions()
+                        .add(villeraypx1.m)
+                        .strokeColor(0x80DC143C)
+                        .fillColor(0x500000FF);
+
+
+                polygonvm1 = new PolygonOptions()
+                        .add(vm1.m)
+                        .strokeColor(0x80DC143C)
+                        .fillColor(0x500000FF);
+
+
+                polygonvm2 = new PolygonOptions()
+                        .add(vm2.m)
+                        .strokeColor(0x80DC143C)
+                        .fillColor(0x500000FF);
+
+            }
+        };
+
+
+        t1.start();
+        t2.start();
+        t3.start();
+        t4.start();
+
+
         accedCarte.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -105,18 +346,65 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback {
                     // for ActivityCompat#requestPermissions for more details.
 
 
-
                     LocationManager locationManager = (LocationManager)
                             getActivity().getSystemService(getContext().LOCATION_SERVICE);
                     Criteria criteria = new Criteria();
 
                     Location location = locationManager.getLastKnownLocation(locationManager
                             .getBestProvider(criteria, false));
-                    double latitude = location.getLatitude();
-                    double longitude = location.getLongitude();
 
                     loc = new LatLng(latitude,longitude);
+                    if (location != null) {
+                        double latitude = location.getLatitude();
+                        double longitude = location.getLongitude();
 
+                        loc = new LatLng(latitude, longitude);
+                        CameraPosition current = CameraPosition.builder().target(loc).zoom(12).bearing(0).tilt(45).build();
+                        mGoogleMap.animateCamera(CameraUpdateFactory.newCameraPosition(current));
+
+                        if (containsLocation(loc, ahunCV1.m)) {
+                            Toast.makeText(getContext(), "Ahunstic-CartierVille", Toast.LENGTH_LONG).show();
+                        } else if (containsLocation(loc, vm1.m) || containsLocation(loc, vm2.m)) {
+                            Toast.makeText(getContext(), "Ville-Marie", Toast.LENGTH_LONG).show();
+                        } else if (containsLocation(loc, anjou1.m)) {
+                            Toast.makeText(getContext(), "Anjou", Toast.LENGTH_LONG).show();
+                        } else if (containsLocation(loc, cdnndg1.m)) {
+                            Toast.makeText(getContext(), "Cote des Neiges Notre Dame de Grace", Toast.LENGTH_LONG).show();
+                        } else if (containsLocation(loc, iBSG1.m)) {
+                            Toast.makeText(getContext(), "Île-Bizard–Sainte-Geneviève", Toast.LENGTH_LONG).show();
+                        } else if (containsLocation(loc, lachine1.m)) {
+                            Toast.makeText(getContext(), "Lachine", Toast.LENGTH_LONG).show();
+                        } else if (containsLocation(loc, lasalle1.m)) {
+                            Toast.makeText(getContext(), "LaSalle", Toast.LENGTH_LONG).show();
+                        } else if (containsLocation(loc, mtroyal1.m)) {
+                            Toast.makeText(getContext(), "Plateau-Mont-Royal", Toast.LENGTH_LONG).show();
+                        } else if (containsLocation(loc, sudouest1.m)) {
+                            Toast.makeText(getContext(), "Sud-Ouest", Toast.LENGTH_LONG).show();
+                        } else if (containsLocation(loc, mHM1.m)) {
+                            Toast.makeText(getContext(), "Mercier–Hochelaga-Maisonneuve", Toast.LENGTH_LONG).show();
+                        } else if (containsLocation(loc, mn1.m)) {
+                            Toast.makeText(getContext(), "Montréal-Nord", Toast.LENGTH_LONG).show();
+                        } else if (containsLocation(loc, outrmt1.m)) {
+                            Toast.makeText(getContext(), "Outremont", Toast.LENGTH_LONG).show();
+                        } else if (containsLocation(loc, pR1.m) || containsLocation(loc, pr2.m) || containsLocation(loc, pr3.m) || containsLocation(loc, pr4.m) || containsLocation(loc, pr5.m) || containsLocation(loc, pr6.m) || containsLocation(loc, pr7.m) || containsLocation(loc, pr8.m)) {
+                            Toast.makeText(getContext(), "Pierrefonds-Roxboro", Toast.LENGTH_LONG).show();
+                        } else if (containsLocation(loc, rdppat1.m)) {
+                            Toast.makeText(getContext(), "Rivière-des-Prairies–Pointe-aux-Trembles", Toast.LENGTH_LONG).show();
+                        } else if (containsLocation(loc, rlpp1.m)) {
+                            Toast.makeText(getContext(), "Rosemont–La Petite-Patrie", Toast.LENGTH_LONG).show();
+                        } else if (containsLocation(loc, stlau1.m)) {
+                            Toast.makeText(getContext(), "Saint-Laurent", Toast.LENGTH_LONG).show();
+                        } else if (containsLocation(loc, stl1.m)) {
+                            Toast.makeText(getContext(), "Saint-Léonard", Toast.LENGTH_LONG).show();
+                        } else if (containsLocation(loc, verdun1.m) || containsLocation(loc, verdun2.m)) {
+                            Toast.makeText(getContext(), "Verdun", Toast.LENGTH_LONG).show();
+                        } else if (containsLocation(loc, villeraypx1.m)) {
+                            Toast.makeText(getContext(), "Villeray–Saint-Michel–Parc-Extension", Toast.LENGTH_LONG).show();
+                        } else
+                            Toast.makeText(getContext(), R.string.zoneNS, Toast.LENGTH_LONG).show();
+                    } else {
+                        Toast.makeText(getContext(), R.string.toastNoLoc, Toast.LENGTH_LONG).show();
+                    }
                 } else {
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                         requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, MY_PERMISSION_FINE_LOCATION);
@@ -188,7 +476,6 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback {
                     Toast.makeText(getContext(), R.string.zoneNS, Toast.LENGTH_LONG).show();
 
 
-
             }
         });
 
@@ -215,8 +502,7 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback {
          */
 
 
-
-        Spinner spinner = (Spinner)view.findViewById(R.id.spinner);
+        Spinner spinner = (Spinner) view.findViewById(R.id.spinner);
 
         //pour marc:trouver le iscurrent et faire:
         //spinner.setSelection(position du selected dans le array(int));
@@ -234,40 +520,47 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback {
                 ContentValues values = new ContentValues();
                 values.put(TrashyDBContract.TrashyDBTableNeighbourhoods.COLUMN_NAME_IS_CURRENT, 0);
                 String selection = TrashyDBContract.TrashyDBTableNeighbourhoods.COLUMN_NAME_IS_CURRENT + " LIKE ?";
-                String[] selectionArgs = { "1" };
+                String[] selectionArgs = {"1"};
 
                 int count = db.update(
                         TrashyDBContract.TrashyDBTableNeighbourhoods.TABLE_NAME,
                         values, selection, selectionArgs
                 );
 
-                if (count != 1) System.out.println("(1) Updated an incorrect number of rows (" + count + ")");
-                else            System.out.println("(1) Updated old neighbourhood in database");
+                if (count != 1)
+                    System.out.println("(1) Updated an incorrect number of rows (" + count + ")");
+                else System.out.println("(1) Updated old neighbourhood in database");
 
                 // Execute UPDATE 'neighbourhoods' SET iscurrent = 'TRUE'  WHERE name = [item];
                 values = new ContentValues();
                 values.put(TrashyDBContract.TrashyDBTableNeighbourhoods.COLUMN_NAME_IS_CURRENT, 1);
                 String selection2 = TrashyDBContract.TrashyDBTableNeighbourhoods.COLUMN_NAME_NAME + " LIKE ?";
-                String[] selectionArgs2 = { item };
+                String[] selectionArgs2 = {secteur_translate(item)};
 
                 count = db.update(
                         TrashyDBContract.TrashyDBTableNeighbourhoods.TABLE_NAME,
                         values, selection2, selectionArgs2
                 );
 
-                if (count != 1) System.out.println("(2) Updated an incorrect number of rows (" + count + ")");
-                else            System.out.println("(2) Updated new neighbourhood in database");
+                if (count != 1)
+                    System.out.println("(2) Updated an incorrect number of rows (" + count + ")");
+                else System.out.println("(2) Updated new neighbourhood in database"+count);
 
                 if (position != 0) {
+
                     Toast.makeText(getActivity(), item + R.string.toastLocSel, Toast.LENGTH_SHORT).show();
                 }
                 else {
                     Toast.makeText(getActivity(), R.string.toastNoLoc, Toast.LENGTH_SHORT).show();
+
                 }
+                for(int i = 0 ; i<999999;i++){}
+                System.out.println(App.databaseGetCurrentNeighbourhoodID());
             }
 
             @Override
-            public void onNothingSelected(AdapterView<?> parent) {}
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
         });
 
         TrashyDBHelper dbHelper = App.getDBHelper();
@@ -280,7 +573,7 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback {
 
         // Filter results WHERE "iscurrent" = 'TRUE'
         String selection = TrashyDBContract.TrashyDBTableNeighbourhoods.COLUMN_NAME_IS_CURRENT + " = ?";
-        String[] selectionArgs = { "1" };
+        String[] selectionArgs = {"1"};
 
         Cursor cursor = db.query(
                 TrashyDBContract.TrashyDBTableNeighbourhoods.TABLE_NAME,
@@ -294,8 +587,7 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback {
         String currentNeighbourhood = "";
         if (cursor.getCount() == 0) {
             System.out.println("No neighbourhood selected!!!!");
-        }
-        else {
+        } else {
             cursor.moveToNext();
             currentNeighbourhood = cursor.getString(cursor.getColumnIndexOrThrow(
                     TrashyDBContract.TrashyDBTableNeighbourhoods.COLUMN_NAME_NAME
@@ -358,156 +650,190 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback {
 
         //add marker?
 
-        CameraPosition current = CameraPosition.builder().target(new LatLng(45.5016889,-73.56725599999999)).zoom(11).bearing(0).tilt(45).build();
+        CameraPosition current = CameraPosition.builder().target(new LatLng(45.5016889, -73.56725599999999)).zoom(11).bearing(0).tilt(45).build();
         googleMap.moveCamera(CameraUpdateFactory.newCameraPosition(current));
-        
+
+
+        while (t1.getState() != Thread.State.TERMINATED) {
+        }
+
         //colorier le polygone
 
         //ahunstic cv
-        Polygon polygonahunCV = mGoogleMap.addPolygon(new PolygonOptions()
-                .add(ahunCV1.m)
-                .strokeColor(0x80DC143C)
-                .fillColor(0x500000FF));
+        final Polygon polygonahunCV = mGoogleMap.addPolygon(this.polygonahunCV);
+        polygonahunCV.setClickable(true);
 
 
 // anjou
-        Polygon polygonanjou = mGoogleMap.addPolygon(new PolygonOptions()
-                .add(anjou1.m)
-                .strokeColor(0x80DC143C)
-                .fillColor(0x500000FF));
+        final Polygon polygonanjou = mGoogleMap.addPolygon(this.polygonanjou);
+        polygonanjou.setClickable(true);
+
 
 //cdnndg
-        Polygon polygoncdnndg = mGoogleMap.addPolygon(new PolygonOptions()
-                .add(cdnndg1.m)
-                .strokeColor(0x80DC143C)
-                .fillColor(0x500000FF));
+        final Polygon polygoncdnndg = mGoogleMap.addPolygon(this.polygoncdnndg);
+
+        polygoncdnndg.setClickable(true);
+
+
 //ibsg
-        Polygon polygoniBSG = mGoogleMap.addPolygon(new PolygonOptions()
-                .add(iBSG1.m)
-                .strokeColor(0x80DC143C)
-                .fillColor(0x500000FF));
+        final Polygon polygoniBSG = mGoogleMap.addPolygon(this.polygoniBSG);
 
-        Polygon polygonlachine = mGoogleMap.addPolygon(new PolygonOptions()
-                .add(lachine1.m)
-                .strokeColor(0x80DC143C)
-                .fillColor(0x500000FF));
-
-        Polygon polygonlasalle = mGoogleMap.addPolygon(new PolygonOptions()
-                .add(lasalle1.m)
-                .strokeColor(0x80DC143C)
-                .fillColor(0x500000FF));
-
-        Polygon polygonmHM = mGoogleMap.addPolygon(new PolygonOptions()
-                .add(mHM1.m)
-                .strokeColor(0x80DC143C)
-                .fillColor(0x500000FF));
-
-        Polygon polygonmn = mGoogleMap.addPolygon(new PolygonOptions()
-                .add(mn1.m)
-                .strokeColor(0x80DC143C)
-                .fillColor(0x500000FF));
-
-        Polygon polygonmtroyal = mGoogleMap.addPolygon(new PolygonOptions()
-                .add(mtroyal1.m)
-                .strokeColor(0x80DC143C)
-                .fillColor(0x500000FF));
-
-        Polygon polygonoutrmt = mGoogleMap.addPolygon(new PolygonOptions()
-                .add(outrmt1.m)
-                .strokeColor(0x80DC143C)
-                .fillColor(0x500000FF));
-
-        Polygon polygonpR = mGoogleMap.addPolygon(new PolygonOptions()
-                .add(pR1.m)
-                .strokeColor(0x80DC143C)
-                .fillColor(0x500000FF));
-
-        Polygon polygonpR2 = mGoogleMap.addPolygon(new PolygonOptions()
-                .add(pr2.m)
-                .strokeColor(0x80DC143C)
-                .fillColor(0x500000FF));
-
-        Polygon polygonpR3 = mGoogleMap.addPolygon(new PolygonOptions()
-                .add(pr3.m)
-                .strokeColor(0x80DC143C)
-                .fillColor(0x500000FF));
-
-        Polygon polygonpR4 = mGoogleMap.addPolygon(new PolygonOptions()
-                .add(pr4.m)
-                .strokeColor(0x80DC143C)
-                .fillColor(0x500000FF));
-
-        Polygon polygonpR5 = mGoogleMap.addPolygon(new PolygonOptions()
-                .add(pr5.m)
-                .strokeColor(0x80DC143C)
-                .fillColor(0x500000FF));
-
-        Polygon polygonpR6 = mGoogleMap.addPolygon(new PolygonOptions()
-                .add(pr6.m)
-                .strokeColor(0x80DC143C)
-                .fillColor(0x500000FF));
-
-        Polygon polygonpR7 = mGoogleMap.addPolygon(new PolygonOptions()
-                .add(pr7.m)
-                .strokeColor(0x80DC143C)
-                .fillColor(0x500000FF));
-
-        Polygon polygonpR8 = mGoogleMap.addPolygon(new PolygonOptions()
-                .add(pr8.m)
-                .strokeColor(0x80DC143C)
-                .fillColor(0x500000FF));
+        polygoniBSG.setClickable(true);
 
 
+        final Polygon polygonlachine = mGoogleMap.addPolygon(this.polygonlachine);
 
-        Polygon polygonrdppat = mGoogleMap.addPolygon(new PolygonOptions()
-                .add(rdppat1.m)
-                .strokeColor(0x80DC143C)
-                .fillColor(0x500000FF));
+        polygonlachine.setClickable(true);
 
-        Polygon polygonrlpp = mGoogleMap.addPolygon(new PolygonOptions()
-                .add(rlpp1.m)
-                .strokeColor(0x80DC143C)
-                .fillColor(0x500000FF));
 
-        Polygon polygonstl = mGoogleMap.addPolygon(new PolygonOptions()
-                .add(stl1.m)
-                .strokeColor(0x80DC143C)
-                .fillColor(0x500000FF));
+        final Polygon polygonlasalle = mGoogleMap.addPolygon(this.polygonlasalle);
 
-        Polygon polygonstlau = mGoogleMap.addPolygon(new PolygonOptions()
-                .add(stlau1.m)
-                .strokeColor(0x80DC143C)
-                .fillColor(0x500000FF));
+        polygonlasalle.setClickable(true);
 
-        Polygon polygonsudouest = mGoogleMap.addPolygon(new PolygonOptions()
-                .add(sudouest1.m)
-                .strokeColor(0x80DC143C)
-                .fillColor(0x500000FF));
+        while (t3.getState() != Thread.State.TERMINATED) {
+        }
 
-        Polygon polygonverdun1 = mGoogleMap.addPolygon(new PolygonOptions()
-                .add(verdun1.m)
-                .strokeColor(0x80DC143C)
-                .fillColor(0x500000FF));
 
-        Polygon polygonverdun2 = mGoogleMap.addPolygon(new PolygonOptions()
-                .add(verdun2.m)
-                .strokeColor(0x80DC143C)
-                .fillColor(0x500000FF));
+        final Polygon polygonmHM = mGoogleMap.addPolygon(this.polygonmHM);
 
-        Polygon polygonvilleraypx = mGoogleMap.addPolygon(new PolygonOptions()
-                .add(villeraypx1.m)
-                .strokeColor(0x80DC143C)
-                .fillColor(0x500000FF));
+        polygonmHM.setClickable(true);
 
-        Polygon polygonvm1 = mGoogleMap.addPolygon(new PolygonOptions()
-                .add(vm1.m)
-                .strokeColor(0x80DC143C)
-                .fillColor(0x500000FF));
 
-        Polygon polygonvm2 = mGoogleMap.addPolygon(new PolygonOptions()
-                .add(vm2.m)
-                .strokeColor(0x80DC143C)
-                .fillColor(0x500000FF));
+        final Polygon polygonmn = mGoogleMap.addPolygon(this.polygonmn);
+        polygonmn.setClickable(true);
+
+
+        final Polygon polygonmtroyal = mGoogleMap.addPolygon(this.polygonmtroyal);
+        polygonmtroyal.setClickable(true);
+
+
+        final Polygon polygonoutrmt = mGoogleMap.addPolygon(this.polygonoutrmt);
+
+        polygonoutrmt.setClickable(true);
+
+
+        final Polygon polygonpR = mGoogleMap.addPolygon(this.polygonpR);
+        polygonpR.setClickable(true);
+
+
+        final Polygon polygonpR2 = mGoogleMap.addPolygon(this.polygonpR2);
+        polygonpR2.setClickable(true);
+
+
+        final Polygon polygonpR3 = mGoogleMap.addPolygon(this.polygonpR3);
+        polygonpR3.setClickable(true);
+
+        while (t2.getState() != Thread.State.TERMINATED) {
+        }
+
+        final Polygon polygonpR4 = mGoogleMap.addPolygon(this.polygonpR4);
+        polygonpR4.setClickable(true);
+
+
+        final Polygon polygonpR5 = mGoogleMap.addPolygon(this.polygonpR5);
+        polygonpR5.setClickable(true);
+
+
+        final Polygon polygonpR6 = mGoogleMap.addPolygon(this.polygonpR6);
+        polygonpR6.setClickable(true);
+
+
+        final Polygon polygonpR7 = mGoogleMap.addPolygon(this.polygonpR7);
+        polygonpR7.setClickable(true);
+
+
+        final Polygon polygonpR8 = mGoogleMap.addPolygon(this.polygonpR8);
+        polygonpR8.setClickable(true);
+
+
+        final Polygon polygonrdppat = mGoogleMap.addPolygon(this.polygonrdppat);
+        polygonrdppat.setClickable(true);
+
+
+        final Polygon polygonrlpp = mGoogleMap.addPolygon(this.polygonrlpp);
+        polygonrlpp.setClickable(true);
+
+
+        final Polygon polygonstl = mGoogleMap.addPolygon(this.polygonstl);
+        polygonstl.setClickable(true);
+
+        while (t4.getState() != Thread.State.TERMINATED) {
+        }
+
+
+        final Polygon polygonstlau = mGoogleMap.addPolygon(this.polygonstlau);
+        polygonstlau.setClickable(true);
+
+
+        final Polygon polygonsudouest = mGoogleMap.addPolygon(this.polygonsudouest);
+        polygonsudouest.setClickable(true);
+
+
+        final Polygon polygonverdun1 = mGoogleMap.addPolygon(this.polygonverdun1);
+        polygonverdun1.setClickable(true);
+
+
+        final Polygon polygonverdun2 = mGoogleMap.addPolygon(this.polygonverdun2);
+        polygonverdun2.setClickable(true);
+
+
+        final Polygon polygonvilleraypx = mGoogleMap.addPolygon(this.polygonvilleraypx);
+        polygonvilleraypx.setClickable(true);
+
+
+        final Polygon polygonvm1 = mGoogleMap.addPolygon(this.polygonvm1);
+        polygonvm1.setClickable(true);
+
+
+        final Polygon polygonvm2 = mGoogleMap.addPolygon(this.polygonvm2);
+        polygonvm2.setClickable(true);
+
+        mGoogleMap.setOnPolygonClickListener(new GoogleMap.OnPolygonClickListener() {
+            public void onPolygonClick(Polygon polygon) {
+
+
+                if (polygon.equals(polygonahunCV))
+                    Toast.makeText(getContext(), "Ahunstic-CartierVille", Toast.LENGTH_SHORT).show();
+                else if (polygon.equals(polygonanjou))
+                    Toast.makeText(getContext(), "Anjou", Toast.LENGTH_SHORT).show();
+                else if (polygon.equals(polygoncdnndg))
+                    Toast.makeText(getContext(), "Côte-des-Neiges–Notre-Dame-de-Grâce", Toast.LENGTH_SHORT).show();
+                else if (polygon.equals(polygoniBSG))
+                    Toast.makeText(getContext(), "Île-Bizard–Sainte-Geneviève", Toast.LENGTH_SHORT).show();
+                else if (polygon.equals(polygonlachine))
+                    Toast.makeText(getContext(), "Lachine", Toast.LENGTH_SHORT).show();
+                else if (polygon.equals(polygonlasalle))
+                    Toast.makeText(getContext(), "LaSalle", Toast.LENGTH_SHORT).show();
+                else if (polygon.equals(polygonmHM))
+                    Toast.makeText(getContext(), "Mercier–Hochelaga-Maisonneuve", Toast.LENGTH_SHORT).show();
+                else if (polygon.equals(polygonmn))
+                    Toast.makeText(getContext(), "Montréal-Nord", Toast.LENGTH_SHORT).show();
+                else if (polygon.equals(polygonmtroyal))
+                    Toast.makeText(getContext(), "Plateau-Mont-Royal", Toast.LENGTH_SHORT).show();
+                else if (polygon.equals(polygonoutrmt))
+                    Toast.makeText(getContext(), "Outremont", Toast.LENGTH_SHORT).show();
+                else if (polygon.equals(polygonpR) || polygon.equals(polygonpR2) || polygon.equals(polygonpR3) || polygon.equals(polygonpR4) || polygon.equals(polygonpR5) || polygon.equals(polygonpR6) || polygon.equals(polygonpR7) || polygon.equals(polygonpR8))
+                    Toast.makeText(getContext(), "Pierrefonds-Roxboro", Toast.LENGTH_SHORT).show();
+                else if (polygon.equals(polygonrdppat))
+                    Toast.makeText(getContext(), "Rivière-des-Prairies–Pointe-aux-Trembles", Toast.LENGTH_SHORT).show();
+                else if (polygon.equals(polygonrlpp))
+                    Toast.makeText(getContext(), "Rosemont–La Petite-Patrie", Toast.LENGTH_SHORT).show();
+                else if (polygon.equals(polygonstl))
+                    Toast.makeText(getContext(), "Saint-Léonard", Toast.LENGTH_SHORT).show();
+                else if (polygon.equals(polygonstlau))
+                    Toast.makeText(getContext(), "Saint-Laurent", Toast.LENGTH_SHORT).show();
+                else if (polygon.equals(polygonsudouest))
+                    Toast.makeText(getContext(), "Sud-Ouest", Toast.LENGTH_SHORT).show();
+                else if (polygon.equals(polygonverdun1) || polygon.equals(polygonverdun2))
+                    Toast.makeText(getContext(), "Verdun", Toast.LENGTH_SHORT).show();
+                else if (polygon.equals(polygonvilleraypx))
+                    Toast.makeText(getContext(), "Villeray–Saint-Michel–Parc-Extension", Toast.LENGTH_SHORT).show();
+                else if (polygon.equals(polygonvm1) || polygon.equals(polygonvm2))
+                    Toast.makeText(getContext(), "Ville-Marie", Toast.LENGTH_SHORT).show();
+
+
+            }
+        });
 
 
         //localisation
@@ -528,12 +854,11 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback {
 
             Location location = locationManager.getLastKnownLocation(locationManager
                     .getBestProvider(criteria, false));
-            if(location!=null){
+            if (location != null) {
                 double latitude = location.getLatitude();
                 double longitude = location.getLongitude();
-                loc = new LatLng(latitude,longitude);
+                loc = new LatLng(latitude, longitude);
             }
-
 
 
         } else {
@@ -548,7 +873,7 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback {
     private boolean containsLocation(LatLng loc, LatLng[] noeuds) {
         int intersectCount = 0;
         for (int j = 0; j < noeuds.length - 1; j++) {
-            if (rayCastIntersect(loc, noeuds[j], noeuds[j+1])) {
+            if (rayCastIntersect(loc, noeuds[j], noeuds[j + 1])) {
                 intersectCount++;
             }
         }
@@ -596,5 +921,29 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback {
                 }
                 break;
         }
+    }
+
+    public static String secteur_translate(String item) {
+        System.out.println("-"+item+"-");
+        if (item.equals("Ahunstic-Cartierville")) return "ahunCV1";
+        if (item.equals("Anjou")) return "anjou1";
+        if (item.equals("Côte-des-Neiges-Notre-Dame-de-Grâce")) return "cdnndg1";
+        if (item.equals("Lachine")) return "lachine1";
+        if (item.equals("LaSalle")) return "lasalle1";
+        if (item.equals("Plateau Mont-Royal")) return "mtroyal1";
+        if (item.equals("Sud-Ouest")) return "sudouest1";
+        if (item.equals("Île-Bizard–Sainte-Geneviève")) return "iBSG1";
+        if (item.equals("Mercier–Hochelaga-Maisonneuve")) return "mHM1";
+        if (item.equals("Montréal-Nord")) return "mn1";
+        if (item.equals("Outremont")) return "outrmt1";
+        if (item.equals("Pierrefonds-Roxboro")) return "pR1";
+        if (item.equals("Rivière-des-Prairies–Pointe-aux-Trembles")) return "rdppat1";
+        if (item.equals("Rosemont–La Petite-Patrie")) return "rlpp1";
+        if (item.equals("Saint-Laurent")) return "stlau1";
+        if (item.equals("Saint-Léonard")) return "stl1";
+        if (item.equals("Verdun")) return "verdun1";
+        if (item.equals("Ville-Marie")) return "vm1";
+        if (item.equals("Villeray–Saint-Michel–Parc-Extension")) return "vm2";
+        else return "";
     }
 }

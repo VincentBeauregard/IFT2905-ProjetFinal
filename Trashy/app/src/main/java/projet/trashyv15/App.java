@@ -236,7 +236,6 @@ public class App extends Application {
             cur2.close();
         }
         cursor.close();
-
         return retval;
     }
 
