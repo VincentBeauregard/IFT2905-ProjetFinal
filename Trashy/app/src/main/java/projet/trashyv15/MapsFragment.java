@@ -67,6 +67,39 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback {
 
     private Button accedCarte;
     private View view;
+    private Thread t1;
+    private Thread t2;
+    private Thread t3;
+    private Thread t4;
+    private PolygonOptions polygonahunCV;
+    private PolygonOptions polygonanjou;
+    private PolygonOptions polygoncdnndg;
+    private PolygonOptions polygoniBSG;
+    private PolygonOptions polygonlachine;
+    private PolygonOptions polygonlasalle;
+    private PolygonOptions polygonmHM;
+    private PolygonOptions polygonmn;
+    private PolygonOptions polygonmtroyal;
+    private PolygonOptions polygonoutrmt;
+    private PolygonOptions polygonpR;
+    private PolygonOptions polygonpR2;
+    private PolygonOptions polygonpR3;
+    private PolygonOptions polygonpR4;
+    private PolygonOptions polygonpR5;
+    private PolygonOptions polygonpR6;
+    private PolygonOptions polygonpR7;
+    private PolygonOptions polygonpR8;
+    private PolygonOptions polygonrdppat;
+    private PolygonOptions polygonrlpp;
+    private PolygonOptions polygonstl;
+    private PolygonOptions polygonstlau;
+    private PolygonOptions polygonsudouest;
+    private PolygonOptions polygonverdun1;
+    private PolygonOptions polygonverdun2;
+    private PolygonOptions polygonvilleraypx;
+    private PolygonOptions polygonvm1;
+    private PolygonOptions polygonvm2;
+
 
     //variables pour la carte
     private GoogleMap mGoogleMap;
@@ -84,6 +117,274 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback {
 
         view = inflater.inflate(R.layout.fragment_maps, container, false);
         accedCarte = (Button) view.findViewById(R.id.accedCarte);
+
+
+//tous les thread sont pour l'optimisation
+
+        t1 = new Thread() {
+                public void run() {
+
+                    //colorier le polygone
+
+                    //ahunstic cv
+                    polygonahunCV =new PolygonOptions()
+                            .add(ahunCV1.m)
+                            .strokeColor(0x80DC143C)
+                            .fillColor(0x500000FF);
+
+
+
+
+
+// anjou
+                    polygonanjou = new PolygonOptions()
+                            .add(anjou1.m)
+                            .strokeColor(0x80DC143C)
+                            .fillColor(0x500000FF);
+
+
+
+//cdnndg
+                    polygoncdnndg = new PolygonOptions()
+                            .add(cdnndg1.m)
+                            .strokeColor(0x80DC143C)
+                            .fillColor(0x500000FF);
+
+
+
+
+//ibsg
+                    polygoniBSG = new PolygonOptions()
+                            .add(iBSG1.m)
+                            .strokeColor(0x80DC143C)
+                            .fillColor(0x500000FF);
+
+
+
+
+
+                    polygonlachine = new PolygonOptions()
+                            .add(lachine1.m)
+                            .strokeColor(0x80DC143C)
+                            .fillColor(0x500000FF);
+
+
+
+
+
+                    polygonlasalle = new PolygonOptions()
+                            .add(lasalle1.m)
+                            .strokeColor(0x80DC143C)
+                            .fillColor(0x500000FF);
+
+
+                }
+        };
+
+        t3 = new Thread() {
+            public void run() {
+
+
+                    polygonmHM = new PolygonOptions()
+                            .add(mHM1.m)
+                            .strokeColor(0x80DC143C)
+                            .fillColor(0x500000FF);
+
+
+
+
+
+                    polygonmn = new PolygonOptions()
+                            .add(mn1.m)
+                            .strokeColor(0x80DC143C)
+                            .fillColor(0x500000FF);
+
+
+
+
+                    polygonmtroyal = new PolygonOptions()
+                            .add(mtroyal1.m)
+                            .strokeColor(0x80DC143C)
+                            .fillColor(0x500000FF);
+
+
+
+
+                    polygonoutrmt = new PolygonOptions()
+                            .add(outrmt1.m)
+                            .strokeColor(0x80DC143C)
+                            .fillColor(0x500000FF);
+
+
+
+
+
+                    polygonpR = new PolygonOptions()
+                            .add(pR1.m)
+                            .strokeColor(0x80DC143C)
+                            .fillColor(0x500000FF);
+
+
+
+
+                    polygonpR2 = new PolygonOptions()
+                            .add(pr2.m)
+                            .strokeColor(0x80DC143C)
+                            .fillColor(0x500000FF);
+
+
+
+
+                    polygonpR3 = new PolygonOptions()
+                            .add(pr3.m)
+                            .strokeColor(0x80DC143C)
+                            .fillColor(0x500000FF);
+
+                }
+        };
+
+
+///////////////////////////////////////////////
+
+        t2 = new Thread() {
+            public void run() {
+
+                    polygonpR4 = new PolygonOptions()
+                            .add(pr4.m)
+                            .strokeColor(0x80DC143C)
+                            .fillColor(0x500000FF);
+
+
+
+
+                    polygonpR5 =new PolygonOptions()
+                            .add(pr5.m)
+                            .strokeColor(0x80DC143C)
+                            .fillColor(0x500000FF);
+
+
+
+
+                    polygonpR6 = new PolygonOptions()
+                            .add(pr6.m)
+                            .strokeColor(0x80DC143C)
+                            .fillColor(0x500000FF);
+
+
+
+
+                    polygonpR7 = new PolygonOptions()
+                            .add(pr7.m)
+                            .strokeColor(0x80DC143C)
+                            .fillColor(0x500000FF);
+
+
+
+
+                    polygonpR8 = new PolygonOptions()
+                            .add(pr8.m)
+                            .strokeColor(0x80DC143C)
+                            .fillColor(0x500000FF);
+
+
+
+
+
+
+
+                    polygonrdppat = new PolygonOptions()
+                            .add(rdppat1.m)
+                            .strokeColor(0x80DC143C)
+                            .fillColor(0x500000FF);
+
+
+
+
+                    polygonrlpp = new PolygonOptions()
+                            .add(rlpp1.m)
+                            .strokeColor(0x80DC143C)
+                            .fillColor(0x500000FF);
+
+
+
+
+                    polygonstl = new PolygonOptions()
+                            .add(stl1.m)
+                            .strokeColor(0x80DC143C)
+                            .fillColor(0x500000FF);
+    }
+};
+                        t4 = new Thread() {
+                            public void run() {
+
+
+                    polygonstlau = new PolygonOptions()
+                            .add(stlau1.m)
+                            .strokeColor(0x80DC143C)
+                            .fillColor(0x500000FF);
+
+
+
+
+                    polygonsudouest = new PolygonOptions()
+                            .add(sudouest1.m)
+                            .strokeColor(0x80DC143C)
+                            .fillColor(0x500000FF);
+
+
+
+
+                    polygonverdun1 = new PolygonOptions()
+                            .add(verdun1.m)
+                            .strokeColor(0x80DC143C)
+                            .fillColor(0x500000FF);
+
+
+
+
+                    polygonverdun2 = new PolygonOptions()
+                            .add(verdun2.m)
+                            .strokeColor(0x80DC143C)
+                            .fillColor(0x500000FF);
+
+
+
+                    polygonvilleraypx = new PolygonOptions()
+                            .add(villeraypx1.m)
+                            .strokeColor(0x80DC143C)
+                            .fillColor(0x500000FF);
+
+
+
+
+                    polygonvm1 = new PolygonOptions()
+                            .add(vm1.m)
+                            .strokeColor(0x80DC143C)
+                            .fillColor(0x500000FF);
+
+
+
+
+                    polygonvm2 = new PolygonOptions()
+                            .add(vm2.m)
+                            .strokeColor(0x80DC143C)
+                            .fillColor(0x500000FF);
+
+                }
+            };
+
+
+
+
+
+        t1.start();
+        t2.start();
+        t3.start();
+        t4.start();
+
+
+
+
 
         accedCarte.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -371,239 +672,163 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback {
 
         CameraPosition current = CameraPosition.builder().target(new LatLng(45.5016889,-73.56725599999999)).zoom(11).bearing(0).tilt(45).build();
         googleMap.moveCamera(CameraUpdateFactory.newCameraPosition(current));
-        
+
+
+
+        while(t1.getState()!=Thread.State.TERMINATED){}
+
         //colorier le polygone
 
         //ahunstic cv
-        final Polygon polygonahunCV = mGoogleMap.addPolygon(new PolygonOptions()
-                .add(ahunCV1.m)
-                .strokeColor(0x80DC143C)
-                .fillColor(0x500000FF));
+        final Polygon polygonahunCV = mGoogleMap.addPolygon(this.polygonahunCV);
         polygonahunCV.setClickable(true);
 
 
 
 
 // anjou
-        final Polygon polygonanjou = mGoogleMap.addPolygon(new PolygonOptions()
-                .add(anjou1.m)
-                .strokeColor(0x80DC143C)
-                .fillColor(0x500000FF));
+        final Polygon polygonanjou = mGoogleMap.addPolygon(this.polygonanjou);
         polygonanjou.setClickable(true);
 
 
 //cdnndg
-        final Polygon polygoncdnndg = mGoogleMap.addPolygon(new PolygonOptions()
-                .add(cdnndg1.m)
-                .strokeColor(0x80DC143C)
-                .fillColor(0x500000FF));
+        final Polygon polygoncdnndg = mGoogleMap.addPolygon(this.polygoncdnndg);
 
         polygoncdnndg.setClickable(true);
 
 
 //ibsg
-        final Polygon polygoniBSG = mGoogleMap.addPolygon(new PolygonOptions()
-                .add(iBSG1.m)
-                .strokeColor(0x80DC143C)
-                .fillColor(0x500000FF));
+        final Polygon polygoniBSG = mGoogleMap.addPolygon(this.polygoniBSG);
 
         polygoniBSG.setClickable(true);
 
 
 
-        final Polygon polygonlachine = mGoogleMap.addPolygon(new PolygonOptions()
-                .add(lachine1.m)
-                .strokeColor(0x80DC143C)
-                .fillColor(0x500000FF));
+        final Polygon polygonlachine = mGoogleMap.addPolygon(this.polygonlachine);
 
         polygonlachine.setClickable(true);
 
 
 
-        final Polygon polygonlasalle = mGoogleMap.addPolygon(new PolygonOptions()
-                .add(lasalle1.m)
-                .strokeColor(0x80DC143C)
-                .fillColor(0x500000FF));
+        final Polygon polygonlasalle = mGoogleMap.addPolygon(this.polygonlasalle);
 
         polygonlasalle.setClickable(true);
 
+        while(t3.getState()!=Thread.State.TERMINATED){}
 
 
-        final Polygon polygonmHM = mGoogleMap.addPolygon(new PolygonOptions()
-                .add(mHM1.m)
-                .strokeColor(0x80DC143C)
-                .fillColor(0x500000FF));
+
+        final Polygon polygonmHM = mGoogleMap.addPolygon(this.polygonmHM);
 
         polygonmHM.setClickable(true);
 
 
 
-        final Polygon polygonmn = mGoogleMap.addPolygon(new PolygonOptions()
-                .add(mn1.m)
-                .strokeColor(0x80DC143C)
-                .fillColor(0x500000FF));
+        final Polygon polygonmn = mGoogleMap.addPolygon(this.polygonmn);
         polygonmn.setClickable(true);
 
 
 
-        final Polygon polygonmtroyal = mGoogleMap.addPolygon(new PolygonOptions()
-                .add(mtroyal1.m)
-                .strokeColor(0x80DC143C)
-                .fillColor(0x500000FF));
+        final Polygon polygonmtroyal = mGoogleMap.addPolygon(this.polygonmtroyal);
         polygonmtroyal.setClickable(true);
 
 
 
-        final Polygon polygonoutrmt = mGoogleMap.addPolygon(new PolygonOptions()
-                .add(outrmt1.m)
-                .strokeColor(0x80DC143C)
-                .fillColor(0x500000FF));
+        final Polygon polygonoutrmt = mGoogleMap.addPolygon(this.polygonoutrmt);
 
         polygonoutrmt.setClickable(true);
 
 
 
-        final Polygon polygonpR = mGoogleMap.addPolygon(new PolygonOptions()
-                .add(pR1.m)
-                .strokeColor(0x80DC143C)
-                .fillColor(0x500000FF));
+        final Polygon polygonpR = mGoogleMap.addPolygon(this.polygonpR);
         polygonpR.setClickable(true);
 
 
 
-        final Polygon polygonpR2 = mGoogleMap.addPolygon(new PolygonOptions()
-                .add(pr2.m)
-                .strokeColor(0x80DC143C)
-                .fillColor(0x500000FF));
+        final Polygon polygonpR2 = mGoogleMap.addPolygon(this.polygonpR2);
         polygonpR2.setClickable(true);
 
 
 
-        final Polygon polygonpR3 = mGoogleMap.addPolygon(new PolygonOptions()
-                .add(pr3.m)
-                .strokeColor(0x80DC143C)
-                .fillColor(0x500000FF));
+        final Polygon polygonpR3 = mGoogleMap.addPolygon(this.polygonpR3);
         polygonpR3.setClickable(true);
 
+        while(t2.getState()!=Thread.State.TERMINATED){}
 
-
-        final Polygon polygonpR4 = mGoogleMap.addPolygon(new PolygonOptions()
-                .add(pr4.m)
-                .strokeColor(0x80DC143C)
-                .fillColor(0x500000FF));
+        final Polygon polygonpR4 = mGoogleMap.addPolygon(this.polygonpR4);
         polygonpR4.setClickable(true);
 
 
 
-        final Polygon polygonpR5 = mGoogleMap.addPolygon(new PolygonOptions()
-                .add(pr5.m)
-                .strokeColor(0x80DC143C)
-                .fillColor(0x500000FF));
+        final Polygon polygonpR5 = mGoogleMap.addPolygon(this.polygonpR5);
         polygonpR5.setClickable(true);
 
 
 
-        final Polygon polygonpR6 = mGoogleMap.addPolygon(new PolygonOptions()
-                .add(pr6.m)
-                .strokeColor(0x80DC143C)
-                .fillColor(0x500000FF));
+        final Polygon polygonpR6 = mGoogleMap.addPolygon(this.polygonpR6);
         polygonpR6.setClickable(true);
 
 
 
-        final Polygon polygonpR7 = mGoogleMap.addPolygon(new PolygonOptions()
-                .add(pr7.m)
-                .strokeColor(0x80DC143C)
-                .fillColor(0x500000FF));
+        final Polygon polygonpR7 = mGoogleMap.addPolygon(this.polygonpR7);
         polygonpR7.setClickable(true);
 
 
 
-        final Polygon polygonpR8 = mGoogleMap.addPolygon(new PolygonOptions()
-                .add(pr8.m)
-                .strokeColor(0x80DC143C)
-                .fillColor(0x500000FF));
+        final Polygon polygonpR8 = mGoogleMap.addPolygon(this.polygonpR8);
         polygonpR8.setClickable(true);
 
 
 
 
 
-        final Polygon polygonrdppat = mGoogleMap.addPolygon(new PolygonOptions()
-                .add(rdppat1.m)
-                .strokeColor(0x80DC143C)
-                .fillColor(0x500000FF));
+        final Polygon polygonrdppat = mGoogleMap.addPolygon(this.polygonrdppat);
         polygonrdppat.setClickable(true);
 
 
 
-        final Polygon polygonrlpp = mGoogleMap.addPolygon(new PolygonOptions()
-                .add(rlpp1.m)
-                .strokeColor(0x80DC143C)
-                .fillColor(0x500000FF));
+        final Polygon polygonrlpp = mGoogleMap.addPolygon(this.polygonrlpp);
         polygonrlpp.setClickable(true);
 
 
 
-        final Polygon polygonstl = mGoogleMap.addPolygon(new PolygonOptions()
-                .add(stl1.m)
-                .strokeColor(0x80DC143C)
-                .fillColor(0x500000FF));
+        final Polygon polygonstl = mGoogleMap.addPolygon(this.polygonstl);
         polygonstl.setClickable(true);
 
+        while(t4.getState()!=Thread.State.TERMINATED){}
 
 
-        final Polygon polygonstlau = mGoogleMap.addPolygon(new PolygonOptions()
-                .add(stlau1.m)
-                .strokeColor(0x80DC143C)
-                .fillColor(0x500000FF));
+
+        final Polygon polygonstlau = mGoogleMap.addPolygon(this.polygonstlau);
         polygonstlau.setClickable(true);
 
 
 
-        final Polygon polygonsudouest = mGoogleMap.addPolygon(new PolygonOptions()
-                .add(sudouest1.m)
-                .strokeColor(0x80DC143C)
-                .fillColor(0x500000FF));
+        final Polygon polygonsudouest = mGoogleMap.addPolygon(this.polygonsudouest);
         polygonsudouest.setClickable(true);
 
 
 
-        final Polygon polygonverdun1 = mGoogleMap.addPolygon(new PolygonOptions()
-                .add(verdun1.m)
-                .strokeColor(0x80DC143C)
-                .fillColor(0x500000FF));
+        final Polygon polygonverdun1 = mGoogleMap.addPolygon(this.polygonverdun1);
         polygonverdun1.setClickable(true);
 
 
 
-        final Polygon polygonverdun2 = mGoogleMap.addPolygon(new PolygonOptions()
-                .add(verdun2.m)
-                .strokeColor(0x80DC143C)
-                .fillColor(0x500000FF));
+        final Polygon polygonverdun2 = mGoogleMap.addPolygon(this.polygonverdun2);
         polygonverdun2.setClickable(true);
 
 
-        final Polygon polygonvilleraypx = mGoogleMap.addPolygon(new PolygonOptions()
-                .add(villeraypx1.m)
-                .strokeColor(0x80DC143C)
-                .fillColor(0x500000FF));
+        final Polygon polygonvilleraypx = mGoogleMap.addPolygon(this.polygonvilleraypx);
         polygonvilleraypx.setClickable(true);
 
 
 
-        final Polygon polygonvm1 = mGoogleMap.addPolygon(new PolygonOptions()
-                .add(vm1.m)
-                .strokeColor(0x80DC143C)
-                .fillColor(0x500000FF));
+        final Polygon polygonvm1 = mGoogleMap.addPolygon(this.polygonvm1);
         polygonvm1.setClickable(true);
 
 
 
-        final Polygon polygonvm2 = mGoogleMap.addPolygon(new PolygonOptions()
-                .add(vm2.m)
-                .strokeColor(0x80DC143C)
-                .fillColor(0x500000FF));
+        final Polygon polygonvm2 = mGoogleMap.addPolygon(this.polygonvm2);
         polygonvm2.setClickable(true);
 
         mGoogleMap.setOnPolygonClickListener(new GoogleMap.OnPolygonClickListener() {
