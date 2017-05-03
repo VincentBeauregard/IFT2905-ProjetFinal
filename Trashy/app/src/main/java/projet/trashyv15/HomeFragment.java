@@ -63,23 +63,27 @@ public class HomeFragment extends Fragment {
 
             int hoursLeft = getHowManyHoursLeft(jourRamassage, heureRamassage);
             String hoursString = getResources().getString(R.string.heures);
+            String dayString = getResources().getString(R.string.jour);
             String daysString = getResources().getString(R.string.jours);
 
             switch (i) {
                 case 0:
-                    if (hoursLeft >= 24) trashButton.setText(String.valueOf(hoursLeft / 24) + " " + daysString);
+                    if (hoursLeft >= 48) trashButton.setText(String.valueOf(hoursLeft / 24) + " " + daysString);
+                    else if (hoursLeft >=24) trashButton.setText(String.valueOf(hoursLeft / 24) + " " + dayString);
                     else if (hoursLeft > 0) trashButton.setText(String.valueOf(hoursLeft) + " " + hoursString);
                     else trashButton.setText(R.string.mnt);
                     break;
 
                 case 1:
-                    if (hoursLeft >= 24) recycleButton.setText(String.valueOf(hoursLeft / 24) + " " + daysString);
+                    if (hoursLeft >= 48) recycleButton.setText(String.valueOf(hoursLeft / 24) + " " + daysString);
+                    else if (hoursLeft >=24) recycleButton.setText(String.valueOf(hoursLeft / 24) + " " + dayString);
                     else if (hoursLeft > 0) recycleButton.setText(String.valueOf(hoursLeft) + " " + hoursString);
                     else recycleButton.setText(R.string.mnt);
                     break;
 
                 case 2:
-                    if (hoursLeft >= 24) compostButton.setText(String.valueOf(hoursLeft / 24) + " " + daysString);
+                    if (hoursLeft >= 48) compostButton.setText(String.valueOf(hoursLeft / 24) + " " + daysString);
+                    else if (hoursLeft >= 24) compostButton.setText(String.valueOf(hoursLeft / 24) + " " + dayString);
                     else if (hoursLeft > 0) compostButton.setText(String.valueOf(hoursLeft) + " " + hoursString);
                     else compostButton.setText(R.string.mnt);
                     break;

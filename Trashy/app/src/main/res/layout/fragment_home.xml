@@ -43,6 +43,7 @@
                     android:layout_marginBottom="15dp"
                     android:textSize="14sp" />
 
+
                 <Button
                     android:background="@drawable/verre_cassee"
                     android:layout_width="60dp"
@@ -140,13 +141,14 @@
                     android:layout_gravity="center" />
 
                 <Button
-                    android:text="3 Heures"
+                    android:id="@+id/timeCompost"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/timeCompost"
-                    android:textSize="14sp"
+                    android:layout_gravity="center"
+                    android:textColor="@color/black"
+                    android:background="@color/beige"
                     android:layout_marginBottom="15dp"
-                    android:layout_gravity="center"/>
+                    android:textSize="14sp"/>
 
                 <Button
                     android:background="@drawable/fromage_beurre"
@@ -228,6 +230,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:textColor="@color/black"
+                    android:background="@color/beige"
                     android:layout_marginBottom="15dp"
                     android:textSize="14sp" />
 
