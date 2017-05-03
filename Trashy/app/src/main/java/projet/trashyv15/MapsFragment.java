@@ -109,6 +109,9 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback {
     private double latitude;
     private double longitude;
 
+    private LocationManager locationManager;
+    private Location location;
+
     //variable pour localisation:
     LatLng loc;
 
@@ -345,11 +348,11 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback {
                     // for ActivityCompat#requestPermissions for more details.
 
 
-                    LocationManager locationManager = (LocationManager)
+                    locationManager = (LocationManager)
                             getActivity().getSystemService(getContext().LOCATION_SERVICE);
                     Criteria criteria = new Criteria();
 
-                    Location location = locationManager.getLastKnownLocation(locationManager
+                    location = locationManager.getLastKnownLocation(locationManager
                             .getBestProvider(criteria, false));
 
 
@@ -787,14 +790,15 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback {
             //                                          int[] grantResults)
             // to handle the case where the user grants the permission. See the documentation
             // for ActivityCompat#requestPermissions for more details.
-            //mGoogleMap.setMyLocationEnabled(true);
+            mGoogleMap.setMyLocationEnabled(true);
+            mGoogleMap.getUiSettings().setMyLocationButtonEnabled(false);
 
 
-            LocationManager locationManager = (LocationManager)
+            locationManager = (LocationManager)
                     getActivity().getSystemService(getContext().LOCATION_SERVICE);
             Criteria criteria = new Criteria();
 
-            Location location = locationManager.getLastKnownLocation(locationManager
+            location = locationManager.getLastKnownLocation(locationManager
                     .getBestProvider(criteria, false));
             if (location != null) {
                 double latitude = location.getLatitude();
@@ -854,6 +858,7 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback {
                 if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
                         mGoogleMap.setMyLocationEnabled(true);
+                        mGoogleMap.getUiSettings().setMyLocationButtonEnabled(false);
                     }
 
                 } else {
@@ -912,4 +917,5 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback {
         if (item.equals("vm2")) return "Villeray–Saint-Michel–Parc-Extension";
         else return "";
     }
-}
+
+    }
