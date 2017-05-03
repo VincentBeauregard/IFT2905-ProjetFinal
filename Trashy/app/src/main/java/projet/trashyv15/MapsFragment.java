@@ -112,6 +112,8 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback {
     private LocationManager locationManager;
     private Location location;
 
+    private Spinner spinner;
+
     //variable pour localisation:
     LatLng loc;
 
@@ -334,118 +336,32 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback {
         t4.start();
 
 
-        accedCarte.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
 
-                if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-                    // TODO: Consider calling
-                    //    ActivityCompat#requestPermissions
-                    // here to request the missing permissions, and then overriding
-                    //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-                    //                                          int[] grantResults)
-                    // to handle the case where the user grants the permission. See the documentation
-                    // for ActivityCompat#requestPermissions for more details.
-
-
-                    locationManager = (LocationManager)
-                            getActivity().getSystemService(getContext().LOCATION_SERVICE);
-                    Criteria criteria = new Criteria();
-
-                    location = locationManager.getLastKnownLocation(locationManager
-                            .getBestProvider(criteria, false));
-
-
-                    if (location != null) {
-                        double latitude = location.getLatitude();
-                        double longitude = location.getLongitude();
-
-                        loc = new LatLng(latitude, longitude);
-                        CameraPosition current = CameraPosition.builder().target(loc).zoom(12).bearing(0).tilt(45).build();
-                        mGoogleMap.animateCamera(CameraUpdateFactory.newCameraPosition(current));
-//pour Vince, dans chaque if rajouter le quartier dans la BD
-                        if (containsLocation(loc, ahunCV1.m)) {
-                            Toast.makeText(getContext(), "Ahunstic-CartierVille", Toast.LENGTH_LONG).show();
-                        } else if (containsLocation(loc, vm1.m) || containsLocation(loc, vm2.m)) {
-                            Toast.makeText(getContext(), "Ville-Marie", Toast.LENGTH_LONG).show();
-                        } else if (containsLocation(loc, anjou1.m)) {
-                            Toast.makeText(getContext(), "Anjou", Toast.LENGTH_LONG).show();
-                        } else if (containsLocation(loc, cdnndg1.m)) {
-                            Toast.makeText(getContext(), "Cote des Neiges Notre Dame de Grace", Toast.LENGTH_LONG).show();
-                        } else if (containsLocation(loc, iBSG1.m)) {
-                            Toast.makeText(getContext(), "Île-Bizard–Sainte-Geneviève", Toast.LENGTH_LONG).show();
-                        } else if (containsLocation(loc, lachine1.m)) {
-                            Toast.makeText(getContext(), "Lachine", Toast.LENGTH_LONG).show();
-                        } else if (containsLocation(loc, lasalle1.m)) {
-                            Toast.makeText(getContext(), "LaSalle", Toast.LENGTH_LONG).show();
-                        } else if (containsLocation(loc, mtroyal1.m)) {
-                            Toast.makeText(getContext(), "Plateau-Mont-Royal", Toast.LENGTH_LONG).show();
-                        } else if (containsLocation(loc, sudouest1.m)) {
-                            Toast.makeText(getContext(), "Sud-Ouest", Toast.LENGTH_LONG).show();
-                        } else if (containsLocation(loc, mHM1.m)) {
-                            Toast.makeText(getContext(), "Mercier–Hochelaga-Maisonneuve", Toast.LENGTH_LONG).show();
-                        } else if (containsLocation(loc, mn1.m)) {
-                            Toast.makeText(getContext(), "Montréal-Nord", Toast.LENGTH_LONG).show();
-                        } else if (containsLocation(loc, outrmt1.m)) {
-                            Toast.makeText(getContext(), "Outremont", Toast.LENGTH_LONG).show();
-                        } else if (containsLocation(loc, pR1.m) || containsLocation(loc, pr2.m) || containsLocation(loc, pr3.m) || containsLocation(loc, pr4.m) || containsLocation(loc, pr5.m) || containsLocation(loc, pr6.m) || containsLocation(loc, pr7.m) || containsLocation(loc, pr8.m)) {
-                            Toast.makeText(getContext(), "Pierrefonds-Roxboro", Toast.LENGTH_LONG).show();
-                        } else if (containsLocation(loc, rdppat1.m)) {
-                            Toast.makeText(getContext(), "Rivière-des-Prairies–Pointe-aux-Trembles", Toast.LENGTH_LONG).show();
-                        } else if (containsLocation(loc, rlpp1.m)) {
-                            Toast.makeText(getContext(), "Rosemont–La Petite-Patrie", Toast.LENGTH_LONG).show();
-                        } else if (containsLocation(loc, stlau1.m)) {
-                            Toast.makeText(getContext(), "Saint-Laurent", Toast.LENGTH_LONG).show();
-                        } else if (containsLocation(loc, stl1.m)) {
-                            Toast.makeText(getContext(), "Saint-Léonard", Toast.LENGTH_LONG).show();
-                        } else if (containsLocation(loc, verdun1.m) || containsLocation(loc, verdun2.m)) {
-                            Toast.makeText(getContext(), "Verdun", Toast.LENGTH_LONG).show();
-                        } else if (containsLocation(loc, villeraypx1.m)) {
-                            Toast.makeText(getContext(), "Villeray–Saint-Michel–Parc-Extension", Toast.LENGTH_LONG).show();
-                        } else
-                            Toast.makeText(getContext(), R.string.zoneNS, Toast.LENGTH_LONG).show();
-                    } else {
-                        Toast.makeText(getContext(), R.string.toastNoLoc, Toast.LENGTH_LONG).show();
-                    }
-                } else {
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                        requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, MY_PERMISSION_FINE_LOCATION);
-                    }
-                }
-
-
-
-
-
-
-
-            }
-        });
 
         /*pos du array:
-        0- Ahuntsic-Cartiervillewe
-        1- Anjou
-        2- Côte-des-Neiges–Notre-Dame-de-Grâce
-        3- Lachine
-        4- LaSalle
-        5- Le Plateau-Mont-Royal
-        6- Le Sud-Ouest
-        7- L’Île-Bizard–Sainte-Geneviève
-        8- Mercier–Hochelaga-Maisonneuve
-        9- Montréal-Nord
-        10- Outremont
-        11- Pierrefonds-Roxboro
-        12- Rivière-des-Prairies–Pointe-aux-Trembles
-        13- Rosemont–La Petite-Patrie
-        14- Saint-Laurent
-        15- Saint-Léonard
-        16- Verdun
-        17- Ville-Marie
-        18- Villeray–Saint-Michel–Parc-Extension
+        1- Ahuntsic-Cartiervillewe
+        2- Anjou
+        3- Côte-des-Neiges–Notre-Dame-de-Grâce
+        4- Lachine
+        5- LaSalle
+        6- Le Plateau-Mont-Royal
+        7- Le Sud-Ouest
+        8- L’Île-Bizard–Sainte-Geneviève
+        9- Mercier–Hochelaga-Maisonneuve
+        10- Montréal-Nord
+        11- Outremont
+        12- Pierrefonds-Roxboro
+        13- Rivière-des-Prairies–Pointe-aux-Trembles
+        14- Rosemont–La Petite-Patrie
+        15- Saint-Laurent
+        16- Saint-Léonard
+        17- Verdun
+        18- Ville-Marie
+        19- Villeray–Saint-Michel–Parc-Extension
          */
 
 
-        Spinner spinner = (Spinner) view.findViewById(R.id.spinner);
+        spinner = (Spinner) view.findViewById(R.id.spinner);
 
         //pour marc:trouver le iscurrent et faire:
         //spinner.setSelection(position du selected dans le array(int));
@@ -503,8 +419,119 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback {
                 System.out.println(App.databaseGetCurrentNeighbourhoodID());
             }
 
+
+
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
+
+
+        accedCarte.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+                    // TODO: Consider calling
+                    //    ActivityCompat#requestPermissions
+                    // here to request the missing permissions, and then overriding
+                    //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                    //                                          int[] grantResults)
+                    // to handle the case where the user grants the permission. See the documentation
+                    // for ActivityCompat#requestPermissions for more details.
+
+
+                    locationManager = (LocationManager)
+                            getActivity().getSystemService(getContext().LOCATION_SERVICE);
+                    Criteria criteria = new Criteria();
+
+                    location = locationManager.getLastKnownLocation(locationManager
+                            .getBestProvider(criteria, false));
+
+
+                    if (location != null) {
+                        double latitude = location.getLatitude();
+                        double longitude = location.getLongitude();
+
+                        loc = new LatLng(latitude, longitude);
+                        CameraPosition current = CameraPosition.builder().target(loc).zoom(12).bearing(0).tilt(45).build();
+                        mGoogleMap.animateCamera(CameraUpdateFactory.newCameraPosition(current));
+
+
+                        if (containsLocation(loc, ahunCV1.m)) {
+
+                            spinner.setSelection(1);
+                        } else if (containsLocation(loc, vm1.m) || containsLocation(loc, vm2.m)) {
+
+                            spinner.setSelection(18);
+                        } else if (containsLocation(loc, anjou1.m)) {
+
+                            spinner.setSelection(2);
+                        } else if (containsLocation(loc, cdnndg1.m)) {
+
+                            spinner.setSelection(3);
+                        } else if (containsLocation(loc, iBSG1.m)) {
+
+                            spinner.setSelection(8);
+                        } else if (containsLocation(loc, lachine1.m)) {
+
+                            spinner.setSelection(4);
+                        } else if (containsLocation(loc, lasalle1.m)) {
+
+                            spinner.setSelection(5);
+                        } else if (containsLocation(loc, mtroyal1.m)) {
+
+                            spinner.setSelection(6);
+                        } else if (containsLocation(loc, sudouest1.m)) {
+
+                            spinner.setSelection(7);
+                        } else if (containsLocation(loc, mHM1.m)) {
+
+                            spinner.setSelection(9);
+                        } else if (containsLocation(loc, mn1.m)) {
+
+                            spinner.setSelection(10);
+                        } else if (containsLocation(loc, outrmt1.m)) {
+
+                            spinner.setSelection(11);
+                        } else if (containsLocation(loc, pR1.m) || containsLocation(loc, pr2.m) || containsLocation(loc, pr3.m) || containsLocation(loc, pr4.m) || containsLocation(loc, pr5.m) || containsLocation(loc, pr6.m) || containsLocation(loc, pr7.m) || containsLocation(loc, pr8.m)) {
+
+                            spinner.setSelection(12);
+                        } else if (containsLocation(loc, rdppat1.m)) {
+
+                            spinner.setSelection(13);
+                        } else if (containsLocation(loc, rlpp1.m)) {
+
+                            spinner.setSelection(14);
+                        } else if (containsLocation(loc, stlau1.m)) {
+
+                            spinner.setSelection(15);
+                        } else if (containsLocation(loc, stl1.m)) {
+
+                            spinner.setSelection(16);
+                        } else if (containsLocation(loc, verdun1.m) || containsLocation(loc, verdun2.m)) {
+
+                            spinner.setSelection(17);
+                        } else if (containsLocation(loc, villeraypx1.m)) {
+
+                            spinner.setSelection(19);
+                        } else
+                            Toast.makeText(getContext(), R.string.zoneNS, Toast.LENGTH_LONG).show();
+                    } else {
+                        Toast.makeText(getContext(), R.string.toastNoLoc, Toast.LENGTH_LONG).show();
+                    }
+                } else {
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                        requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, MY_PERMISSION_FINE_LOCATION);
+                    }
+                }
+
+
+
+
+
+
+
             }
         });
 

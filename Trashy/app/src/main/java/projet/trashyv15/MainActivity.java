@@ -1,28 +1,27 @@
 package projet.trashyv15;
 
 import android.app.Activity;
-import android.content.pm.PackageManager;
-import android.Manifest;
-import android.database.sqlite.SQLiteDatabase;
+import android.content.SharedPreferences;
 import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
-import android.view.MenuItem;
+import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.support.design.widget.NavigationView;
+import android.view.MenuItem;
 
 import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    SharedPreferences prefs = null;
 
 
     @Override
@@ -53,8 +52,22 @@ public class MainActivity extends AppCompatActivity
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        // Montre le menu1 lorsque l'activite est chargee
-        displaySelectedScreen(R.id.nav_home);
+        prefs = getSharedPreferences("projet.trashyv15", MODE_PRIVATE);
+
+        if (prefs.getBoolean("firstrun", true)) {
+            // Do first run stuff here then set 'firstrun' as false
+            displaySelectedScreen(R.id.nav_map);
+
+            // using the following line to edit/commit prefs
+            prefs.edit().putBoolean("firstrun", false).commit();
+        }
+
+        else{
+            // Montre le menu1 lorsque l'activite est chargee
+            displaySelectedScreen(R.id.nav_home);
+        }
+
+
 
         TrashyDBHelper dbHelper = App.getDBHelper();
 
