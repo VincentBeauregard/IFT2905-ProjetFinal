@@ -59,5 +59,9 @@
     </string>
 
     <string name="about" translatable="true">\n        Trashy is an app that will ease your life.\n        Do you constantly forget on which days you should take out your trash, recycling bags or compost? Trashy is here to help.\n        Connected to the city\'s schedules, Trashy will inform you, depending on your location , on which days you should take out your wastes.\n        \n        Are you willing to be even more eco-friendly? Let us tell you the closest eco-centers\n        where you can bring different types of waste (such as batteries, metal, old clothes) in order to reuse it, or simply throw it away carefully.\n\n        Plus, all of the information you need is carefully registered in your calendaer.  Have a look.</string>
+    <string name="confirm1" translatable="true">Do you want to use</string>
+    <string name="confirm2" translatable="true">as your neighbourhood?</string>
+    <string name="confirm">Confirmation</string>
+
 
 </resources>
