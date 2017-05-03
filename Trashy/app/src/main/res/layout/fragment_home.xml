@@ -50,7 +50,8 @@
                     android:layout_height="60dp"
                     android:layout_gravity="left"
                     android:layout_marginLeft="10dp"
-                    android:id="@+id/verre_cassee" />
+                    android:onClick="showToast"
+                    android:id="@+id/verre_cassee"/>
                 <Button
                     android:background="@drawable/tube_pate_dent"
                     android:layout_width="60dp"
