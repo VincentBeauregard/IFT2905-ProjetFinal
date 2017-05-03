@@ -9,6 +9,7 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -151,7 +152,6 @@ public class MainActivity extends AppCompatActivity
 
         // Creating fragment object
         Fragment fragment = null;
-        Activity sett = null;
 
         // Initializing the fragment object which is selected
         switch (itemId) {
@@ -179,7 +179,10 @@ public class MainActivity extends AppCompatActivity
         if (fragment != null) {
 
             FragmentManager fm = getSupportFragmentManager();
-            fm.beginTransaction().replace(R.id.content_frame, fragment).commit();
+            fm.beginTransaction().
+                    replace(R.id.content_frame, fragment).
+                    commit();
+            fm.executePendingTransactions();
 
         }
 

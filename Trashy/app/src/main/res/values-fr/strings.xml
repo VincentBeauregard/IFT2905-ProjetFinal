@@ -26,18 +26,15 @@
     <string name="zoneNS">Zone Non-Supportée/à l\'extérieur de Montréal</string>
     <string name="mnt">Maintenant!</string>
     <string name="heures" translatable="false">heures</string>
-    <string name="InfoEcoCentre">"        Avez-vous des objets desquels vous voulez vous débarasser sans nuire à l'enviornnement? \n        Montréal a 7 éco-centres qui acceptent des objets qui peuvent être nuisibles à la santé et dommageable à l'environnement tels des résidus de construction et de rénovation, du  métal, des objets électroniques, des vêtements et des objets réutilisables."</string>
-    <string name="toastNoLocSel">Vousn\'avez pas encore sélectionné d\'arrondissement</string>
+
+    <string name="InfoEcoCentre">Avez-vous des objets desquels vous voulez vous débarasser sans nuire à l\'enviornnement? Montréal a 7 éco-centres qui acceptent des objets qui peuvent être nuisibles à la santé et dommageable à l\'environnement tels des résidus de construction et de rénovation, du  métal, des objets électroniques, des vêtements et des objets réutilisables.</string>
+    <string name="toastNoLocSel">Vous n\'avez pas encore sélectionné d\'arrondissement</string>
     <string name="MapsText">Choisissez votre quartier afin qu\'on vous indique les jours de collectes. Sinon, laissez-nous détecter votre emplacement.</string>
-    <string name="about">"        Trashy est une app qui va faciliter votre vie.\n        Oubliez-vous constamment quelles journées il faut sortir les déchets, le recyclage ou même le compost? Trashy est là pour vous.\n        Connecté aux horaires de la ville, Trashy va vous informer, dépendemment de votre emplacement, à propos des journées durant lesquelles vous devriez sortir vos résidus.\n        \n        Voulez-vous vous impliquer écologiquement encore plus? Laissez-nous vous indiquez l'éco-centre le plus proche de chez vous, où vous pourriez amenez de divers types de résidus\n        (piles, métal, anciens vêtements) afin de réutiliser ces objets, ou tout simplement les réutiliser responsablement.\n        \n        De plus, toute l'information dont vous nécessitez est précieusment enregistrée dans votre calendirer. Aillez un coup d'oeuil."</string>
+    <string name="about">Trashy est une app qui va faciliter votre vie.\n\nOubliez-vous constamment quelles journées il faut sortir les déchets, le recyclage ou même le compost? Trashy est là pour vous. Connecté aux horaires de la ville, Trashy va vous informer, dépendemment de votre emplacement, à propos des journées durant lesquelles vous devriez sortir vos résidus.\n        \nVoulez-vous vous impliquer écologiquement encore plus? Laissez-nous vous indiquez l\'éco-centre le plus proche de chez vous, où vous pourriez amenez de divers types de résidus (piles, métal, anciens vêtements) afin de réutiliser ces objets, ou tout simplement les réutiliser responsablement.\n        \nDe plus, toute l\'information dont vous nécessitez est précieusment enregistrée dans votre calendirer. Jetez un coup d\'oeuil!</string>
     <string name="mapsText">Choisissez votre arrondissement afin que l\'horaire s\'y adapte.</string>
     <string name="confirm1">Voulez-vous utiliser</string>
     <string name="confirm2">comme arrondissement?</string>
-=======
-    
-    <!-- Objects -->
 
-    <!-- Poubelle -->
     <string name="obj_p_2">Verre cassé</string>
     <string name="obj_p_3">Tube de dentifrice</string>
     <string name="obj_p_4">Vaisselle</string>
@@ -50,7 +47,6 @@
     <string name="obj_p_11">Pellicule transparente</string>
     <string name="obj_p_12">Vitre/Mirroir</string>
 
-    <!-- Compost -->
     <string name="obj_c_1">Produits laitiers</string>
     <string name="obj_c_2">Fruits/légumes</string>
     <string name="obj_c_3">Fruits de mer/Coquillages</string>
@@ -60,7 +56,6 @@
     <string name="obj_c_7">Café/Thé</string>
     <string name="obj_c_8">Viande/Os</string>
 
-    <!-- Recyclage -->
     <string name="obj_r_1">Boite d\'oeufs</string>
     <string name="obj_r_2">Couvercles</string>
     <string name="obj_r_3">Journaux/revues</string>
@@ -74,7 +69,13 @@
     <string name="obj_r_11">Rouleau de carton</string>
     <string name="obj_r_12">Sac de papier</string>
     <string name="obj_r_13">Sac de plastique</string>
-
->>>>>>> Stashed changes
+    <string name="horaire_ete">Changement d\'horaire des éco-centres pour l\'horaire d\'été. Maintenant ouvert à tous les jours de 8h à 18h.</string>
+    <string name="horaire_hiver">Changement d\'horaire des éco-centres pour l\'horaire d\'hiver. Maintenant ouvert de mardi à samedi de 8h à 18h. Fermé dimanche et lundi.</string>
+    <string name="at">À</string>
+    <string name="collecte_dechets">Collecte des déchets.</string>
+    <string name="collecte_compost">Collecte du compost.</string>
+    <string name="collecte_recyclage">Collecte du compost.</string>
+    <string name="madeBy">Fait par \nVincent Beauregard, \nZakaria Bentoura, \nMarc-André Brochu, \nOlga Fadeitcheva, \nDereck McDuff.</string>
+    <string name="confirm">Confirmation</string>
 
 </resources>

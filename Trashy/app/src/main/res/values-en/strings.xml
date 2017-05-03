@@ -35,7 +35,6 @@
     <string name="confirm2">as your neighbourhood?</string>
 
 
-    <!-- Poubelle -->
     <string name="obj_p_2">Broken glass</string>
     <string name="obj_p_3">Toothpaste tube</string>
     <string name="obj_p_4">Dishes</string>
@@ -48,7 +47,6 @@
     <string name="obj_p_11">Cellophane</string>
     <string name="obj_p_12">Glass/Mirror</string>
 
-    <!-- Compost -->
     <string name="obj_c_1">Dairy product</string>
     <string name="obj_c_2">Fruits/Vegetables</string>
     <string name="obj_c_3">Seafood/Shells</string>
@@ -73,4 +71,12 @@
     <string name="obj_r_12">Paper bag</string>
     <string name="obj_r_13">Plastic bag</string>
     <string name="google_maps_key" translatable="false"></string>
+    <string name="horaire_ete">Ecocenters are changing their schedules for the summer. Now open everyday from 8AM to 6PM.</string>
+    <string name="horaire_hiver">Ecocenters are changing their schedules for the winter. Now open from Tuesday to Saturday from 8AM to 6PM. Closed on Sunday and Monday.</string>
+    <string name="at">At</string>
+    <string name="collecte_dechets">Garbage collection.</string>
+    <string name="collecte_compost">Compost collection.</string>
+    <string name="collecte_recyclage">Recycling collection.</string>
+    <string name="madeBy">Made by \nVincent Beauregard, \nZakaria Bentoura, \nMarc-André Brochu, \nOlga Fadeitcheva,\nDereck McDuff.</string>
+    <string name="confirm">Confirmation</string>
 </resources>
