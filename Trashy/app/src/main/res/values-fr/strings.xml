@@ -27,11 +27,10 @@
     <string name="mnt">Maintenant!</string>
     <string name="heures" translatable="false">heures</string>
     <string name="InfoEcoCentre">"        Avez-vous des objets desquels vous voulez vous débarasser sans nuire à l'enviornnement? \n        Montréal a 7 éco-centres qui acceptent des objets qui peuvent être nuisibles à la santé et dommageable à l'environnement tels des résidus de construction et de rénovation, du  métal, des objets électroniques, des vêtements et des objets réutilisables."</string>
-    <string name="toastNoLocSel">Vous n\'avez pas encore sélectionné d\'arrondissement</string>
+    <string name="toastNoLocSel">Vousn\'avez pas encore sélectionné d\'arrondissement</string>
     <string name="MapsText">Choisissez votre quartier afin qu\'on vous indique les jours de collectes. Sinon, laissez-nous détecter votre emplacement.</string>
     <string name="about">"        Trashy est une app qui va faciliter votre vie.\n        Oubliez-vous constamment quelles journées il faut sortir les déchets, le recyclage ou même le compost? Trashy est là pour vous.\n        Connecté aux horaires de la ville, Trashy va vous informer, dépendemment de votre emplacement, à propos des journées durant lesquelles vous devriez sortir vos résidus.\n        \n        Voulez-vous vous impliquer écologiquement encore plus? Laissez-nous vous indiquez l'éco-centre le plus proche de chez vous, où vous pourriez amenez de divers types de résidus\n        (piles, métal, anciens vêtements) afin de réutiliser ces objets, ou tout simplement les réutiliser responsablement.\n        \n        De plus, toute l'information dont vous nécessitez est précieusment enregistrée dans votre calendirer. Aillez un coup d'oeuil."</string>
     <string name="mapsText">Choisissez votre arrondissement afin que l\'horaire s\'y adapte.</string>
-<<<<<<< Updated upstream
     <string name="confirm1">Voulez-vous utiliser</string>
     <string name="confirm2">comme arrondissement?</string>
 =======

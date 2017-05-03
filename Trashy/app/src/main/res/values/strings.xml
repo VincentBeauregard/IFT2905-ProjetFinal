@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name" translatable="false">TrashyV1.5</string>
+    <string name="app_name">TrashyV1.5</string>
 
 
     <string name="navigation_drawer_open" translatable="false">Open navigation drawer</string>
@@ -59,10 +59,9 @@
     </string>
 
     <string name="about" translatable="true">\n        Trashy is an app that will ease your life.\n        Do you constantly forget on which days you should take out your trash, recycling bags or compost? Trashy is here to help.\n        Connected to the city\'s schedules, Trashy will inform you, depending on your location , on which days you should take out your wastes.\n        \n        Are you willing to be even more eco-friendly? Let us tell you the closest eco-centers\n        where you can bring different types of waste (such as batteries, metal, old clothes) in order to reuse it, or simply throw it away carefully.\n\n        Plus, all of the information you need is carefully registered in your calendaer.  Have a look.</string>
-<<<<<<< Updated upstream
     <string name="confirm1" translatable="true">Do you want to use</string>
     <string name="confirm2" translatable="true">as your neighbourhood?</string>
-    <string name="confirm">Confirmation</string>
+    <string name="confirm" translatable="false">Confirmation</string>
 
 =======
     <string name="obj_c_6">Fish bones/Fish</string>
@@ -97,6 +96,7 @@
     <string name="obj_r_7">Carton of milk/Carton of juice</string>
     <string name="obj_r_8">Aseptic container</string>
     <string name="obj_r_9">Recycling sign containing with either 1,2,3,4,5 or 7 inside</string>
->>>>>>> Stashed changes
+    <string name="MapsText">Choose your neighbourhood so that we can tell you the day of the collections. It is also possible to let us locate you.</string>
+    >>>>>>> Stashed changes
 
 </resources>
