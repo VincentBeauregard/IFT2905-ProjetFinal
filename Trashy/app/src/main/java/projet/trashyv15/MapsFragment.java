@@ -512,6 +512,8 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback {
 
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
+                if (position == 0) return;
+
                 TrashyDBHelper dbHelper = App.getDBHelper();
                 SQLiteDatabase db = dbHelper.getReadableDatabase();
                 String item = parent.getItemAtPosition(position).toString();
@@ -548,7 +550,7 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback {
 
                 if (position != 0) {
 
-                    Toast.makeText(getActivity(), item + R.string.toastLocSel, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), R.string.toastLocSel, Toast.LENGTH_SHORT).show();
                 }
                 else {
                     Toast.makeText(getActivity(), R.string.toastNoLoc, Toast.LENGTH_SHORT).show();
@@ -602,7 +604,7 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback {
         spinner.setAdapter(adapter);
 
         if (!"".equals(currentNeighbourhood)) {
-            int spinnerPosition = adapter.getPosition(currentNeighbourhood);
+            int spinnerPosition = adapter.getPosition(secteur_translate_inverse(currentNeighbourhood));
             spinner.setSelection(spinnerPosition);
         }
 
@@ -944,6 +946,30 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback {
         if (item.equals("Verdun")) return "verdun1";
         if (item.equals("Ville-Marie")) return "vm1";
         if (item.equals("Villeray–Saint-Michel–Parc-Extension")) return "vm2";
+        else return "";
+    }
+
+    public static String secteur_translate_inverse(String item) {
+        System.out.println("-"+item+"-");
+        if (item.equals("ahunCV1")) return "Ahunstic-Cartierville";
+        if (item.equals("anjou1")) return "Anjou";
+        if (item.equals("cdnndg1")) return "Côte-des-Neiges-Notre-Dame-de-Grâce";
+        if (item.equals("lachine1")) return "Lachine";
+        if (item.equals("lasalle1")) return "LaSalle";
+        if (item.equals("mtroyal1")) return "Plateau Mont-Royal";
+        if (item.equals("sudouest1")) return "Sud-Ouest";
+        if (item.equals("iBSG1")) return "Île-Bizard–Sainte-Geneviève";
+        if (item.equals("mHM1")) return "Mercier–Hochelaga-Maisonneuve";
+        if (item.equals("mn1")) return "Montréal-Nord";
+        if (item.equals("outrmt1")) return "Outremont";
+        if (item.equals("pR1")) return "Pierrefonds-Roxboro";
+        if (item.equals("rdppat1")) return "Rivière-des-Prairies–Pointe-aux-Trembles";
+        if (item.equals("rlpp1")) return "Rosemont–La Petite-Patrie";
+        if (item.equals("stlau1")) return "Saint-Laurent";
+        if (item.equals("stl1")) return "Saint-Léonard";
+        if (item.equals("verdun1")) return "Verdun";
+        if (item.equals("vm1")) return "Ville-Marie";
+        if (item.equals("vm2")) return "Villeray–Saint-Michel–Parc-Extension";
         else return "";
     }
 }

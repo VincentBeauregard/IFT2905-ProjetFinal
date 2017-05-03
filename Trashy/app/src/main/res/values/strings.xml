@@ -51,4 +51,9 @@
         <item>Never</item>
     </string-array>
 
+    <string name="InfoEcoCentre" translatable="true">
+        Do you have any items you want to get rid off without harming the environment? Montreal has 7 eco-centers that accept items that are a health hazard or harmful to the environment
+        such as construction waste, metal, electronic devices, clothing and reusable items.
+    </string>
+
 </resources>

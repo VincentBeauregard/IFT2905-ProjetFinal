@@ -33,11 +33,11 @@ public class HomeFragment extends Fragment {
 
         getActivity().setTitle(R.string.title_home);
         Button trashButton = (Button) getView().findViewById(R.id.timeTrash);
-        trashButton.setText(R.string.jours); /* si je mets "4" + R.id.timeTrash sa retourne des chiffres random */
+//        trashButton.setText(R.string.jours);
         Button recycleButton = (Button) getView().findViewById(R.id.timeRecyc);
-        recycleButton.setText(R.string.jour);
+//        recycleButton.setText(R.string.jour);
         Button compostButton = (Button) getView().findViewById(R.id.timeCompost);
-        compostButton.setText(R.string.demain);
+//        compostButton.setText(R.string.demain);
 
         char type = 'D';
         for(int i = 0;i<3;i++){
@@ -61,46 +61,47 @@ public class HomeFragment extends Fragment {
 
             int heureRamassage = day[1];
 
-            int[] tab = findNext(jourRamassage,heureRamassage);
-            if(i==0) {
-                if (tab[1] != -1) {
-                    if (tab[1] != 0)
-                        trashButton.setText(tab[1] + " Heures");
-                    else
-                        trashButton.setText(tab[0] + " Jours ");
+            int hoursLeft = getHowManyHoursLeft(jourRamassage, heureRamassage);
+            String hoursString = getResources().getString(R.string.heures);
+            String daysString = getResources().getString(R.string.jours);
 
-                } else trashButton.setText("Maintenant!");
+            switch (i) {
+                case 0:
+                    if (hoursLeft >= 24) trashButton.setText(String.valueOf(hoursLeft / 24) + " " + daysString);
+                    else if (hoursLeft > 0) trashButton.setText(String.valueOf(hoursLeft) + " " + hoursString);
+                    else trashButton.setText(R.string.mnt);
+                    break;
+
+                case 1:
+                    if (hoursLeft >= 24) recycleButton.setText(String.valueOf(hoursLeft / 24) + " " + daysString);
+                    else if (hoursLeft > 0) recycleButton.setText(String.valueOf(hoursLeft) + " " + hoursString);
+                    else recycleButton.setText(R.string.mnt);
+                    break;
+
+                case 2:
+                    if (hoursLeft >= 24) compostButton.setText(String.valueOf(hoursLeft / 24) + " " + daysString);
+                    else if (hoursLeft > 0) compostButton.setText(String.valueOf(hoursLeft) + " " + hoursString);
+                    else compostButton.setText(R.string.mnt);
+                    break;
             }
-            if(i==1) {
-                if (tab[1] != -1) {
-                    if (tab[1] != 0)
-                        recycleButton.setText(tab[1] + " Heures");
-                    else
-                        recycleButton.setText(tab[0] + " Jours ");
 
-                } else recycleButton.setText("Maintenant!");
-            }
-            if(i==2) {
-                if (tab[1] != -1) {
-                    if (tab[1] != 0)
-                        compostButton.setText(tab[1] + " Heures");
-                    else
-                        compostButton.setText(tab[0] + " Jours ");
-
-                } else compostButton.setText("Maintenant!");
-            }
-            //heure = 0 si plus de 23 heures, jours = 0 si moins de 24 heures
-
-        if(tab[1]!=-1){
-            Toast.makeText(getContext(), R.string.jours,Toast.LENGTH_LONG).show();
-        }
-        else Toast.makeText(getContext(),R.string.mnt,Toast.LENGTH_LONG).show();
-
-        //heure = 0 si plus de 23 heures, jours = 0 si moins de 24 heures
-
+            System.out.println(trashButton.getText());
         }
     }
 
+
+    public int getHowManyHoursLeft(int jourRamassage, int heureRamassage) {
+
+        Calendar cal = Calendar.getInstance();
+        cal.setFirstDayOfWeek(Calendar.SUNDAY);
+        int currentDay = cal.get(Calendar.DAY_OF_WEEK);
+
+        int distanceInDays = jourRamassage - currentDay;
+        while (distanceInDays < 0)
+            distanceInDays += 7;
+
+        return distanceInDays * 24 + heureRamassage;
+    }
 
     public int[] findNext(int jourRamassage, int heureRamassage){
         //recoit lheure et le jour du ramassage, retourne un tableau avec le nombre d'heures/jours restant
@@ -182,7 +183,6 @@ public class HomeFragment extends Fragment {
 
         return jhm;
     };
-
 
 
 }

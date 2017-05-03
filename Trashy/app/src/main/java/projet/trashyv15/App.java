@@ -34,48 +34,22 @@ public class App extends Application {
         int hourIn = Integer.parseInt(sHourin);
         int hourOut = Integer.parseInt(sHourout);
 
-        SQLiteDatabase db = mDBHelper.getReadableDatabase();
-        String selection = TrashyDBContract.TrashyDBTableSchedules.COLUMN_NAME_WEEKDAY  + " = ? AND " +
-                           TrashyDBContract.TrashyDBTableSchedules.COLUMN_NAME_CYCLE    + " = ? AND " +
-                           TrashyDBContract.TrashyDBTableSchedules.COLUMN_NAME_ONCE     + " = ? AND " +
-                           TrashyDBContract.TrashyDBTableSchedules.COLUMN_NAME_HOUR_IN  + " = ? AND " +
-                           TrashyDBContract.TrashyDBTableSchedules.COLUMN_NAME_HOUR_OUT + " = ? AND " +
-                           TrashyDBContract.TrashyDBTableSchedules.COLUMN_NAME_DATE_IN  + " = ? AND " +
-                           TrashyDBContract.TrashyDBTableSchedules.COLUMN_NAME_DATE_OUT + " = ? AND " +
-                           TrashyDBContract.TrashyDBTableSchedules.COLUMN_NAME_TYPE     + " = ?";
-        String[] selectionArgs = { sWeekday, sCycle, sOnce, sHourin, sHourout, sDatein, sDateout, type };
+        SQLiteDatabase db = mDBHelper.getWritableDatabase();
 
-        Cursor cursor = db.query(
-                TrashyDBContract.TrashyDBTableSchedules.TABLE_NAME,
-                null,
-                selection, selectionArgs,
-                null, null, null
-        );
+        ContentValues values = new ContentValues();
+        values.put(TrashyDBContract.TrashyDBTableSchedules.COLUMN_NAME_WEEKDAY, weekday);
+        values.put(TrashyDBContract.TrashyDBTableSchedules.COLUMN_NAME_CYCLE, cycle);
+        values.put(TrashyDBContract.TrashyDBTableSchedules.COLUMN_NAME_ONCE, once);
+        values.put(TrashyDBContract.TrashyDBTableSchedules.COLUMN_NAME_HOUR_IN, hourIn);
+        values.put(TrashyDBContract.TrashyDBTableSchedules.COLUMN_NAME_HOUR_OUT, hourOut);
+        values.put(TrashyDBContract.TrashyDBTableSchedules.COLUMN_NAME_DATE_IN, sDatein);
+        values.put(TrashyDBContract.TrashyDBTableSchedules.COLUMN_NAME_DATE_OUT, sDateout);
+        values.put(TrashyDBContract.TrashyDBTableSchedules.COLUMN_NAME_TYPE, type);
 
-        // If no rows match, then we must add it to the database. Else we just print but we could update.
-        long scheduleID = 0;
-        if (cursor.getCount() == 0) {
+        long id = db.insert(TrashyDBContract.TrashyDBTableSchedules.TABLE_NAME, null, values);
+        System.out.println("id=" + id + " type=" + type);
 
-            db = mDBHelper.getWritableDatabase();
-
-            ContentValues values = new ContentValues();
-            values.put(TrashyDBContract.TrashyDBTableSchedules.COLUMN_NAME_WEEKDAY, weekday);
-            values.put(TrashyDBContract.TrashyDBTableSchedules.COLUMN_NAME_CYCLE, cycle);
-            values.put(TrashyDBContract.TrashyDBTableSchedules.COLUMN_NAME_ONCE, once);
-            values.put(TrashyDBContract.TrashyDBTableSchedules.COLUMN_NAME_HOUR_IN, hourIn);
-            values.put(TrashyDBContract.TrashyDBTableSchedules.COLUMN_NAME_HOUR_OUT, hourOut);
-            values.put(TrashyDBContract.TrashyDBTableSchedules.COLUMN_NAME_DATE_IN, sDatein);
-            values.put(TrashyDBContract.TrashyDBTableSchedules.COLUMN_NAME_DATE_OUT, sDateout);
-            values.put(TrashyDBContract.TrashyDBTableSchedules.COLUMN_NAME_TYPE, type);
-
-            scheduleID = db.insert(TrashyDBContract.TrashyDBTableSchedules.TABLE_NAME, null, values);
-        }
-        else {
-            System.out.println("Row already exists");
-        }
-        cursor.close();
-
-        return scheduleID;
+        return id;
     }
 
     public static long databasePutNeighbourhood(String name, boolean isCurrent) {
@@ -103,16 +77,22 @@ public class App extends Application {
             values.put(TrashyDBContract.TrashyDBTableNeighbourhoods.COLUMN_NAME_IS_CURRENT, isCurrent);
 
             neighbourdhoodID = db.insert(TrashyDBContract.TrashyDBTableNeighbourhoods.TABLE_NAME, null, values);
+
+            System.out.println("Inserted neighbourhood '" + name + "'");
         }
         else {
-            System.out.println("Row already exists");
+
+            cursor.moveToNext();
+            neighbourdhoodID = cursor.getLong(cursor.getColumnIndexOrThrow(TrashyDBContract.TrashyDBTableNeighbourhoods._ID));
+
+            System.out.println("Row already exists, id is " + neighbourdhoodID);
         }
         cursor.close();
 
         return neighbourdhoodID;
     }
 
-    public static void databaseLinkNeighbourNamehoodAndSchedule(String neighbourhoodName, long scheduleID) {
+    public static void databaseLinkNeighbourhoodNameAndSchedule(String neighbourhoodName, long scheduleID) {
 
         // Get the corresponding neighbourhood
         SQLiteDatabase db = mDBHelper.getReadableDatabase();
