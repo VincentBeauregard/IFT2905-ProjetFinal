@@ -84,11 +84,8 @@ public class HomeFragment extends Fragment {
                     else compostButton.setText(R.string.mnt);
                     break;
             }
-
-            System.out.println(trashButton.getText());
         }
     }
-
 
     public int getHowManyHoursLeft(int jourRamassage, int heureRamassage) {
 
