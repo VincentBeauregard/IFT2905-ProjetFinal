@@ -23,7 +23,7 @@
     <string name="jours">days</string>
     <string name="noLoc">Impossible to localize you. Is your location on?</string>
     <string name="findEcoc">Find an eco-center nearby</string>
-    <string name="zoneNS">Zone outside of Montreal/not yet accessible</string>
+    <string name="zoneNS">Zone outside of Montreal/Not yet supported</string>
     <string name="mnt">Right now!</string>
     <string name="heures">hours</string>
     <string name="InfoEcoCentre">Do you have any items you want to get rid off without harming the environment? Montreal has 7 eco-centers that accept items that are a health hazard or harmful to the environment such as construction waste, metal, electronic devices, clothing and reusable items. "</string>
