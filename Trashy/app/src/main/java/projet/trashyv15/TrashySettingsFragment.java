@@ -3,7 +3,9 @@ package projet.trashyv15;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
+import android.content.ContentValues;
 import android.content.Context;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -88,6 +90,8 @@ public class TrashySettingsFragment extends Fragment{
                         if(isChecked){
                             Toast.makeText(getContext(),"Notifications on",Toast.LENGTH_LONG).show();
 
+                            SetNotification(1);
+                            System.out.println(App.databaseGetIsNotifActivated());
 //                          Il faut faire en sorte que une journee avant le ramassage il ya une notif qui indique c quoi qui va etre ramassee
 //                          Sa serait nice si les notifs soient on par defaut ( a l<installation de l'app
                             showNotif(v);
@@ -95,6 +99,8 @@ public class TrashySettingsFragment extends Fragment{
 
                         }else{
                             Toast.makeText(getContext(),"Notifications off",Toast.LENGTH_LONG).show();
+                            SetNotification(0);
+                            System.out.println(App.databaseGetIsNotifActivated());
                         }
                     }
                 });
@@ -146,6 +152,19 @@ public class TrashySettingsFragment extends Fragment{
 
         return distanceInDays * 24 + heureRamassage;
     }
+    public void SetNotification(int item){
+        TrashyDBHelper dbHelper = App.getDBHelper();
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
 
+        // Execute UPDATE 'neighbourhoods' SET iscurrent = 'FALSE'  WHERE iscurrent = 'TRUE';
+        ContentValues values = new ContentValues();
+        values.put(TrashyDBContract.TrashyDBTableNotification.COLUMN_NOTIF, item);
+
+        db.update(
+                TrashyDBContract.TrashyDBTableNotification.TABLE_NAME,
+                values, null, null
+        );
+
+    }
 
 }

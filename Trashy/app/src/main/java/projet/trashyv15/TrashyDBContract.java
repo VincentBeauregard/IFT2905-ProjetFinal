@@ -24,7 +24,8 @@ public final class TrashyDBContract {
             TrashyDBTableSchedules.CREATE_TABLE,
             TrashyDBTableNeighbourhoodHasSchedule.CREATE_TABLE,
             TrashyDBTableCalendarEvents.CREATE_TABLE,
-            TrashyDBTableEcocenters.CREATE_TABLE
+            TrashyDBTableEcocenters.CREATE_TABLE,
+            TrashyDBTableNotification.CREATE_TABLE
     };
 
     // An array list of all the SQL delete table statements
@@ -33,7 +34,8 @@ public final class TrashyDBContract {
             TrashyDBTableSchedules.DELETE_TABLE,
             TrashyDBTableNeighbourhoodHasSchedule.DELETE_TABLE,
             TrashyDBTableCalendarEvents.DELETE_TABLE,
-            TrashyDBTableEcocenters.DELETE_TABLE
+            TrashyDBTableEcocenters.DELETE_TABLE,
+            TrashyDBTableNotification.DELETE_TABLE
     };
 
     // The constructor is set private to prevent someone from accidentally instantiating the Contract.
@@ -64,6 +66,16 @@ public final class TrashyDBContract {
                 COLUMN_NAME_DATE_OUT + TYPE_DATE + "," +
                 COLUMN_NAME_TYPE + TYPE_LITTLESHIT + ")";
         public static final String DELETE_TABLE = "DROP TABLE IF EXISTS " + TABLE_NAME;
+    }
+    public static class TrashyDBTableNotification implements BaseColumns {
+        public static final String TABLE_NAME = "notification";
+        public static final String COLUMN_NOTIF = "notif";
+        public static final String CREATE_TABLE = "CREATE TABLE IF NOT EXISTS " +
+                TABLE_NAME + " (" +
+                _ID + " INTEGER PRIMARY KEY," +
+                COLUMN_NOTIF + TYPE_BOOL + " NOT NULL DEFAULT 0" + ")";
+        public static final String DELETE_TABLE = "DROP TABLE IF EXISTS " + TABLE_NAME;
+
     }
 
     public static class TrashyDBTableNeighbourhoods implements BaseColumns {

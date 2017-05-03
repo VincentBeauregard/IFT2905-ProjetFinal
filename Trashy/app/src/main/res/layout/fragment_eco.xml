@@ -17,6 +17,7 @@
         android:layout_gravity="center"
         android:textColor="@color/black"
         android:background="@color/beige"
+        android:shadowColor="@color/colorPrimaryDark"
         android:layout_marginBottom="15dp"
         android:textSize="14sp"
         />
