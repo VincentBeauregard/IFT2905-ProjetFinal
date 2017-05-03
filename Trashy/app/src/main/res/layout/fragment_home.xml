@@ -14,6 +14,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
+            android:id="@+id/main"
             android:weightSum="3">
 
             <LinearLayout
@@ -50,14 +51,14 @@
                     android:layout_height="60dp"
                     android:layout_gravity="left"
                     android:layout_marginLeft="10dp"
-                    android:onClick="showToast"
+                    
                     android:id="@+id/verre_cassee"/>
                 <Button
                     android:background="@drawable/tube_pate_dent"
                     android:layout_width="60dp"
                     android:layout_height="60dp"
                     android:layout_gravity="right"
-                    android:onClick="showToast"
+                    
                     android:layout_marginRight="10dp"
                     android:id="@+id/tube_pate_dent" />
 
@@ -66,7 +67,7 @@
                     android:layout_width="60dp"
                     android:layout_height="60dp"
                     android:layout_gravity="left"
-                    android:onClick="showToast"
+                    
                     android:layout_marginLeft="10dp"
                     android:id="@+id/bol_assiette" />
                 <Button
@@ -74,7 +75,7 @@
                     android:layout_width="60dp"
                     android:layout_height="60dp"
                     android:layout_gravity="right"
-                    android:onClick="showToast"
+                    
                     android:layout_marginRight="10dp"
                     android:id="@+id/pile" />
                 <Button
@@ -82,7 +83,7 @@
                     android:layout_width="60dp"
                     android:layout_height="60dp"
                     android:layout_gravity="left"
-                    android:onClick="showToast"
+                    
                     android:layout_marginLeft="10dp"
                     android:id="@+id/vis_clou" />
                 <Button
@@ -90,7 +91,7 @@
                     android:layout_width="60dp"
                     android:layout_height="60dp"
                     android:layout_gravity="right"
-                    android:onClick="showToast"
+                    
                     android:layout_marginRight="10dp"
                     android:id="@+id/pot_peinture" />
 
@@ -98,14 +99,14 @@
                     android:background="@drawable/couche"
                     android:layout_width="60dp"
                     android:layout_height="60dp"
-                    android:onClick="showToast"
+                    
                     android:layout_gravity="left"
                     android:layout_marginLeft="10dp"
                     android:id="@+id/couche" />
                 <Button
                     android:background="@drawable/casserole"
                     android:layout_width="60dp"
-                    android:onClick="showToast"
+                    
                     android:layout_height="60dp"
                     android:layout_gravity="right"
                     android:layout_marginRight="10dp"
@@ -114,7 +115,7 @@
                     android:background="@drawable/cartable"
                     android:layout_width="60dp"
                     android:layout_height="60dp"
-                    android:onClick="showToast"
+                    
                     android:layout_gravity="left"
                     android:layout_marginLeft="10dp"
                     android:id="@+id/cartable" />
@@ -123,7 +124,7 @@
                     android:layout_width="60dp"
                     android:layout_height="60dp"
                     android:layout_gravity="right"
-                    android:onClick="showToast"
+                    
                     android:layout_marginRight="10dp"
                     android:id="@+id/pellicule_plastique" />
                 <Button
@@ -131,7 +132,7 @@
                     android:layout_width="60dp"
                     android:layout_height="60dp"
                     android:layout_gravity="left"
-                    android:onClick="showToast"
+                    
                     android:layout_marginLeft="10dp"
                     android:id="@+id/mirroir_vitre" />
 
@@ -166,7 +167,7 @@
                     android:layout_width="60dp"
                     android:layout_height="60dp"
                     android:layout_gravity="left"
-                    android:onClick="showToast"
+                    
                     android:layout_marginLeft="10dp"
                     android:id="@+id/compost2" />
                 <Button
@@ -174,7 +175,7 @@
                     android:layout_width="60dp"
                     android:layout_height="60dp"
                     android:layout_gravity="right"
-                    android:onClick="showToast"
+                    
                     android:layout_marginRight="10dp"
                     android:id="@+id/compost3" />
 
@@ -184,7 +185,7 @@
                     android:layout_height="60dp"
                     android:layout_gravity="left"
                     android:layout_marginLeft="10dp"
-                    android:onClick="showToast"
+                    
                     android:id="@+id/compost4" />
 
                 <Button
@@ -192,7 +193,7 @@
                     android:layout_width="60dp"
                     android:layout_height="60dp"
                     android:layout_gravity="right"
-                    android:onClick="showToast"
+                    
                     android:layout_marginRight="10dp"
                     android:id="@+id/compost5" />
                 <Button
@@ -200,7 +201,7 @@
                     android:layout_width="60dp"
                     android:layout_height="60dp"
                     android:layout_gravity="left"
-                    android:onClick="showToast"
+                    
                     android:layout_marginLeft="10dp"
                     android:id="@+id/compost6" />
                 <Button
@@ -208,7 +209,7 @@
                     android:layout_width="60dp"
                     android:layout_height="60dp"
                     android:layout_gravity="right"
-                    android:onClick="showToast"
+                    
                     android:layout_marginRight="10dp"
                     android:id="@+id/compost7" />
                 <Button
@@ -216,7 +217,7 @@
                     android:layout_width="60dp"
                     android:layout_height="60dp"
                     android:layout_gravity="left"
-                    android:onClick="showToast"
+                    
                     android:layout_marginLeft="10dp"
                     android:id="@+id/compost8" />
                 <Button
@@ -224,7 +225,7 @@
                     android:layout_width="60dp"
                     android:layout_height="60dp"
                     android:layout_gravity="right"
-                    android:onClick="showToast"
+                    
                     android:layout_marginRight="10dp"
                     android:id="@+id/compost9" />
             </LinearLayout>
@@ -259,13 +260,13 @@
                     android:layout_width="60dp"
                     android:layout_height="60dp"
                     android:layout_gravity="left"
-                    android:onClick="showToast"
+                    
                     android:layout_marginLeft="10dp"
                     android:id="@+id/recycle2" />
                 <Button
                     android:background="@drawable/couvercles_bouchon"
                     android:layout_width="60dp"
-                    android:onClick="showToast"
+                    
                     android:layout_height="60dp"
                     android:layout_gravity="right"
                     android:layout_marginRight="10dp"
@@ -275,7 +276,7 @@
                     android:background="@drawable/journal_revue"
                     android:layout_width="60dp"
                     android:layout_height="60dp"
-                    android:onClick="showToast"
+                    
                     android:layout_gravity="left"
                     android:layout_marginLeft="10dp"
                     android:id="@+id/recycle4" />
@@ -285,14 +286,14 @@
                     android:layout_width="60dp"
                     android:layout_height="60dp"
                     android:layout_gravity="right"
-                    android:onClick="showToast"
+                    
                     android:layout_marginRight="10dp"
                     android:id="@+id/recycle5" />
                 <Button
                     android:background="@drawable/bouteille_vitre"
                     android:layout_width="60dp"
                     android:layout_height="60dp"
-                    android:onClick="showToast"
+                    
                     android:layout_gravity="left"
                     android:layout_marginLeft="10dp"
                     android:id="@+id/recycle6" />
@@ -301,7 +302,7 @@
                     android:layout_width="60dp"
                     android:layout_height="60dp"
                     android:layout_gravity="right"
-                    android:onClick="showToast"
+                    
                     android:layout_marginRight="10dp"
                     android:id="@+id/recycle7" />
 
@@ -311,14 +312,14 @@
                     android:layout_width="60dp"
                     android:layout_height="60dp"
                     android:layout_gravity="left"
-                    android:onClick="showToast"
+                    
                     android:layout_marginLeft="10dp"
                     android:id="@+id/recycle8" />
                 <Button
                     android:background="@drawable/contenant_asceptique"
                     android:layout_width="60dp"
                     android:layout_height="60dp"
-                    android:onClick="showToast"
+                    
                     android:layout_gravity="right"
                     android:layout_marginRight="10dp"
                     android:id="@+id/recycle9" />
@@ -327,14 +328,14 @@
                     android:layout_width="60dp"
                     android:layout_height="60dp"
                     android:layout_gravity="left"
-                    android:onClick="showToast"
+                    
                     android:layout_marginLeft="10dp"
                     android:id="@+id/recycle10" />
                 <Button
                     android:background="@drawable/papier_enveloppe"
                     android:layout_width="60dp"
                     android:layout_height="60dp"
-                    android:onClick="showToast"
+                    
                     android:layout_gravity="right"
                     android:layout_marginRight="10dp"
                     android:id="@+id/recycle11" />
@@ -342,7 +343,7 @@
                     android:background="@drawable/rouleau_carton"
                     android:layout_width="60dp"
                     android:layout_height="60dp"
-                    android:onClick="showToast"
+                    
                     android:layout_gravity="left"
                     android:layout_marginLeft="10dp"
                     android:id="@+id/recycle13" />
@@ -351,14 +352,14 @@
                     android:layout_width="60dp"
                     android:layout_height="60dp"
                     android:layout_gravity="right"
-                    android:onClick="showToast"
+                    
                     android:layout_marginRight="10dp"
                     android:id="@+id/recycle14" />
                 <Button
                     android:background="@drawable/sac_plastique"
                     android:layout_width="60dp"
                     android:layout_height="60dp"
-                    android:onClick="showToast"
+                    
                     android:layout_gravity="left"
                     android:layout_marginLeft="10dp"
                     android:id="@+id/recycle15" />

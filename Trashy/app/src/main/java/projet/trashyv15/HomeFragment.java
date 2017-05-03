@@ -12,9 +12,10 @@ import android.widget.Toast;
 import java.util.Calendar;
 
 
-public class HomeFragment extends Fragment {
+public class HomeFragment extends Fragment implements View.OnClickListener {
 
 
+    int[] buttons_ids;
 
     @Nullable
     @Override
@@ -23,10 +24,7 @@ public class HomeFragment extends Fragment {
         //change R.layout.yourlayoutfilename for each of your fragments
 
 
-
-
         return inflater.inflate(R.layout.fragment_home, container, false);
-
 
 
     }
@@ -95,6 +93,16 @@ public class HomeFragment extends Fragment {
                     break;
             }
         }
+
+        buttons_ids = new int[] { R.id.verre_cassee,R.id.tube_pate_dent,R.id.bol_assiette,R.id.pile,R.id.vis_clou,R.id.pot_peinture,R.id.couche,R.id.casserole,R.id.cartable,R.id.pellicule_plastique,R.id.mirroir_vitre,
+                R.id.compost2,R.id.compost3,R.id.compost4,R.id.compost5,R.id.compost6,R.id.compost7,R.id.compost8,R.id.compost9,
+                R.id.recycle2,R.id.recycle3,R.id.recycle4,R.id.recycle5,R.id.recycle6,R.id.recycle7,R.id.recycle8,R.id.recycle9,R.id.recycle10,R.id.recycle11,R.id.recycle13,R.id.recycle14,R.id.recycle15};
+
+
+        for (int butt : buttons_ids) {
+            view.findViewById(butt).setOnClickListener(this);
+        }
+
     }
 
     public int getHowManyHoursLeft(int jourRamassage, int heureRamassage) {
@@ -191,109 +199,113 @@ public class HomeFragment extends Fragment {
         return jhm;
     };
 
-
-    public void showToast(View v) {
+    @Override
+    public void onClick(View v) {
         switch (v.getId()) {
             case R.id.verre_cassee:
-                Toast.makeText(getContext(), getContext().getResources().getString(R.string.obj_p_2), Toast.LENGTH_LONG).show();
+                Toast.makeText(getContext(), getContext().getResources().getString(R.string.obj_p_2), Toast.LENGTH_SHORT).show();
                 break;
             case R.id.tube_pate_dent:
-                Toast.makeText(getContext(), R.string.obj_p_3, Toast.LENGTH_LONG).show();
+                Toast.makeText(getContext(), R.string.obj_p_3, Toast.LENGTH_SHORT).show();
                 break;
             case R.id.bol_assiette:
-                Toast.makeText(getContext(), R.string.obj_p_4, Toast.LENGTH_LONG).show();
+                Toast.makeText(getContext(), R.string.obj_p_4, Toast.LENGTH_SHORT).show();
                 break;
             case R.id.pile:
-                Toast.makeText(getContext(), R.string.obj_p_5, Toast.LENGTH_LONG).show();
+                Toast.makeText(getContext(), R.string.obj_p_5, Toast.LENGTH_SHORT).show();
                 break;
             case R.id.vis_clou:
-                Toast.makeText(getContext(), R.string.obj_p_6, Toast.LENGTH_LONG).show();
+                Toast.makeText(getContext(), R.string.obj_p_6, Toast.LENGTH_SHORT).show();
                 break;
             case R.id.pot_peinture:
-                Toast.makeText(getContext(), R.string.obj_p_7, Toast.LENGTH_LONG).show();
+                Toast.makeText(getContext(), R.string.obj_p_7, Toast.LENGTH_SHORT).show();
                 break;
             case R.id.couche:
-                Toast.makeText(getContext(), R.string.obj_p_8, Toast.LENGTH_LONG).show();
+                Toast.makeText(getContext(), R.string.obj_p_8, Toast.LENGTH_SHORT).show();
                 break;
             case R.id.casserole:
-                Toast.makeText(getContext(), R.string.obj_p_9, Toast.LENGTH_LONG).show();
+                Toast.makeText(getContext(), R.string.obj_p_9, Toast.LENGTH_SHORT).show();
                 break;
             case R.id.cartable:
-                Toast.makeText(getContext(), R.string.obj_p_10, Toast.LENGTH_LONG).show();
+                Toast.makeText(getContext(), R.string.obj_p_10, Toast.LENGTH_SHORT).show();
                 break;
             case R.id.pellicule_plastique:
-                Toast.makeText(getContext(), R.string.obj_p_11, Toast.LENGTH_LONG).show();
+                Toast.makeText(getContext(), R.string.obj_p_11, Toast.LENGTH_SHORT).show();
                 break;
             case R.id.mirroir_vitre:
-                Toast.makeText(getContext(), R.string.obj_p_12, Toast.LENGTH_LONG).show();
+                Toast.makeText(getContext(), R.string.obj_p_12, Toast.LENGTH_SHORT).show();
                 break;
             // ---------------------------------------------
             case R.id.compost2:
-                Toast.makeText(getContext(), R.string.obj_c_1, Toast.LENGTH_LONG).show();
+                Toast.makeText(getContext(), R.string.obj_c_1, Toast.LENGTH_SHORT).show();
                 break;
             case R.id.compost3:
-                Toast.makeText(getContext(), R.string.obj_c_2, Toast.LENGTH_LONG).show();
+                Toast.makeText(getContext(), R.string.obj_c_2, Toast.LENGTH_SHORT).show();
                 break;
             case R.id.compost4:
-                Toast.makeText(getContext(), R.string.obj_c_3, Toast.LENGTH_LONG).show();
+                Toast.makeText(getContext(), R.string.obj_c_3, Toast.LENGTH_SHORT).show();
                 break;
             case R.id.compost5:
-                Toast.makeText(getContext(), R.string.obj_c_4, Toast.LENGTH_LONG).show();
+                Toast.makeText(getContext(), R.string.obj_c_4, Toast.LENGTH_SHORT).show();
                 break;
             case R.id.compost6:
-                Toast.makeText(getContext(), R.string.obj_c_5, Toast.LENGTH_LONG).show();
+                Toast.makeText(getContext(), R.string.obj_c_5, Toast.LENGTH_SHORT).show();
                 break;
             case R.id.compost7:
-                Toast.makeText(getContext(), R.string.obj_c_6, Toast.LENGTH_LONG).show();
+                Toast.makeText(getContext(), R.string.obj_c_6, Toast.LENGTH_SHORT).show();
                 break;
             case R.id.compost8:
-                Toast.makeText(getContext(), R.string.obj_c_7, Toast.LENGTH_LONG).show();
+                Toast.makeText(getContext(), R.string.obj_c_7, Toast.LENGTH_SHORT).show();
                 break;
             case R.id.compost9:
-                Toast.makeText(getContext(), R.string.obj_c_8, Toast.LENGTH_LONG).show();
+                Toast.makeText(getContext(), R.string.obj_c_8, Toast.LENGTH_SHORT).show();
                 break;
             // ---------------------------------------------
             case R.id.recycle2:
-                Toast.makeText(getContext(), R.string.obj_r_1, Toast.LENGTH_LONG).show();
+                Toast.makeText(getContext(), R.string.obj_r_1, Toast.LENGTH_SHORT).show();
                 break;
             case R.id.recycle3:
-                Toast.makeText(getContext(), R.string.obj_r_2, Toast.LENGTH_LONG).show();
+                Toast.makeText(getContext(), R.string.obj_r_2, Toast.LENGTH_SHORT).show();
                 break;
             case R.id.recycle4:
-                Toast.makeText(getContext(), R.string.obj_r_3, Toast.LENGTH_LONG).show();
+                Toast.makeText(getContext(), R.string.obj_r_3, Toast.LENGTH_SHORT).show();
                 break;
             case R.id.recycle5:
-                Toast.makeText(getContext(), R.string.obj_r_4, Toast.LENGTH_LONG).show();
+                Toast.makeText(getContext(), R.string.obj_r_4, Toast.LENGTH_SHORT).show();
                 break;
             case R.id.recycle6:
-                Toast.makeText(getContext(), R.string.obj_r_5, Toast.LENGTH_LONG).show();
+                Toast.makeText(getContext(), R.string.obj_r_5, Toast.LENGTH_SHORT).show();
                 break;
             case R.id.recycle7:
-                Toast.makeText(getContext(), R.string.obj_r_6, Toast.LENGTH_LONG).show();
+                Toast.makeText(getContext(), R.string.obj_r_6, Toast.LENGTH_SHORT).show();
                 break;
             case R.id.recycle8:
-                Toast.makeText(getContext(), R.string.obj_r_7, Toast.LENGTH_LONG).show();
+                Toast.makeText(getContext(), R.string.obj_r_7, Toast.LENGTH_SHORT).show();
                 break;
             case R.id.recycle9:
-                Toast.makeText(getContext(), R.string.obj_r_8, Toast.LENGTH_LONG).show();
+                Toast.makeText(getContext(), R.string.obj_r_8, Toast.LENGTH_SHORT).show();
                 break;
             case R.id.recycle10:
-                Toast.makeText(getContext(), R.string.obj_r_9, Toast.LENGTH_LONG).show();
+                Toast.makeText(getContext(), R.string.obj_r_9, Toast.LENGTH_SHORT).show();
                 break;
             case R.id.recycle11:
-                Toast.makeText(getContext(), R.string.obj_r_10, Toast.LENGTH_LONG).show();
+                Toast.makeText(getContext(), R.string.obj_r_10, Toast.LENGTH_SHORT).show();
                 break;
             case R.id.recycle13:
-                Toast.makeText(getContext(), R.string.obj_r_11, Toast.LENGTH_LONG).show();
+                Toast.makeText(getContext(), R.string.obj_r_11, Toast.LENGTH_SHORT).show();
                 break;
             case R.id.recycle14:
-                Toast.makeText(getContext(), R.string.obj_r_12, Toast.LENGTH_LONG).show();
+                Toast.makeText(getContext(), R.string.obj_r_12, Toast.LENGTH_SHORT).show();
                 break;
             case R.id.recycle15:
-                Toast.makeText(getContext(), R.string.obj_r_13, Toast.LENGTH_LONG).show();
+                Toast.makeText(getContext(), R.string.obj_r_13, Toast.LENGTH_SHORT).show();
+                break;
+            default:
+                Toast.makeText(getContext(), "none", Toast.LENGTH_SHORT).show();
                 break;
         }
     }
+
 
 
 }

@@ -15,6 +15,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import java.util.Locale;
 
@@ -186,6 +187,11 @@ public class MainActivity extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
     }
 
+    public void showToast(){
+
+        Toast.makeText(this, "rewrggrrg", Toast.LENGTH_SHORT).show();
+
+    }
 
 
 }
