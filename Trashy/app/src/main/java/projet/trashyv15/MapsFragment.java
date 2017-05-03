@@ -806,46 +806,82 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback {
             public void onPolygonClick(Polygon polygon) {
 
 
-                if (polygon.equals(polygonahunCV))
+                if (polygon.equals(polygonahunCV)) {
                     Toast.makeText(getContext(), "Ahunstic-CartierVille", Toast.LENGTH_SHORT).show();
-                else if (polygon.equals(polygonanjou))
+                    spinner.setSelection(1);
+                }
+                else if (polygon.equals(polygonanjou)) {
                     Toast.makeText(getContext(), "Anjou", Toast.LENGTH_SHORT).show();
-                else if (polygon.equals(polygoncdnndg))
+                    spinner.setSelection(2);
+                }
+                else if (polygon.equals(polygoncdnndg)) {
                     Toast.makeText(getContext(), "Côte-des-Neiges–Notre-Dame-de-Grâce", Toast.LENGTH_SHORT).show();
-                else if (polygon.equals(polygoniBSG))
+                    spinner.setSelection(3);
+                }
+                else if (polygon.equals(polygoniBSG)) {
                     Toast.makeText(getContext(), "Île-Bizard–Sainte-Geneviève", Toast.LENGTH_SHORT).show();
-                else if (polygon.equals(polygonlachine))
+                    spinner.setSelection(8);
+                }
+                else if (polygon.equals(polygonlachine)) {
                     Toast.makeText(getContext(), "Lachine", Toast.LENGTH_SHORT).show();
-                else if (polygon.equals(polygonlasalle))
+                    spinner.setSelection(4);
+                }
+                else if (polygon.equals(polygonlasalle)) {
                     Toast.makeText(getContext(), "LaSalle", Toast.LENGTH_SHORT).show();
-                else if (polygon.equals(polygonmHM))
+                    spinner.setSelection(5);
+                }
+                else if (polygon.equals(polygonmHM)) {
                     Toast.makeText(getContext(), "Mercier–Hochelaga-Maisonneuve", Toast.LENGTH_SHORT).show();
-                else if (polygon.equals(polygonmn))
+                    spinner.setSelection(9);
+                }
+                else if (polygon.equals(polygonmn)) {
                     Toast.makeText(getContext(), "Montréal-Nord", Toast.LENGTH_SHORT).show();
-                else if (polygon.equals(polygonmtroyal))
+                    spinner.setSelection(10);
+                }
+                else if (polygon.equals(polygonmtroyal)) {
                     Toast.makeText(getContext(), "Plateau-Mont-Royal", Toast.LENGTH_SHORT).show();
-                else if (polygon.equals(polygonoutrmt))
+                    spinner.setSelection(6);
+                }
+                else if (polygon.equals(polygonoutrmt)) {
                     Toast.makeText(getContext(), "Outremont", Toast.LENGTH_SHORT).show();
-                else if (polygon.equals(polygonpR) || polygon.equals(polygonpR2) || polygon.equals(polygonpR3) || polygon.equals(polygonpR4) || polygon.equals(polygonpR5) || polygon.equals(polygonpR6) || polygon.equals(polygonpR7) || polygon.equals(polygonpR8))
+                    spinner.setSelection(11);
+                }
+                else if (polygon.equals(polygonpR) || polygon.equals(polygonpR2) || polygon.equals(polygonpR3) || polygon.equals(polygonpR4) || polygon.equals(polygonpR5) || polygon.equals(polygonpR6) || polygon.equals(polygonpR7) || polygon.equals(polygonpR8)) {
                     Toast.makeText(getContext(), "Pierrefonds-Roxboro", Toast.LENGTH_SHORT).show();
-                else if (polygon.equals(polygonrdppat))
+                    spinner.setSelection(12);
+                }
+                else if (polygon.equals(polygonrdppat)) {
                     Toast.makeText(getContext(), "Rivière-des-Prairies–Pointe-aux-Trembles", Toast.LENGTH_SHORT).show();
-                else if (polygon.equals(polygonrlpp))
+                    spinner.setSelection(13);
+                }
+                else if (polygon.equals(polygonrlpp)) {
                     Toast.makeText(getContext(), "Rosemont–La Petite-Patrie", Toast.LENGTH_SHORT).show();
-                else if (polygon.equals(polygonstl))
+                    spinner.setSelection(14);
+                }
+                else if (polygon.equals(polygonstl)) {
                     Toast.makeText(getContext(), "Saint-Léonard", Toast.LENGTH_SHORT).show();
-                else if (polygon.equals(polygonstlau))
+                    spinner.setSelection(16);
+                }
+                else if (polygon.equals(polygonstlau)) {
                     Toast.makeText(getContext(), "Saint-Laurent", Toast.LENGTH_SHORT).show();
-                else if (polygon.equals(polygonsudouest))
+                    spinner.setSelection(15);
+                }
+                else if (polygon.equals(polygonsudouest)) {
                     Toast.makeText(getContext(), "Sud-Ouest", Toast.LENGTH_SHORT).show();
-                else if (polygon.equals(polygonverdun1) || polygon.equals(polygonverdun2))
+                    spinner.setSelection(7);
+                }
+                else if (polygon.equals(polygonverdun1) || polygon.equals(polygonverdun2)) {
                     Toast.makeText(getContext(), "Verdun", Toast.LENGTH_SHORT).show();
-                else if (polygon.equals(polygonvilleraypx))
+                    spinner.setSelection(17);
+                }
+                else if (polygon.equals(polygonvilleraypx)) {
                     Toast.makeText(getContext(), "Villeray–Saint-Michel–Parc-Extension", Toast.LENGTH_SHORT).show();
-                else if (polygon.equals(polygonvm1) || polygon.equals(polygonvm2))
+                    spinner.setSelection(19);
+                }
+                else if (polygon.equals(polygonvm1) || polygon.equals(polygonvm2)) {
                     Toast.makeText(getContext(), "Ville-Marie", Toast.LENGTH_SHORT).show();
-
-
+                    spinner.setSelection(18);
+                }
             }
         });
 
