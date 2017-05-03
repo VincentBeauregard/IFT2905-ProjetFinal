@@ -13,6 +13,7 @@ public class MainTxtReduct
 {
     public static String redux()
     {
+        App.databasePutNotification(0);
         String polygone="";
         int id=0;
 

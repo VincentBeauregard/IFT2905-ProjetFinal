@@ -18,7 +18,44 @@ public class App extends Application {
     public static TrashyDBHelper getDBHelper() {
         return mDBHelper;
     }
+    public static void databasePutNotification(int notif) {
 
+        SQLiteDatabase db = mDBHelper.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(TrashyDBContract.TrashyDBTableNotification.COLUMN_NOTIF, notif);
+
+        db.insert(TrashyDBContract.TrashyDBTableNotification.TABLE_NAME, null, values);
+
+    }
+    public static boolean databaseGetIsNotifActivated() {
+
+        SQLiteDatabase db = mDBHelper.getReadableDatabase();
+        String[] projection = {
+                TrashyDBContract.TrashyDBTableNotification.COLUMN_NOTIF
+        };
+        String selection = TrashyDBContract.TrashyDBTableNotification.COLUMN_NOTIF + " = ?";
+        String[] selectionArgs = { "1" };
+
+        Cursor cursor = db.query(
+                TrashyDBContract.TrashyDBTableNotification.TABLE_NAME,
+                projection, selection, selectionArgs,
+                null, null, null
+        );
+
+        if (cursor.getCount() == 0) {
+            System.out.println("Notif not activated");
+
+            cursor.close();
+            return false;
+        }
+        else {
+
+        }
+        cursor.close();
+
+        return true;
+    }
     public static long databasePutSchedule(String sWeekday,
                                            String sCycle,
                                            String sOnce,
