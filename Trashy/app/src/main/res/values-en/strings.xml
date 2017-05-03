@@ -17,13 +17,13 @@
     <string name="trash">Garbage</string>
     <string name="toastLoc">Allow localization to determine your neighbourhood automatically</string>
     <string name="toastLocSel">was selected as your neighbourhood</string>
-    <string name="toastNoLoc">No neighbourhood was selected yet</string>
+    <string name="toastNoLoc">Cannot obtain your GPS coordinates. Did you enable Localisation on your phone?</string>
     <string name="demain">Tomorrow</string>
     <string name="jour">day</string>
     <string name="jours">days</string>
     <string name="noLoc">Impossible to localize you. Is your location on?</string>
     <string name="findEcoc">Find an eco-center nearby</string>
-    <string name="zoneNS">Zone outside of Montreal not yet accessible</string>
+    <string name="zoneNS">Zone outside of Montreal/not yet accessible</string>
     <string name="mnt">Right now!</string>
     <string name="heures">hours</string>
     <string name="InfoEcoCentre">Do you have any items you want to get rid off without harming the environment? Montreal has 7 eco-centers that accept items that are a health hazard or harmful to the environment such as construction waste, metal, electronic devices, clothing and reusable items. "</string>
