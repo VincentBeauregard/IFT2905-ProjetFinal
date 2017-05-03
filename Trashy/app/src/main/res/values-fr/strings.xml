@@ -26,6 +26,7 @@
     <string name="zoneNS">Zone Non-Supportée/à l\'extérieur de Montréal</string>
     <string name="mnt">Maintenant!</string>
     <string name="heures" translatable="false">heures</string>
+
     <string name="InfoEcoCentre">Avez-vous des objets desquels vous voulez vous débarasser sans nuire à l\'enviornnement? Montréal a 7 éco-centres qui acceptent des objets qui peuvent être nuisibles à la santé et dommageable à l\'environnement tels des résidus de construction et de rénovation, du  métal, des objets électroniques, des vêtements et des objets réutilisables.</string>
     <string name="toastNoLocSel">Vous n\'avez pas encore sélectionné d\'arrondissement</string>
     <string name="MapsText">Choisissez votre quartier afin qu\'on vous indique les jours de collectes. Sinon, laissez-nous détecter votre emplacement.</string>
