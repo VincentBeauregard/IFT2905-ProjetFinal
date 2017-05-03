@@ -134,8 +134,8 @@ public class MainActivity extends AppCompatActivity
             }
             else {
                 System.out.println("Filling database...");
-                MainTxtReduct.redux();}ex
-
+                MainTxtReduct.redux();
+            }
         }
     }
     @Override
