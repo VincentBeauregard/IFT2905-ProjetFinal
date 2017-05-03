@@ -1,28 +1,27 @@
 package projet.trashyv15;
 
 import android.app.Activity;
-import android.content.pm.PackageManager;
-import android.Manifest;
-import android.database.sqlite.SQLiteDatabase;
+import android.content.SharedPreferences;
 import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
-import android.view.MenuItem;
+import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.support.design.widget.NavigationView;
+import android.view.MenuItem;
 
 import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    SharedPreferences prefs = null;
 
 
     @Override
@@ -53,8 +52,22 @@ public class MainActivity extends AppCompatActivity
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        // Montre le menu1 lorsque l'activite est chargee
-        displaySelectedScreen(R.id.nav_home);
+        prefs = getSharedPreferences("projet.trashyv15", MODE_PRIVATE);
+
+        if (prefs.getBoolean("firstrun", true)) {
+            // Do first run stuff here then set 'firstrun' as false
+            displaySelectedScreen(R.id.nav_map);
+
+            // using the following line to edit/commit prefs
+            prefs.edit().putBoolean("firstrun", false).commit();
+        }
+
+        else{
+            // Montre le menu1 lorsque l'activite est chargee
+            displaySelectedScreen(R.id.nav_home);
+        }
+
+
 
         TrashyDBHelper dbHelper = App.getDBHelper();
 
@@ -105,66 +118,10 @@ public class MainActivity extends AppCompatActivity
         }
 
         if (emptyDatabase) {
-            String WRITE_EXTERNAL_STORAGE ="android.permission.WRITE_EXTERNAL_STORAGE";
-            // Here, thisActivity is the current activity
-            if (ContextCompat.checkSelfPermission(this,
-                    Manifest.permission.WRITE_EXTERNAL_STORAGE)
-                    != PackageManager.PERMISSION_GRANTED) {
 
-                // Should we show an explanation? "android.permission.READ_EXTERNAL_STORAGE"
-                if (ActivityCompat.shouldShowRequestPermissionRationale(this,
-                        Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
-
-                    // Show an explanation to the user *asynchronously* -- don't block
-                    // this thread waiting for the user's response! After the user
-                    // sees the explanation, try again to request the permission.
-
-                } else {
-
-                    // No explanation needed, we can request the permission.
-
-                    ActivityCompat.requestPermissions(this,
-                            new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
-                            0);
-
-                    // MY_PERMISSIONS_REQUEST_READ_CONTACTS is an
-                    // app-defined int constant. The callback method gets the
-                    // result of the request.
-                }
-            }
-            else {
-                System.out.println("Filling database...");
-                MainTxtReduct.redux();
-            }
+            System.out.println("Filling database...");
+            MainTxtReduct.redux();
         }
-    }
-    @Override
-    public void onRequestPermissionsResult(int requestCode,
-                                           String permissions[], int[] grantResults) {
-        switch (requestCode) {
-            case 0: {
-                // If request is cancelled, the result arrays are empty.
-                if (grantResults.length > 0
-                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-
-                    // permission was granted, yay! Do the
-                    // contacts-related task you need to do.
-                    System.out.println("Filling database...");
-                    MainTxtReduct.redux();
-
-                } else {
-
-                    // permission denied, boo! Disable the
-                    // functionality that depends on this permission.
-                }
-                return;
-            }
-
-            // other 'case' lines to check for other
-            // permissions this app might request
-        }
-
-
     }
 
     @Override
@@ -213,7 +170,7 @@ public class MainActivity extends AppCompatActivity
                 fragment = new EcoFragment();
                 break;
             case R.id.nav_about:
-                //fragment = new AboutFragment();
+                fragment = new AboutFragment();
                 break;
         }
 

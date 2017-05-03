@@ -20,7 +20,7 @@ public class AnalyseLine {
 	public static void analyseLine(String[] line,int id) {
 		System.out.println(line[0]);
 
-		App.databasePutSchedule(line[7],
+		long sida = App.databasePutSchedule(line[7],
 				"1",
 				"2",
 				line[4].substring(0,2),
@@ -28,8 +28,8 @@ public class AnalyseLine {
 				line[2],
 				line[3],
 				line[1]);
-		App.databasePutNeighbourhood(line[8],false);
-		App.databaseLinkNeighbourNamehoodAndSchedule(line[8],Integer.parseInt(line[0]));
+		long hiv = App.databasePutNeighbourhood(line[8],false);
+		App.databaseLinkNeighbourhoodAndSchedule(hiv, sida);
 	}
 
 
@@ -225,7 +225,7 @@ public class AnalyseLine {
 	}
 
 	@SuppressWarnings("unused")
-	public static void downloadFileFromURL( String _url, File _name) {
+	public static void downloadFileFromURL( String _url, File _file) {
 
 		try {
 			URL u = new URL(_url);
@@ -236,7 +236,7 @@ public class AnalyseLine {
 			byte[] buffer = new byte[1024];
 			int length;
 
-			FileOutputStream fos = new FileOutputStream(new File(Environment.getExternalStorageDirectory() + "/" + _name));
+			FileOutputStream fos = new FileOutputStream(_file);
 			while ((length = dis.read(buffer)) > 0) {
 				System.out.println();
 				fos.write(buffer, 0, length);

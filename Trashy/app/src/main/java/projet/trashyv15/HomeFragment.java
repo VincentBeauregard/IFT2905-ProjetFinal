@@ -7,18 +7,23 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.Toast;
 
 import java.util.Calendar;
 
 
 public class HomeFragment extends Fragment {
 
+
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         //returning our layout file
         //change R.layout.yourlayoutfilename for each of your fragments
+
+
+
+
         return inflater.inflate(R.layout.fragment_home, container, false);
 
 
@@ -33,11 +38,11 @@ public class HomeFragment extends Fragment {
 
         getActivity().setTitle(R.string.title_home);
         Button trashButton = (Button) getView().findViewById(R.id.timeTrash);
-        trashButton.setText(R.string.jours); /* si je mets "4" + R.id.timeTrash sa retourne des chiffres random */
+//        trashButton.setText(R.string.jours);
         Button recycleButton = (Button) getView().findViewById(R.id.timeRecyc);
-        recycleButton.setText(R.string.jour);
+//        recycleButton.setText(R.string.jour);
         Button compostButton = (Button) getView().findViewById(R.id.timeCompost);
-        compostButton.setText(R.string.demain);
+//        compostButton.setText(R.string.demain);
 
         char type = 'D';
         for(int i = 0;i<3;i++){
@@ -61,41 +66,48 @@ public class HomeFragment extends Fragment {
 
             int heureRamassage = day[1];
 
-            int[] tab = findNext(jourRamassage,heureRamassage);
-            System.out.println(tab[0]+" "+tab[1]);
-            if(i==0) {
-                if (tab[1] != -1) {
-                    if (tab[1] != 0)
-                        trashButton.setText(tab[1] + " Heures");
-                    else
-                        trashButton.setText(tab[0] + " Jours ");
+            int hoursLeft = getHowManyHoursLeft(jourRamassage, heureRamassage);
+            String hoursString = getResources().getString(R.string.heures);
+            String dayString = getResources().getString(R.string.jour);
+            String daysString = getResources().getString(R.string.jours);
 
-                } else trashButton.setText("Maintenant!");
+            switch (i) {
+                case 0:
+                    if (hoursLeft >= 48) trashButton.setText(String.valueOf(hoursLeft / 24) + " " + daysString);
+                    else if (hoursLeft >=24) trashButton.setText(String.valueOf(hoursLeft / 24) + " " + dayString);
+                    else if (hoursLeft > 0) trashButton.setText(String.valueOf(hoursLeft) + " " + hoursString);
+                    else trashButton.setText(R.string.mnt);
+                    break;
+
+                case 1:
+                    if (hoursLeft >= 48) recycleButton.setText(String.valueOf(hoursLeft / 24) + " " + daysString);
+                    else if (hoursLeft >=24) recycleButton.setText(String.valueOf(hoursLeft / 24) + " " + dayString);
+                    else if (hoursLeft > 0) recycleButton.setText(String.valueOf(hoursLeft) + " " + hoursString);
+                    else recycleButton.setText(R.string.mnt);
+                    break;
+
+                case 2:
+                    if (hoursLeft >= 48) compostButton.setText(String.valueOf(hoursLeft / 24) + " " + daysString);
+                    else if (hoursLeft >= 24) compostButton.setText(String.valueOf(hoursLeft / 24) + " " + dayString);
+                    else if (hoursLeft > 0) compostButton.setText(String.valueOf(hoursLeft) + " " + hoursString);
+                    else compostButton.setText(R.string.mnt);
+                    break;
             }
-            if(i==1) {
-                if (tab[1] != -1) {
-                    if (tab[1] != 0)
-                        recycleButton.setText(tab[1] + " Heures");
-                    else
-                        recycleButton.setText(tab[0] + " Jours ");
-
-                } else recycleButton.setText("Maintenant!");
-            }
-            if(i==2) {
-                if (tab[1] != -1) {
-                    if (tab[1] != 0)
-                        compostButton.setText(tab[1] + " Heures");
-                    else
-                        compostButton.setText(tab[0] + " Jours ");
-
-                } else compostButton.setText("Maintenant!");
-            }
-            //heure = 0 si plus de 23 heures, jours = 0 si moins de 24 heures
-
-
         }
     }
 
+    public int getHowManyHoursLeft(int jourRamassage, int heureRamassage) {
+
+        Calendar cal = Calendar.getInstance();
+        cal.setFirstDayOfWeek(Calendar.SUNDAY);
+        int currentDay = cal.get(Calendar.DAY_OF_WEEK);
+
+        int distanceInDays = jourRamassage - currentDay;
+        while (distanceInDays < 0)
+            distanceInDays += 7;
+
+        return distanceInDays * 24 + heureRamassage;
+    }
 
     public int[] findNext(int jourRamassage, int heureRamassage){
         //recoit lheure et le jour du ramassage, retourne un tableau avec le nombre d'heures/jours restant
@@ -178,6 +190,109 @@ public class HomeFragment extends Fragment {
         return jhm;
     };
 
+
+    public void showToast(View v) {
+        switch (v.getId()) {
+            case R.id.verre_cassee:
+                Toast.makeText(getContext(), getContext().getResources().getString(R.string.obj_p_2), Toast.LENGTH_LONG).show();
+                break;
+            case R.id.tube_pate_dent:
+                Toast.makeText(getContext(), R.string.obj_p_3, Toast.LENGTH_LONG).show();
+                break;
+            case R.id.bol_assiette:
+                Toast.makeText(getContext(), R.string.obj_p_4, Toast.LENGTH_LONG).show();
+                break;
+            case R.id.pile:
+                Toast.makeText(getContext(), R.string.obj_p_5, Toast.LENGTH_LONG).show();
+                break;
+            case R.id.vis_clou:
+                Toast.makeText(getContext(), R.string.obj_p_6, Toast.LENGTH_LONG).show();
+                break;
+            case R.id.pot_peinture:
+                Toast.makeText(getContext(), R.string.obj_p_7, Toast.LENGTH_LONG).show();
+                break;
+            case R.id.couche:
+                Toast.makeText(getContext(), R.string.obj_p_8, Toast.LENGTH_LONG).show();
+                break;
+            case R.id.casserole:
+                Toast.makeText(getContext(), R.string.obj_p_9, Toast.LENGTH_LONG).show();
+                break;
+            case R.id.cartable:
+                Toast.makeText(getContext(), R.string.obj_p_10, Toast.LENGTH_LONG).show();
+                break;
+            case R.id.pellicule_plastique:
+                Toast.makeText(getContext(), R.string.obj_p_11, Toast.LENGTH_LONG).show();
+                break;
+            case R.id.mirroir_vitre:
+                Toast.makeText(getContext(), R.string.obj_p_12, Toast.LENGTH_LONG).show();
+                break;
+            // ---------------------------------------------
+            case R.id.compost2:
+                Toast.makeText(getContext(), R.string.obj_c_1, Toast.LENGTH_LONG).show();
+                break;
+            case R.id.compost3:
+                Toast.makeText(getContext(), R.string.obj_c_2, Toast.LENGTH_LONG).show();
+                break;
+            case R.id.compost4:
+                Toast.makeText(getContext(), R.string.obj_c_3, Toast.LENGTH_LONG).show();
+                break;
+            case R.id.compost5:
+                Toast.makeText(getContext(), R.string.obj_c_4, Toast.LENGTH_LONG).show();
+                break;
+            case R.id.compost6:
+                Toast.makeText(getContext(), R.string.obj_c_5, Toast.LENGTH_LONG).show();
+                break;
+            case R.id.compost7:
+                Toast.makeText(getContext(), R.string.obj_c_6, Toast.LENGTH_LONG).show();
+                break;
+            case R.id.compost8:
+                Toast.makeText(getContext(), R.string.obj_c_7, Toast.LENGTH_LONG).show();
+                break;
+            case R.id.compost9:
+                Toast.makeText(getContext(), R.string.obj_c_8, Toast.LENGTH_LONG).show();
+                break;
+            // ---------------------------------------------
+            case R.id.recycle2:
+                Toast.makeText(getContext(), R.string.obj_r_1, Toast.LENGTH_LONG).show();
+                break;
+            case R.id.recycle3:
+                Toast.makeText(getContext(), R.string.obj_r_2, Toast.LENGTH_LONG).show();
+                break;
+            case R.id.recycle4:
+                Toast.makeText(getContext(), R.string.obj_r_3, Toast.LENGTH_LONG).show();
+                break;
+            case R.id.recycle5:
+                Toast.makeText(getContext(), R.string.obj_r_4, Toast.LENGTH_LONG).show();
+                break;
+            case R.id.recycle6:
+                Toast.makeText(getContext(), R.string.obj_r_5, Toast.LENGTH_LONG).show();
+                break;
+            case R.id.recycle7:
+                Toast.makeText(getContext(), R.string.obj_r_6, Toast.LENGTH_LONG).show();
+                break;
+            case R.id.recycle8:
+                Toast.makeText(getContext(), R.string.obj_r_7, Toast.LENGTH_LONG).show();
+                break;
+            case R.id.recycle9:
+                Toast.makeText(getContext(), R.string.obj_r_8, Toast.LENGTH_LONG).show();
+                break;
+            case R.id.recycle10:
+                Toast.makeText(getContext(), R.string.obj_r_9, Toast.LENGTH_LONG).show();
+                break;
+            case R.id.recycle11:
+                Toast.makeText(getContext(), R.string.obj_r_10, Toast.LENGTH_LONG).show();
+                break;
+            case R.id.recycle13:
+                Toast.makeText(getContext(), R.string.obj_r_11, Toast.LENGTH_LONG).show();
+                break;
+            case R.id.recycle14:
+                Toast.makeText(getContext(), R.string.obj_r_12, Toast.LENGTH_LONG).show();
+                break;
+            case R.id.recycle15:
+                Toast.makeText(getContext(), R.string.obj_r_13, Toast.LENGTH_LONG).show();
+                break;
+        }
+    }
 
 
 }

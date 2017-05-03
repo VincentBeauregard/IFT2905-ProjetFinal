@@ -8,7 +8,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true"
         android:clipToPadding="false">
 
         <LinearLayout
@@ -39,8 +38,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:textColor="@color/black"
+                    android:background="@color/beige"
                     android:layout_marginBottom="15dp"
                     android:textSize="14sp" />
+
 
                 <Button
                     android:background="@drawable/verre_cassee"
@@ -48,7 +50,8 @@
                     android:layout_height="60dp"
                     android:layout_gravity="left"
                     android:layout_marginLeft="10dp"
-                    android:id="@+id/verre_cassee" />
+                    android:onClick="showToast"
+                    android:id="@+id/verre_cassee"/>
                 <Button
                     android:background="@drawable/tube_pate_dent"
                     android:layout_width="60dp"
@@ -139,13 +142,14 @@
                     android:layout_gravity="center" />
 
                 <Button
-                    android:text="3 Heures"
+                    android:id="@+id/timeCompost"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/timeCompost"
-                    android:textSize="14sp"
+                    android:layout_gravity="center"
+                    android:textColor="@color/black"
+                    android:background="@color/beige"
                     android:layout_marginBottom="15dp"
-                    android:layout_gravity="center"/>
+                    android:textSize="14sp"/>
 
                 <Button
                     android:background="@drawable/fromage_beurre"
@@ -227,6 +231,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:textColor="@color/black"
+                    android:background="@color/beige"
                     android:layout_marginBottom="15dp"
                     android:textSize="14sp" />
 

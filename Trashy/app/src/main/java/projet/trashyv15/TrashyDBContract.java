@@ -5,7 +5,7 @@ import android.provider.BaseColumns;
 public final class TrashyDBContract {
 
     // If you change the database schema, you must increment the database version.
-    public static final  int    DATABASE_VERSION   = 2;
+    public static final  int    DATABASE_VERSION   = 8;
     public static final  String DATABASE_NAME      = "trashy_local.db";
 
     private static final String TYPE_INTEGER       = " INT";

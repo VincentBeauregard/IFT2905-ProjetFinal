@@ -2,6 +2,7 @@ package projet.trashyv15;
 
 import android.Manifest;
 import android.content.ContentValues;
+import android.content.DialogInterface;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -14,6 +15,8 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,7 +24,6 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ZoomControls;
 
@@ -110,6 +112,13 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback {
     private double latitude;
     private double longitude;
 
+    private LocationManager locationManager;
+    private Location location;
+
+    private Spinner spinner;
+
+    private int countS;
+
     //variable pour localisation:
     LatLng loc;
 
@@ -120,6 +129,7 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback {
 
 //        TextView texte = (TextView) view.findViewById(R.id.switchStatus);
 //        texte.setText(R.string.nh);
+        countS = 0;
 
         view = inflater.inflate(R.layout.fragment_maps, container, false);
 
@@ -332,177 +342,32 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback {
         t4.start();
 
 
-        accedCarte.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
 
-                if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-                    // TODO: Consider calling
-                    //    ActivityCompat#requestPermissions
-                    // here to request the missing permissions, and then overriding
-                    //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-                    //                                          int[] grantResults)
-                    // to handle the case where the user grants the permission. See the documentation
-                    // for ActivityCompat#requestPermissions for more details.
-
-
-                    LocationManager locationManager = (LocationManager)
-                            getActivity().getSystemService(getContext().LOCATION_SERVICE);
-                    Criteria criteria = new Criteria();
-
-                    Location location = locationManager.getLastKnownLocation(locationManager
-                            .getBestProvider(criteria, false));
-
-                    loc = new LatLng(latitude,longitude);
-                    if (location != null) {
-                        double latitude = location.getLatitude();
-                        double longitude = location.getLongitude();
-
-                        loc = new LatLng(latitude, longitude);
-                        CameraPosition current = CameraPosition.builder().target(loc).zoom(12).bearing(0).tilt(45).build();
-                        mGoogleMap.animateCamera(CameraUpdateFactory.newCameraPosition(current));
-
-                        if (containsLocation(loc, ahunCV1.m)) {
-                            Toast.makeText(getContext(), "Ahunstic-CartierVille", Toast.LENGTH_LONG).show();
-                        } else if (containsLocation(loc, vm1.m) || containsLocation(loc, vm2.m)) {
-                            Toast.makeText(getContext(), "Ville-Marie", Toast.LENGTH_LONG).show();
-                        } else if (containsLocation(loc, anjou1.m)) {
-                            Toast.makeText(getContext(), "Anjou", Toast.LENGTH_LONG).show();
-                        } else if (containsLocation(loc, cdnndg1.m)) {
-                            Toast.makeText(getContext(), "Cote des Neiges Notre Dame de Grace", Toast.LENGTH_LONG).show();
-                        } else if (containsLocation(loc, iBSG1.m)) {
-                            Toast.makeText(getContext(), "Île-Bizard–Sainte-Geneviève", Toast.LENGTH_LONG).show();
-                        } else if (containsLocation(loc, lachine1.m)) {
-                            Toast.makeText(getContext(), "Lachine", Toast.LENGTH_LONG).show();
-                        } else if (containsLocation(loc, lasalle1.m)) {
-                            Toast.makeText(getContext(), "LaSalle", Toast.LENGTH_LONG).show();
-                        } else if (containsLocation(loc, mtroyal1.m)) {
-                            Toast.makeText(getContext(), "Plateau-Mont-Royal", Toast.LENGTH_LONG).show();
-                        } else if (containsLocation(loc, sudouest1.m)) {
-                            Toast.makeText(getContext(), "Sud-Ouest", Toast.LENGTH_LONG).show();
-                        } else if (containsLocation(loc, mHM1.m)) {
-                            Toast.makeText(getContext(), "Mercier–Hochelaga-Maisonneuve", Toast.LENGTH_LONG).show();
-                        } else if (containsLocation(loc, mn1.m)) {
-                            Toast.makeText(getContext(), "Montréal-Nord", Toast.LENGTH_LONG).show();
-                        } else if (containsLocation(loc, outrmt1.m)) {
-                            Toast.makeText(getContext(), "Outremont", Toast.LENGTH_LONG).show();
-                        } else if (containsLocation(loc, pR1.m) || containsLocation(loc, pr2.m) || containsLocation(loc, pr3.m) || containsLocation(loc, pr4.m) || containsLocation(loc, pr5.m) || containsLocation(loc, pr6.m) || containsLocation(loc, pr7.m) || containsLocation(loc, pr8.m)) {
-                            Toast.makeText(getContext(), "Pierrefonds-Roxboro", Toast.LENGTH_LONG).show();
-                        } else if (containsLocation(loc, rdppat1.m)) {
-                            Toast.makeText(getContext(), "Rivière-des-Prairies–Pointe-aux-Trembles", Toast.LENGTH_LONG).show();
-                        } else if (containsLocation(loc, rlpp1.m)) {
-                            Toast.makeText(getContext(), "Rosemont–La Petite-Patrie", Toast.LENGTH_LONG).show();
-                        } else if (containsLocation(loc, stlau1.m)) {
-                            Toast.makeText(getContext(), "Saint-Laurent", Toast.LENGTH_LONG).show();
-                        } else if (containsLocation(loc, stl1.m)) {
-                            Toast.makeText(getContext(), "Saint-Léonard", Toast.LENGTH_LONG).show();
-                        } else if (containsLocation(loc, verdun1.m) || containsLocation(loc, verdun2.m)) {
-                            Toast.makeText(getContext(), "Verdun", Toast.LENGTH_LONG).show();
-                        } else if (containsLocation(loc, villeraypx1.m)) {
-                            Toast.makeText(getContext(), "Villeray–Saint-Michel–Parc-Extension", Toast.LENGTH_LONG).show();
-                        } else
-                            Toast.makeText(getContext(), R.string.zoneNS, Toast.LENGTH_LONG).show();
-                    } else {
-                        Toast.makeText(getContext(), R.string.toastNoLoc, Toast.LENGTH_LONG).show();
-                    }
-                } else {
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                        requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, MY_PERMISSION_FINE_LOCATION);
-                    }
-                }
-
-                CameraPosition current = CameraPosition.builder().target(loc).zoom(12).bearing(0).tilt(45).build();
-                mGoogleMap.animateCamera(CameraUpdateFactory.newCameraPosition(current));
-
-
-                if(containsLocation(loc,ahunCV1.m)){
-                    Toast.makeText(getContext(), "Ahunstic-CartierVille", Toast.LENGTH_LONG).show();
-                }
-                else if(containsLocation(loc,vm1.m)||containsLocation(loc,vm2.m)){
-                    Toast.makeText(getContext(), "Ville-Marie", Toast.LENGTH_LONG).show();
-                }
-                else if(containsLocation(loc,anjou1.m)){
-                    Toast.makeText(getContext(), "Anjou", Toast.LENGTH_LONG).show();
-                }
-                else if(containsLocation(loc,cdnndg1.m)){
-                    Toast.makeText(getContext(), "Cote des Neiges Notre Dame de Grace", Toast.LENGTH_LONG).show();
-                }
-                else if(containsLocation(loc,iBSG1.m)){
-                    Toast.makeText(getContext(), "Île-Bizard–Sainte-Geneviève", Toast.LENGTH_LONG).show();
-                }
-                else if(containsLocation(loc,lachine1.m)){
-                    Toast.makeText(getContext(), "Lachine", Toast.LENGTH_LONG).show();
-                }
-                else if(containsLocation(loc,lasalle1.m)){
-                    Toast.makeText(getContext(), "LaSalle", Toast.LENGTH_LONG).show();
-                }
-                else if(containsLocation(loc,mtroyal1.m)){
-                    Toast.makeText(getContext(), "Plateau-Mont-Royal", Toast.LENGTH_LONG).show();
-                }
-                else if(containsLocation(loc,sudouest1.m)){
-                    Toast.makeText(getContext(), "Sud-Ouest", Toast.LENGTH_LONG).show();
-                }
-                else if(containsLocation(loc,mHM1.m)){
-                    Toast.makeText(getContext(), "Mercier–Hochelaga-Maisonneuve", Toast.LENGTH_LONG).show();
-                }
-                else if(containsLocation(loc,mn1.m)){
-                    Toast.makeText(getContext(), "Montréal-Nord", Toast.LENGTH_LONG).show();
-                }
-                else if(containsLocation(loc,outrmt1.m)){
-                    Toast.makeText(getContext(), "Outremont", Toast.LENGTH_LONG).show();
-                }
-                else if(containsLocation(loc,pR1.m)||containsLocation(loc,pr2.m)||containsLocation(loc,pr3.m)||containsLocation(loc,pr4.m)||containsLocation(loc,pr5.m)||containsLocation(loc,pr6.m)||containsLocation(loc,pr7.m)||containsLocation(loc,pr8.m)){
-                    Toast.makeText(getContext(), "Pierrefonds-Roxboro", Toast.LENGTH_LONG).show();
-                }
-                else if(containsLocation(loc,rdppat1.m)){
-                    Toast.makeText(getContext(), "Rivière-des-Prairies–Pointe-aux-Trembles", Toast.LENGTH_LONG).show();
-                }
-                else if(containsLocation(loc,rlpp1.m)){
-                    Toast.makeText(getContext(), "Rosemont–La Petite-Patrie", Toast.LENGTH_LONG).show();
-                }
-                else if(containsLocation(loc,stlau1.m)){
-                    Toast.makeText(getContext(), "Saint-Laurent", Toast.LENGTH_LONG).show();
-                }
-                else if(containsLocation(loc,stl1.m)){
-                    Toast.makeText(getContext(), "Saint-Léonard", Toast.LENGTH_LONG).show();
-                }
-                else if(containsLocation(loc,verdun1.m)||containsLocation(loc,verdun2.m)){
-                    Toast.makeText(getContext(), "Verdun", Toast.LENGTH_LONG).show();
-                }
-                else if(containsLocation(loc,villeraypx1.m)){
-                    Toast.makeText(getContext(), "Villeray–Saint-Michel–Parc-Extension", Toast.LENGTH_LONG).show();
-                }
-                else
-                    Toast.makeText(getContext(), R.string.zoneNS, Toast.LENGTH_LONG).show();
-
-
-            }
-        });
 
         /*pos du array:
-        0- Ahuntsic-Cartiervillewe
-        1- Anjou
-        2- Côte-des-Neiges–Notre-Dame-de-Grâce
-        3- Lachine
-        4- LaSalle
-        5- Le Plateau-Mont-Royal
-        6- Le Sud-Ouest
-        7- L’Île-Bizard–Sainte-Geneviève
-        8- Mercier–Hochelaga-Maisonneuve
-        9- Montréal-Nord
-        10- Outremont
-        11- Pierrefonds-Roxboro
-        12- Rivière-des-Prairies–Pointe-aux-Trembles
-        13- Rosemont–La Petite-Patrie
-        14- Saint-Laurent
-        15- Saint-Léonard
-        16- Verdun
-        17- Ville-Marie
-        18- Villeray–Saint-Michel–Parc-Extension
+        1- Ahuntsic-Cartiervillewe
+        2- Anjou
+        3- Côte-des-Neiges–Notre-Dame-de-Grâce
+        4- Lachine
+        5- LaSalle
+        6- Le Plateau-Mont-Royal
+        7- Le Sud-Ouest
+        8- L’Île-Bizard–Sainte-Geneviève
+        9- Mercier–Hochelaga-Maisonneuve
+        10- Montréal-Nord
+        11- Outremont
+        12- Pierrefonds-Roxboro
+        13- Rivière-des-Prairies–Pointe-aux-Trembles
+        14- Rosemont–La Petite-Patrie
+        15- Saint-Laurent
+        16- Saint-Léonard
+        17- Verdun
+        18- Ville-Marie
+        19- Villeray–Saint-Michel–Parc-Extension
          */
 
 
-        Spinner spinner = (Spinner) view.findViewById(R.id.spinner);
+        spinner = (Spinner) view.findViewById(R.id.spinner);
 
         //pour marc:trouver le iscurrent et faire:
         //spinner.setSelection(position du selected dans le array(int));
@@ -511,6 +376,8 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback {
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                countS++;
+                if (position == 0) return;
 
                 TrashyDBHelper dbHelper = App.getDBHelper();
                 SQLiteDatabase db = dbHelper.getReadableDatabase();
@@ -548,18 +415,165 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback {
 
                 if (position != 0) {
 
-                    Toast.makeText(getActivity(), item + R.string.toastLocSel, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), item + " " + getContext().getResources().getString(R.string.toastLocSel), Toast.LENGTH_SHORT).show();
                 }
                 else {
-                    Toast.makeText(getActivity(), R.string.toastNoLoc, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), R.string.toastNoLocSel, Toast.LENGTH_SHORT).show();
 
                 }
                 for(int i = 0 ; i<999999;i++){}
                 System.out.println(App.databaseGetCurrentNeighbourhoodID());
+
+                if(countS>1){
+
+                    AlertDialog alertDialog = new AlertDialog.Builder(getContext())
+                            .setTitle(R.string.confirm)
+                            .setMessage(getContext().getResources().getString(R.string.confirm1) + " " + item + " " + getContext().getResources().getString(R.string.confirm2))
+                            .setIcon(android.R.drawable.ic_dialog_alert)
+                            .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+
+                                public void onClick(DialogInterface dialog, int whichButton) {
+
+
+                                    Fragment fragment= new HomeFragment();
+                                    FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                                    transaction.replace(R.id.content_frame, fragment); // fragmen container id in first parameter is the  container(Main layout id) of Activity
+                                    transaction.addToBackStack(null);  // this will manage backstack
+                                    transaction.commit();
+
+
+
+
+
+                                }})
+                            .setNegativeButton(android.R.string.no, null).show();
+
+                }
+
+
+
             }
+
+
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
+            }
+
+
+
+
+
+            });
+
+
+
+
+        accedCarte.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+                    // TODO: Consider calling
+                    //    ActivityCompat#requestPermissions
+                    // here to request the missing permissions, and then overriding
+                    //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                    //                                          int[] grantResults)
+                    // to handle the case where the user grants the permission. See the documentation
+                    // for ActivityCompat#requestPermissions for more details.
+
+
+                    locationManager = (LocationManager)
+                            getActivity().getSystemService(getContext().LOCATION_SERVICE);
+                    Criteria criteria = new Criteria();
+
+                    location = locationManager.getLastKnownLocation(locationManager
+                            .getBestProvider(criteria, false));
+
+
+                    if (location != null) {
+                        double latitude = location.getLatitude();
+                        double longitude = location.getLongitude();
+
+                        loc = new LatLng(latitude, longitude);
+                        CameraPosition current = CameraPosition.builder().target(loc).zoom(12).bearing(0).tilt(45).build();
+                        mGoogleMap.animateCamera(CameraUpdateFactory.newCameraPosition(current));
+
+
+                        if (containsLocation(loc, ahunCV1.m)) {
+
+                            spinner.setSelection(1);
+                        } else if (containsLocation(loc, vm1.m) || containsLocation(loc, vm2.m)) {
+
+                            spinner.setSelection(18);
+                        } else if (containsLocation(loc, anjou1.m)) {
+
+                            spinner.setSelection(2);
+                        } else if (containsLocation(loc, cdnndg1.m)) {
+
+                            spinner.setSelection(3);
+                        } else if (containsLocation(loc, iBSG1.m)) {
+
+                            spinner.setSelection(8);
+                        } else if (containsLocation(loc, lachine1.m)) {
+
+                            spinner.setSelection(4);
+                        } else if (containsLocation(loc, lasalle1.m)) {
+
+                            spinner.setSelection(5);
+                        } else if (containsLocation(loc, mtroyal1.m)) {
+
+                            spinner.setSelection(6);
+                        } else if (containsLocation(loc, sudouest1.m)) {
+
+                            spinner.setSelection(7);
+                        } else if (containsLocation(loc, mHM1.m)) {
+
+                            spinner.setSelection(9);
+                        } else if (containsLocation(loc, mn1.m)) {
+
+                            spinner.setSelection(10);
+                        } else if (containsLocation(loc, outrmt1.m)) {
+
+                            spinner.setSelection(11);
+                        } else if (containsLocation(loc, pR1.m) || containsLocation(loc, pr2.m) || containsLocation(loc, pr3.m) || containsLocation(loc, pr4.m) || containsLocation(loc, pr5.m) || containsLocation(loc, pr6.m) || containsLocation(loc, pr7.m) || containsLocation(loc, pr8.m)) {
+
+                            spinner.setSelection(12);
+                        } else if (containsLocation(loc, rdppat1.m)) {
+
+                            spinner.setSelection(13);
+                        } else if (containsLocation(loc, rlpp1.m)) {
+
+                            spinner.setSelection(14);
+                        } else if (containsLocation(loc, stlau1.m)) {
+
+                            spinner.setSelection(15);
+                        } else if (containsLocation(loc, stl1.m)) {
+
+                            spinner.setSelection(16);
+                        } else if (containsLocation(loc, verdun1.m) || containsLocation(loc, verdun2.m)) {
+
+                            spinner.setSelection(17);
+                        } else if (containsLocation(loc, villeraypx1.m)) {
+
+                            spinner.setSelection(19);
+                        } else
+                            Toast.makeText(getContext(), R.string.zoneNS, Toast.LENGTH_LONG).show();
+                    } else {
+                        Toast.makeText(getContext(), R.string.toastNoLoc, Toast.LENGTH_LONG).show();
+                    }
+                } else {
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                        requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, MY_PERMISSION_FINE_LOCATION);
+                    }
+                }
+
+
+
+
+
+
+
             }
         });
 
@@ -602,7 +616,7 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback {
         spinner.setAdapter(adapter);
 
         if (!"".equals(currentNeighbourhood)) {
-            int spinnerPosition = adapter.getPosition(currentNeighbourhood);
+            int spinnerPosition = adapter.getPosition(secteur_translate_inverse(currentNeighbourhood));
             spinner.setSelection(spinnerPosition);
         }
 
@@ -845,14 +859,15 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback {
             //                                          int[] grantResults)
             // to handle the case where the user grants the permission. See the documentation
             // for ActivityCompat#requestPermissions for more details.
-            //mGoogleMap.setMyLocationEnabled(true);
+            mGoogleMap.setMyLocationEnabled(true);
+            mGoogleMap.getUiSettings().setMyLocationButtonEnabled(false);
 
 
-            LocationManager locationManager = (LocationManager)
+            locationManager = (LocationManager)
                     getActivity().getSystemService(getContext().LOCATION_SERVICE);
             Criteria criteria = new Criteria();
 
-            Location location = locationManager.getLastKnownLocation(locationManager
+            location = locationManager.getLastKnownLocation(locationManager
                     .getBestProvider(criteria, false));
             if (location != null) {
                 double latitude = location.getLatitude();
@@ -912,6 +927,7 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback {
                 if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
                         mGoogleMap.setMyLocationEnabled(true);
+                        mGoogleMap.getUiSettings().setMyLocationButtonEnabled(false);
                     }
 
                 } else {
@@ -946,4 +962,29 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback {
         if (item.equals("Villeray–Saint-Michel–Parc-Extension")) return "vm2";
         else return "";
     }
-}
+
+    public static String secteur_translate_inverse(String item) {
+        System.out.println("-"+item+"-");
+        if (item.equals("ahunCV1")) return "Ahunstic-Cartierville";
+        if (item.equals("anjou1")) return "Anjou";
+        if (item.equals("cdnndg1")) return "Côte-des-Neiges-Notre-Dame-de-Grâce";
+        if (item.equals("lachine1")) return "Lachine";
+        if (item.equals("lasalle1")) return "LaSalle";
+        if (item.equals("mtroyal1")) return "Plateau Mont-Royal";
+        if (item.equals("sudouest1")) return "Sud-Ouest";
+        if (item.equals("iBSG1")) return "Île-Bizard–Sainte-Geneviève";
+        if (item.equals("mHM1")) return "Mercier–Hochelaga-Maisonneuve";
+        if (item.equals("mn1")) return "Montréal-Nord";
+        if (item.equals("outrmt1")) return "Outremont";
+        if (item.equals("pR1")) return "Pierrefonds-Roxboro";
+        if (item.equals("rdppat1")) return "Rivière-des-Prairies–Pointe-aux-Trembles";
+        if (item.equals("rlpp1")) return "Rosemont–La Petite-Patrie";
+        if (item.equals("stlau1")) return "Saint-Laurent";
+        if (item.equals("stl1")) return "Saint-Léonard";
+        if (item.equals("verdun1")) return "Verdun";
+        if (item.equals("vm1")) return "Ville-Marie";
+        if (item.equals("vm2")) return "Villeray–Saint-Michel–Parc-Extension";
+        else return "";
+    }
+
+    }

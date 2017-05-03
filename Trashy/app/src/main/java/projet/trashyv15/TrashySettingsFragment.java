@@ -18,6 +18,8 @@ import android.widget.CompoundButton;
 import android.widget.Switch;
 import android.widget.Toast;
 
+import java.util.Calendar;
+
 
 public class TrashySettingsFragment extends Fragment{
 
@@ -32,6 +34,49 @@ public class TrashySettingsFragment extends Fragment{
         view = inflater.inflate(R.layout.fragment_settings, container, false);
 
 
+        char type = 'D';
+        for(int i = 0;i<3;i++) {
+            switch (i) {
+                case 1:
+                    type = 'R';
+                    break;
+                case 2:
+                    type = 'V';
+                    break;
+            }
+            //test de la fonction de temps restant
+            int day[] = App.databaseGetNextDay(type);
+
+            int jourRamassage = 0;
+            switch (day[0]) {
+                case 0:
+                    jourRamassage = Calendar.MONDAY;
+                    break;
+                case 1:
+                    jourRamassage = Calendar.TUESDAY;
+                    break;
+                case 2:
+                    jourRamassage = Calendar.WEDNESDAY;
+                    break;
+                case 3:
+                    jourRamassage = Calendar.THURSDAY;
+                    break;
+                case 4:
+                    jourRamassage = Calendar.FRIDAY;
+                    break;
+                case 5:
+                    jourRamassage = Calendar.SATURDAY;
+                    break;
+                case 6:
+                    jourRamassage = Calendar.SUNDAY;
+                    break;
+            }
+
+            int heureRamassage = day[1];
+
+            int hoursLeft = getHowManyHoursLeft(jourRamassage, heureRamassage);
+        }
+
         notif = (Switch) view.findViewById(R.id.notif);
 
         notif.setOnClickListener(new View.OnClickListener() {
@@ -41,8 +86,13 @@ public class TrashySettingsFragment extends Fragment{
                     @Override
                     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                         if(isChecked){
-                            showNotif(v);
                             Toast.makeText(getContext(),"Notifications on",Toast.LENGTH_LONG).show();
+
+//                          Il faut faire en sorte que une journee avant le ramassage il ya une notif qui indique c quoi qui va etre ramassee
+//                          Sa serait nice si les notifs soient on par defaut ( a l<installation de l'app
+                            showNotif(v);
+
+
                         }else{
                             Toast.makeText(getContext(),"Notifications off",Toast.LENGTH_LONG).show();
                         }
@@ -84,6 +134,18 @@ public class TrashySettingsFragment extends Fragment{
     }
 
 
+    public int getHowManyHoursLeft(int jourRamassage, int heureRamassage) {
+
+        Calendar cal = Calendar.getInstance();
+        cal.setFirstDayOfWeek(Calendar.SUNDAY);
+        int currentDay = cal.get(Calendar.DAY_OF_WEEK);
+
+        int distanceInDays = jourRamassage - currentDay;
+        while (distanceInDays < 0)
+            distanceInDays += 7;
+
+        return distanceInDays * 24 + heureRamassage;
+    }
 
 
 }

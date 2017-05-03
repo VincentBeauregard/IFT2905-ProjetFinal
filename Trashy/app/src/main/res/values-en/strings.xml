@@ -17,14 +17,60 @@
     <string name="trash">Garbage</string>
     <string name="toastLoc">Allow localization to determine your neighbourhood automatically</string>
     <string name="toastLocSel">was selected as your neighbourhood</string>
-    <string name="toastNoLoc">No neighbourhood was selected yet</string>
+    <string name="toastNoLoc">Cannot obtain your GPS coordinates. Did you enable Localisation on your phone?</string>
     <string name="demain">Tomorrow</string>
     <string name="jour">day</string>
     <string name="jours">days</string>
     <string name="noLoc">Impossible to localize you. Is your location on?</string>
     <string name="findEcoc">Find an eco-center nearby</string>
-    <string name="zoneNS">Zone outside of Montreal not yet accessible</string>
+    <string name="zoneNS">Zone outside of Montreal/Not yet supported</string>
     <string name="mnt">Right now!</string>
     <string name="heures">hours</string>
+    <string name="InfoEcoCentre">Do you have any items you want to get rid off without harming the environment? Montreal has 7 eco-centers that accept items that are a health hazard or harmful to the environment such as construction waste, metal, electronic devices, clothing and reusable items. \"</string>
+    <string name="toastNoLocSel">No neighbourhood selected yet</string>
+    <string name="MapsText">Choose your neighbourhood so that we can tell you the day of the collections. It is also possible to let us locate you.</string>
+    <string name="about">\n        Trashy is an app that will ease your life.\n        Do you constantly forget on which days you should take out your trash, recycling bags or compost? Trashy is here to help.\n        Connected to the city\'s schedules, Trashy will inform you, depending on your location , on which days you should take out your wastes.\n        \n        Are you willing to be even more eco-friendly? Let us tell you the closest eco-centers\n        where you can bring different types of waste (such as batteries, metal, old clothes) in order to reuse it, or simply throw it away carefully.\n\n        Plus, all of the information you need is carefully registered in your calendaer.  Have a look.</string>
+    <string name="mapsText">Choose your neighbourhood so that the schedule adapts to it.</string>
+    <string name="confirm1">Do you want to use</string>
+    <string name="confirm2">as your neighbourhood?</string>
 
+
+    <!-- Poubelle -->
+    <string name="obj_p_2">Broken glass</string>
+    <string name="obj_p_3">Toothpaste tube</string>
+    <string name="obj_p_4">Dishes</string>
+    <string name="obj_p_5">Batteries</string>
+    <string name="obj_p_6">Nails and screw</string>
+    <string name="obj_p_7">Paint bucket</string>
+    <string name="obj_p_8">Diapers</string>
+    <string name="obj_p_9">Pot</string>
+    <string name="obj_p_10">Binder/Stuffed Enveloppe</string>
+    <string name="obj_p_11">Cellophane</string>
+    <string name="obj_p_12">Glass/Mirror</string>
+
+    <!-- Compost -->
+    <string name="obj_c_1">Dairy product</string>
+    <string name="obj_c_2">Fruits/Vegetables</string>
+    <string name="obj_c_3">Seafood/Shells</string>
+    <string name="obj_c_4">Nuts/Nutshells</string>
+    <string name="obj_c_5">Eggs/Eggshells</string>
+    <string name="obj_c_6">Fish bones/Fish</string>
+    <string name="obj_c_7">coffee/Tea</string>
+    <string name="obj_c_8">Meat/Bones</string>
+
+    <!-- Recyclage -->
+    <string name="obj_r_1">Egg carton</string>
+    <string name="obj_r_2">Lids</string>
+    <string name="obj_r_3">Newspaper/magazines</string>
+    <string name="obj_r_4">Water bottle</string>
+    <string name="obj_r_5">Wine bottle</string>
+    <string name="obj_r_6">Tin can/Beer lid</string>
+    <string name="obj_r_7">Carton of milk/Carton of juice</string>
+    <string name="obj_r_8">Aseptic container</string>
+    <string name="obj_r_9">Recycling sign containing with either 1,2,3,4,5 or 7 inside</string>
+    <string name="obj_r_10">Peper/Envelope</string>
+    <string name="obj_r_11">Roll of cardboard</string>
+    <string name="obj_r_12">Paper bag</string>
+    <string name="obj_r_13">Plastic bag</string>
+    <string name="google_maps_key" translatable="false"></string>
 </resources>
