@@ -31,10 +31,8 @@
     <string name="MapsText">Choisissez votre quartier afin qu\'on vous indique les jours de collectes. Sinon, laissez-nous détecter votre emplacement.</string>
     <string name="about">"        Trashy est une app qui va faciliter votre vie.\n        Oubliez-vous constamment quelles journées il faut sortir les déchets, le recyclage ou même le compost? Trashy est là pour vous.\n        Connecté aux horaires de la ville, Trashy va vous informer, dépendemment de votre emplacement, à propos des journées durant lesquelles vous devriez sortir vos résidus.\n        \n        Voulez-vous vous impliquer écologiquement encore plus? Laissez-nous vous indiquez l'éco-centre le plus proche de chez vous, où vous pourriez amenez de divers types de résidus\n        (piles, métal, anciens vêtements) afin de réutiliser ces objets, ou tout simplement les réutiliser responsablement.\n        \n        De plus, toute l'information dont vous nécessitez est précieusment enregistrée dans votre calendirer. Aillez un coup d'oeuil."</string>
     <string name="mapsText">Choisissez votre arrondissement afin que l\'horaire s\'y adapte.</string>
-<<<<<<< Updated upstream
     <string name="confirm1">Voulez-vous utiliser</string>
     <string name="confirm2">comme arrondissement?</string>
-=======
     
     <!-- Objects -->
 
@@ -75,7 +73,11 @@
     <string name="obj_r_11">Rouleau de carton</string>
     <string name="obj_r_12">Sac de papier</string>
     <string name="obj_r_13">Sac de plastique</string>
-
->>>>>>> Stashed changes
+    <string name="horaire_ete">Changement d\'horaire des éco-centres pour l\'horaire d\'été. Maintenant ouvert à tous les jours de 8h à 18h.</string>
+    <string name="horaire_hiver">Changement d\'horaire des éco-centres pour l\'horaire d\'hiver. Maintenant ouvert de mardi à samedi de 8h à 18h. Fermé dimanche et lundi.</string>
+    <string name="at">À</string>
+    <string name="collecte_dechets">Collecte des déchets.</string>
+    <string name="collecte_compost">Collecte du compost.</string>
+    <string name="collecte_recyclage">Collecte du compost.</string>
 
 </resources>

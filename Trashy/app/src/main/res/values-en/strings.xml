@@ -73,4 +73,10 @@
     <string name="obj_r_12">Paper bag</string>
     <string name="obj_r_13">Plastic bag</string>
     <string name="google_maps_key" translatable="false"></string>
+    <string name="horaire_ete">Ecocenters are changing their schedules for the summer. Now open everyday from 8AM to 6PM.</string>
+    <string name="horaire_hiver">Ecocenters are changing their schedules for the winter. Now open from Tuesday to Saturday from 8AM to 6PM. Closed on Sunday and Monday.</string>
+    <string name="at">At</string>
+    <string name="collecte_dechets">Garbage collection.</string>
+    <string name="collecte_compost">Compost collection.</string>
+    <string name="collecte_recyclage">Recycling collection.</string>
 </resources>

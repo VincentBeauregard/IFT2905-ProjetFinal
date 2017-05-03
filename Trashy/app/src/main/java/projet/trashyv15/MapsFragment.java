@@ -421,7 +421,7 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback {
                     Toast.makeText(getActivity(), R.string.toastNoLocSel, Toast.LENGTH_SHORT).show();
 
                 }
-                for(int i = 0 ; i<999999;i++){}
+
                 System.out.println(App.databaseGetCurrentNeighbourhoodID());
 
                 if(countS>1){

@@ -58,13 +58,16 @@
         Choose your neighbourhood so that the schedule adapts to it.
     </string>
 
+    <string name="collecte_dechets" translatable="true">Garbage collection.</string>
+    <string name="collecte_recyclage" translatable="true">Recycling collection.</string>
+    <string name="collecte_compost" translatable="true">Compost collection.</string>
+    <string name="at" translatable="true">At</string>
+    <string name="horaire_ete" translatable="true">Ecocenters are changing their schedules for the summer. Now open everyday from 8AM to 6PM.</string>
+    <string name="horaire_hiver" translatable="true">Ecocenters are changing their schedules for the winter. Now open from Tuesday to Saturday from 8AM to 6PM. Closed on Sunday and Monday.</string>
     <string name="about" translatable="true">\n        Trashy is an app that will ease your life.\n        Do you constantly forget on which days you should take out your trash, recycling bags or compost? Trashy is here to help.\n        Connected to the city\'s schedules, Trashy will inform you, depending on your location , on which days you should take out your wastes.\n        \n        Are you willing to be even more eco-friendly? Let us tell you the closest eco-centers\n        where you can bring different types of waste (such as batteries, metal, old clothes) in order to reuse it, or simply throw it away carefully.\n\n        Plus, all of the information you need is carefully registered in your calendaer.  Have a look.</string>
-<<<<<<< Updated upstream
     <string name="confirm1" translatable="true">Do you want to use</string>
     <string name="confirm2" translatable="true">as your neighbourhood?</string>
     <string name="confirm">Confirmation</string>
-
-=======
     <string name="obj_c_6">Fish bones/Fish</string>
     <string name="obj_c_1">Dairy product</string>
     <string name="obj_c_2">Fruits/Vegetables</string>
@@ -97,6 +100,5 @@
     <string name="obj_r_7">Carton of milk/Carton of juice</string>
     <string name="obj_r_8">Aseptic container</string>
     <string name="obj_r_9">Recycling sign containing with either 1,2,3,4,5 or 7 inside</string>
->>>>>>> Stashed changes
 
 </resources>

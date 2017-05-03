@@ -6,14 +6,18 @@
 
     <TextView
         android:id="@+id/monthTextView"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:paddingBottom="30dp"
-        android:paddingTop="30dp"
+        android:paddingBottom="20dp"
+        android:paddingTop="20dp"
         android:paddingLeft="20dp"
         android:paddingRight="20dp"
+        android:background="@color/beige"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        android:textColor="@color/black"
         />
 
     <com.github.sundeepk.compactcalendarview.CompactCalendarView
@@ -25,14 +29,46 @@
         android:layout_below="@id/monthTextView"
         app:compactCalendarTargetHeight="250dp"
         app:compactCalendarTextSize="12sp"
-        app:compactCalendarBackgroundColor="#ffe95451"
-        app:compactCalendarTextColor="#fff"
-        app:compactCalendarCurrentSelectedDayBackgroundColor="#ffbd5f5f"
-        app:compactCalendarCurrentDayBackgroundColor="#B71C1C"
-        app:compactCalendarCurrentDayIndicatorStyle="fill_large_indicator"
-        app:compactCalendarEventIndicatorStyle="small_indicator"
+        app:compactCalendarBackgroundColor="@color/beige"
+        app:compactCalendarTextColor="@color/black"
+        app:compactCalendarCurrentSelectedDayBackgroundColor="@color/colorAccent"
+        app:compactCalendarCurrentDayBackgroundColor="@color/colorPrimaryDark"
+        app:compactCalendarCurrentDayIndicatorStyle="no_fill_large_indicator"
+        app:compactCalendarEventIndicatorStyle="fill_large_indicator"
         app:compactCalendarOtherMonthDaysTextColor="#534c4c"
-        app:compactCalendarShouldSelectFirstDayOfMonthOnScroll="true"
+        app:compactCalendarShouldSelectFirstDayOfMonthOnScroll="false"
         />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_alignParentStart="true"
+        android:layout_below="@id/monthTextView"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:background="@color/darkBeige"
+        />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_alignTop="@id/calendarView"
+        android:layout_marginTop="250dp">
+
+        <TextView
+            android:id="@+id/eventInfoTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingRight="20dp"
+            android:paddingLeft="20dp"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            />
+
+    </ScrollView>
 
 </RelativeLayout>
