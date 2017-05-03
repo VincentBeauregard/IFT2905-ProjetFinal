@@ -25,11 +25,12 @@
 
 
     <string name="toastLoc" translatable="true">Allow localization to determine your neighbourhood automatically</string>
-    <string name="toastNoLoc" translatable="true">No neighbourhood was selected yet</string>
+    <string name="toastNoLoc" translatable="true">Cannot obtain your GPS coordinates. Did you enable Localisation on your phone?</string>
     <string name="toastLocSel" translatable="true">was selected as your neighbourhood</string>
+    <string name="toastNoLocSel" translatable="true">No neighbourhood selected yet</string>
     <string name="noLoc" translatable="true">Impossible to localize you. Is your location on?</string>
     <string name="findEcoc" translatable="true">Find an eco-center nearby</string>
-    <string name="zoneNS" translatable="true">Zone outside of Montreal is not accessible yet</string>
+    <string name="zoneNS" translatable="true">Zone outside of Montreal/Not yet supported</string>
 
 
 

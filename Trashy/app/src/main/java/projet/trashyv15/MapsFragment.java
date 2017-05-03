@@ -400,9 +400,9 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback {
                         } else if (containsLocation(loc, villeraypx1.m)) {
                             Toast.makeText(getContext(), "Villeray–Saint-Michel–Parc-Extension", Toast.LENGTH_LONG).show();
                         } else
-                            Toast.makeText(getContext(), "Zone Non-Supportée/à l'extérieur de Montréal", Toast.LENGTH_LONG).show();
+                            Toast.makeText(getContext(), R.string.zoneNS, Toast.LENGTH_LONG).show();
                     } else {
-                        Toast.makeText(getContext(), "Impossible d'obtenir vos coordonnées GPS, avez-vous activé la localisation?", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getContext(), R.string.toastNoLoc, Toast.LENGTH_LONG).show();
                     }
                 } else {
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -490,10 +490,10 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback {
 
                 if (position != 0) {
 
-                    Toast.makeText(getActivity(), R.string.toastLocSel, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), item + " " + getContext().getResources().getString(R.string.toastLocSel), Toast.LENGTH_SHORT).show();
                 }
                 else {
-                    Toast.makeText(getActivity(), R.string.toastNoLoc, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), R.string.toastNoLocSel, Toast.LENGTH_SHORT).show();
 
                 }
                 for(int i = 0 ; i<999999;i++){}
