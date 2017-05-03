@@ -363,7 +363,7 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback {
                         loc = new LatLng(latitude, longitude);
                         CameraPosition current = CameraPosition.builder().target(loc).zoom(12).bearing(0).tilt(45).build();
                         mGoogleMap.animateCamera(CameraUpdateFactory.newCameraPosition(current));
-
+//pour Vince, dans chaque if rajouter le quartier dans la BD
                         if (containsLocation(loc, ahunCV1.m)) {
                             Toast.makeText(getContext(), "Ahunstic-CartierVille", Toast.LENGTH_LONG).show();
                         } else if (containsLocation(loc, vm1.m) || containsLocation(loc, vm2.m)) {
