@@ -20,11 +20,10 @@
         android:prompt="@string/selectNh"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="13dp"
         android:layout_below="@+id/switchStatus"
-        android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
-        />
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="59dp" />
 
     <Button
         android:id="@+id/accedCarte"
@@ -73,6 +72,16 @@
         android:layout_below="@+id/accedCarte"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/mapsText"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_toRightOf="@+id/switchStatus"
+        android:layout_toEndOf="@+id/switchStatus" />
 
 
 </RelativeLayout>

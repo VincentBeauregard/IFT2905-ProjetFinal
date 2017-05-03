@@ -157,7 +157,7 @@ public class MainActivity extends AppCompatActivity
                 fragment = new EcoFragment();
                 break;
             case R.id.nav_about:
-                //fragment = new AboutFragment();
+                fragment = new AboutFragment();
                 break;
         }
 
